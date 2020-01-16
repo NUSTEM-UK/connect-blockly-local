@@ -62,6 +62,10 @@ Ardublockly.TOOLBOX_XML =
 '    <block type="kniwwelino_MATRIXsetBlinkRate"></block>' +
 '  </category>' +
 '  <sep></sep>' +
+// TODO: THIS IS WHERE CONNECT STUFF GOES
+'  <category id = "catConnect" name="conNecT">' +
+'  </category>' +
+'  <sep></sep>' +
 '  <category id="catButtons" name="Buttons">' +
 '    <block type="controls_if">' +
 '      <value name="IF0">' +
