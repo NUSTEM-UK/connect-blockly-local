@@ -64,6 +64,7 @@ Ardublockly.TOOLBOX_XML =
 '  <sep></sep>' +
 // TODO: THIS IS WHERE CONNECT STUFF GOES
 '  <category id = "catConnect" name="conNecT">' +
+    '<block type="connect_test_block"></block>' +
 '  </category>' +
 '  <sep></sep>' +
 '  <category id="catButtons" name="Buttons">' +
