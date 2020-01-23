@@ -15,6 +15,9 @@ goog.provide('Blockly.Arduino.connect');
 goog.require('Blockly.Arduino');
 
 Blockly.Arduino['connect_test_block'] = function(block) {
+    /**
+     * TEST / DEMO code block. FIXME: remove.
+     */
     kniwwelinoBaseCode();
     // Inject include block
     Blockly.Arduino.addInclude('servoease', '#include <ServoEasing.h>');
