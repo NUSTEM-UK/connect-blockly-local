@@ -64,7 +64,21 @@ Ardublockly.TOOLBOX_XML =
 '  <sep></sep>' +
 // TODO: THIS IS WHERE CONNECT STUFF GOES
 '  <category id = "catConnect" name="conNecT">' +
+'    <block type="connect_test_block"></block>' +
+'    <block type="connect_smooth_servo_block">' +
+'      <value name="SERVO_ANGLE">' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">90</field>' +
+'        </shadow>' +
+'      </value>' +
+'      <value name="SWEEP_TIME">' +
+'          <shadow type="math_number">' +
+'              <field name="NUM">2</field>' +
+'          </shadow>' +
+'      </value>' +
+'    </block>"' +
 '  </category>' +
+// END CONNECT STUFF
 '  <sep></sep>' +
 '  <category id="catButtons" name="Buttons">' +
 '    <block type="controls_if">' +
