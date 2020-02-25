@@ -34,10 +34,10 @@ Blockly.Arduino['connect_test_block'] = function(block) {
    * Connect smooth servo movement.
    * Based on default servo block
    * Arduino code: #include <Servo.h>
-   *               Servo myServoX;
-   *               setup { myServoX.attach(X) }
-   *               loop  { myServoX.write(Y)  }
-   * @param {!Blockly.Block} block Blok to generate the code from.
+   *               Servo easeServoX;
+   *               setup { easeServoX.attach(X) }
+   *               loop  { easeServoX.startEaseTo(Y, Z, true)  }
+   * @param {!Blockly.Block} block Block to generate the code from.
    * @return {string} Completed code.
    */
 Blockly.Arduino['connect_smooth_servo_block'] = function(block) {
@@ -64,7 +64,12 @@ Blockly.Arduino['connect_smooth_servo_block'] = function(block) {
   return code;
 }
 
-
+/**
+   * Connect wait for servo movement to complete.
+   * Arduino code: loop  { easeServoX.isMovingAndCallYield() dummy loop }
+   * @param {!Blockly.Block} block Block to generate the code from.
+   * @return {string} Completed code.
+   */
 Blockly.Arduino['connect_wait_for_servo_move'] = function(block) {
   var pinKey = block.getFieldValue('SERVO_PIN');
   var easeServoName = 'easeServo' + pinKey;
