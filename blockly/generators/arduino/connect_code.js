@@ -63,3 +63,15 @@ Blockly.Arduino['connect_smooth_servo_block'] = function(block) {
 
   return code;
 }
+
+
+Blockly.Arduino['connect_wait_for_servo_move'] = function(block) {
+  var pinKey = block.getFieldValue('SERVO_PIN');
+  var easeServoName = 'easeServo' + pinKey;
+
+  var code = 'while (' + easeServoName + '.isMovingAndCallYield()) {\n';
+  code += '  // Dummy loop, just waiting and yielding\n}\n';
+  // var code = '// This is placed by wait block\n';
+
+  return code;
+}

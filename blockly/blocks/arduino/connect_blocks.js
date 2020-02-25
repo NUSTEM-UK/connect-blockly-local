@@ -95,4 +95,31 @@ Blockly.Blocks["connect_test_block"] = {
     }
   };
 
+  Blockly.Blocks["connect_wait_for_servo_move"] = {
+    /** 
+     * Block implementing check to wait for servo moves to complete
+     * @this Blockly.Block
+     */
+    init: function() {
+      this.setHelpUrl("https://FIXME:");
+      this.setColour(Blockly.Blocks.servo.HUE);
+      this.appendDummyInput()
+        .appendField('Wait for SERVO on Pin')
+        .appendField(
+          new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
+          "SERVO_PIN"
+        )
+        .appendField('to finish moving');
+      this.setInputsInline(true);
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setTooltip("Pauses program until servo has finished movement");
+    },
+    updateFields: function() {
+      Blockly.Arduino.Boards.refreshBlockFieldDropdown(
+        this, "SERVO_PIN", "pwmPins"
+      );
+    }
+  };
+
   

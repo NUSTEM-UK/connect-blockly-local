@@ -77,6 +77,8 @@ Ardublockly.TOOLBOX_XML =
 '          </shadow>' +
 '      </value>' +
 '    </block>"' +
+'    <block type="connect_wait_for_servo_move">' +
+'    </block>' +
 '  </category>' +
 // END CONNECT STUFF
 '  <sep></sep>' +
