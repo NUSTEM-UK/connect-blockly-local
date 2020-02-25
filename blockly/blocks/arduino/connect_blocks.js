@@ -64,7 +64,7 @@ Blockly.Blocks["connect_test_block"] = {
       this.setHelpUrl("https://FIXME:");
       this.setColour(Blockly.Blocks.servo.HUE);
       this.appendDummyInput()
-        .appendField('Move SERVO on Pin')
+        .appendField('Ease SERVO on Pin')
         .appendField(
           new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
           "SERVO_PIN"
@@ -73,10 +73,10 @@ Blockly.Blocks["connect_test_block"] = {
       this.appendValueInput('SERVO_ANGLE')
         .setCheck(Blockly.Types.NUMBER.checkList)
         .appendField('to angle');
-      this.appendValueInput('SWEEP_TIME')
+      this.appendValueInput('SWEEP_RATE')
         .setCheck(Blockly.Types.NUMBER.checkList)
-        .appendField('in');
-      this.appendDummyInput().appendField('secs');
+        .appendField('at rate');
+      // this.appendDummyInput().appendField('secs');
       this.setInputsInline(true);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);

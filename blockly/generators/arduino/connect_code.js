@@ -44,20 +44,22 @@ Blockly.Arduino['connect_smooth_servo_block'] = function(block) {
   var pinKey = block.getFieldValue('SERVO_PIN');
   var servoAngle = Blockly.Arduino.valueToCode(
     block, 'SERVO_ANGLE', Blockly.Arduino.ORDER_ATOMIC) || '90';
-  var servoName = 'myServo' + pinKey;
-  var sweepTime = Blockly.Arduino.valueToCode(
-    block, 'SWEEP_TIME', Blockly.Arduino.ORDER_ATOMIC) || '2';
+  var easeServoName = 'easeServo' + pinKey;
+  var sweepRate = Blockly.Arduino.valueToCode(
+    block, 'SWEEP_RATE', Blockly.Arduino.ORDER_ATOMIC) || '30';
 
   Blockly.Arduino.reservePin(
     block, pinKey, Blockly.Arduino.PinTypes.SERVO, 'Servo Write');
   
-  Blockly.Arduino.addInclude('servo', '#include <Servo.h>');
-  Blockly.Arduino.addDeclaration('servo_' + pinKey, 'Servo ' + servoName + ';');
+  Blockly.Arduino.addInclude('servoEasing', '#include <ServoEasing.h>');
+  Blockly.Arduino.addDeclaration('servoEasing_' + pinKey, 'ServoEasing ' + easeServoName + ';');
 
-  var setupCode = servoName + '.attach(' + pinKey + ');';
-  Blockly.Arduino.addSetup('servo_' + pinKey, setupCode, true);
+  var setupCode = easeServoName + '.attach(' + pinKey + ');';
+  Blockly.Arduino.addSetup('servoEasing_' + pinKey, setupCode, true);
 
-  var code = servoName + '.write(' + servoAngle + ');\n';
-  code += '// sweep time = ' + sweepTime + '\n';
+  var code = easeServoName + '.startEaseTo(' + servoAngle + ', ' + sweepRate + ', true );\n';
+  // code += '// sweep time = ' + sweepRate + '\n';
+  code += '// Servo will move on background thread, code execution continues. \n';
+
   return code;
 }

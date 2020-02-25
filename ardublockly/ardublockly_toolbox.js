@@ -71,9 +71,9 @@ Ardublockly.TOOLBOX_XML =
 '          <field name="NUM">90</field>' +
 '        </shadow>' +
 '      </value>' +
-'      <value name="SWEEP_TIME">' +
+'      <value name="SWEEP_RATE">' +
 '          <shadow type="math_number">' +
-'              <field name="NUM">2</field>' +
+'              <field name="NUM">30</field>' +
 '          </shadow>' +
 '      </value>' +
 '    </block>"' +
