@@ -134,9 +134,25 @@ Blockly.Blocks["connect_test_block"] = {
       this.appendDummyInput()
         .appendField("if received mood is")
         .appendField(new Blockly.FieldDropdown([["happy", "HAPPY"], ["sad", "SAD"], ["heart", "HEART"], ["skull", "SKULL"], ["duck", "DUCK"]]), "mood");
-      this.appendStatementInput("DO")
+        this.appendStatementInput("DO")
+        .setCheck(null);
+      this.appendDummyInput()
+        .appendField("if received mood is")
+        .appendField(new Blockly.FieldDropdown([["happy", "HAPPY"], ["sad", "SAD"], ["heart", "HEART"], ["skull", "SKULL"], ["duck", "DUCK"]]), "mood");
+        this.appendStatementInput("DO")
         .setCheck(null);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
     }    
 };
+
+Blockly.Blocks["connect_root"] = {
+  /**
+   * Blcok acting as core of Connect coding experience
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl("https://FIXME:");
+    this.setColour(Blockly.Blocks.)
+  }
+}
