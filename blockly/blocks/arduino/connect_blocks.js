@@ -122,4 +122,21 @@ Blockly.Blocks["connect_test_block"] = {
     }
   };
 
-  
+  Blockly.Blocks["connect_on_mood_message"] = {
+    /**
+     * Block implementing core message receive logic and match specific mood
+     * @this Blockly.Block
+     */
+    init: function() {
+      this.setHelpUrl("https://FIXME:");
+      this.setColour(Blockly.Blocks.loops.HUE);
+      this.setTooltip("");
+      this.appendDummyInput()
+        .appendField("if received mood is")
+        .appendField(new Blockly.FieldDropdown([["happy", "HAPPY"], ["sad", "SAD"], ["heart", "HEART"], ["skull", "SKULL"], ["duck", "DUCK"]]), "mood");
+      this.appendStatementInput("DO")
+        .setCheck(null);
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+    }    
+};
