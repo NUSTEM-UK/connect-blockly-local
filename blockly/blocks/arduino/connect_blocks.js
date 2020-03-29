@@ -153,6 +153,6 @@ Blockly.Blocks["connect_root"] = {
    */
   init: function() {
     this.setHelpUrl("https://FIXME:");
-    this.setColour(Blockly.Blocks.)
+    this.setColour(Blockly.Blocks.loops.HUE);
   }
 }
