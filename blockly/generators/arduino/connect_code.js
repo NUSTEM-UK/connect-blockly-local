@@ -13,6 +13,8 @@
 goog.provide('Blockly.Arduino.connect');
 
 goog.require('Blockly.Arduino');
+goog.require('Blockly.Arduino.kniwwelino');
+
 
 Blockly.Arduino['connect_test_block'] = function(block) {
     /**
