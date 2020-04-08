@@ -146,6 +146,45 @@ Blockly.Blocks["connect_test_block"] = {
     }    
 };
 
+Blockly.Blocks["connect_connected_device"] = {
+    /** 
+     * Block implementing setup() and loop() wrappers, as Connected device
+     * root object.
+     * @this Blockly.Block
+     */
+    init: function() {
+      this.setHelpUrl("https://FIXME");
+      this.setTooltip("Connected Object");
+      this.setColour(Blockly.Blocks.connect_conNecT.HUE);
+      this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("./img/kn02.png", 84, 24, "*"))
+        .appendField("Connected Device");
+      this.appendStatementInput('SETUP_FUNC');
+      this.appendStatementInput('LOOP_FUNC');
+      this.appendDummyInput()
+        .appendField("if received mood is")
+        .appendField(new Blockly.FieldDropdown([["happy", "HAPPY"], ["sad", "SAD"], ["heart", "HEART"], ["skull", "SKULL"], ["duck", "DUCK"]]), "mood");
+      this.appendStatementInput("DO")
+        .setCheck(null);
+      this.appendDummyInput()
+        .appendField("if received mood is")
+        .appendField(new Blockly.FieldDropdown([["happy", "HAPPY"], ["sad", "SAD"], ["heart", "HEART"], ["skull", "SKULL"], ["duck", "DUCK"]]), "mood");
+      this.appendStatementInput("DO")
+        .setCheck(null);
+      this.setInputsInline(false);
+      this.setPreviousStatement(false);
+      this.setNextStatement(false);
+      this.contextMenu = false;
+    },
+      /**@return {!boolean} true of the block instance is in the workspace */
+      getArduinoSetupInstance: function() {
+        return true;
+      },
+      getArduinoLoopsInstance: function() {
+        return true;
+      }
+}
+
 Blockly.Blocks["connect_root"] = {
   /**
    * Blcok acting as core of Connect coding experience

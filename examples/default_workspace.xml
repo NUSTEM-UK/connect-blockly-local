@@ -1,8 +1,8 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="arduino_functions_setup" x="40" y="40"></block>
-  <block type="arduino_functions_loop" x="40" y="240"></block>
+  <!-- <block type="arduino_functions_setup" x="40" y="40"></block>
+  <block type="arduino_functions_loop" x="40" y="240"></block> -->
   <!-- Can add/remove default blocks here -->
   <!-- NB. Chrome cacheing can be a nightmare here. -->
   <!-- Disable cache in Network tab of Developer tools -->
-  <block type="connect_on_mood_message" x="40" y="440"></block>
+  <block type="connect_connected_device" x="40" y="40"></block>
 </xml>

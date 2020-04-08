@@ -83,3 +83,31 @@ Blockly.Arduino['connect_wait_for_servo_move'] = function(block) {
   return code;
 }
 
+/**
+ * Connect root block
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['connect_connected_device'] = function(block) {
+  // Edited version of arduino_functions_setup
+  function statementToCodeNoTab(block, name) {
+    var targetBlock = block.getInputTargetBlock(name);
+    var code = Blockly.Arduino.blockToCode(targetBlock);
+    if (!goog.isString(code)) {
+      throw 'Expecting code from statement block "' + targetBlock.type + '".';
+    }
+    return code;
+  }
+
+  var setupBranch = Blockly.Arduino.statementToCode(block, 'SETUP_FUNC');
+  if (setupBranch) {
+    Blockly.Arduino.addSetup('userSetupCode', setupBranch, true);
+  }
+  
+  // Additions from arduino_functions_loop
+  var loopBranch = statementToCodeNoTab(block, 'LOOP_FUNC');
+  if (loopBranch) {
+    Blockly.Arduino.addLoop('userLoopCode', loopBranch, true);
+  }
+  return loopBranch;
+}
