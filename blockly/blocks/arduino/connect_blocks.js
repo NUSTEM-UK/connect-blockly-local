@@ -159,8 +159,12 @@ Blockly.Blocks["connect_connected_device"] = {
       this.appendDummyInput()
         .appendField(new Blockly.FieldImage("./img/kn02.png", 84, 24, "*"))
         .appendField("Connected Device");
-      this.appendStatementInput('SETUP_FUNC');
-      this.appendStatementInput('LOOP_FUNC');
+      this.appendDummyInput()
+        .appendField("Setup() (for testing)");
+        this.appendStatementInput('SETUP_FUNC');
+      this.appendDummyInput()
+        .appendField("Loop() (for testing)");
+        this.appendStatementInput('LOOP_FUNC');
       this.appendDummyInput()
         .appendField("if received mood is")
         .appendField(new Blockly.FieldDropdown([["happy", "HAPPY"], ["sad", "SAD"], ["heart", "HEART"], ["skull", "SKULL"], ["duck", "DUCK"]]), "mood");
@@ -183,15 +187,4 @@ Blockly.Blocks["connect_connected_device"] = {
       getArduinoLoopsInstance: function() {
         return true;
       }
-}
-
-Blockly.Blocks["connect_root"] = {
-  /**
-   * Blcok acting as core of Connect coding experience
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.setHelpUrl("https://FIXME:");
-    this.setColour(Blockly.Blocks.loops.HUE);
-  }
 }
