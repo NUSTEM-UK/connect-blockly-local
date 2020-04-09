@@ -109,5 +109,7 @@ Blockly.Arduino['connect_connected_device'] = function(block) {
   if (loopBranch) {
     Blockly.Arduino.addLoop('userLoopCode', loopBranch, true);
   }
+  kniwwelinoBaseCode(); // Add standard Kniwwelino init and background process handling
+  // FIXME: That doesn't add the SKETCH_NAME to the init, not clear why
   return loopBranch;
 }
