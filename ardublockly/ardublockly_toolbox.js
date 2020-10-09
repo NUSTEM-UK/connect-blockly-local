@@ -64,7 +64,7 @@ Ardublockly.TOOLBOX_XML =
 '  <sep></sep>' +
 // TODO: THIS IS WHERE CONNECT STUFF GOES
 '  <category id = "catConnect" name="conNecT">' +
-'    <block type="connect_test_block"></block>' +
+// '    <block type="connect_test_block"></block>' +
 '    <block type="connect_smooth_servo_block">' +
 '      <value name="SERVO_ANGLE">' +
 '        <shadow type="math_number">' +
@@ -77,12 +77,46 @@ Ardublockly.TOOLBOX_XML =
 '          </shadow>' +
 '      </value>' +
 '    </block>"' +
+'    <block type="connect_servo_animation_block">' +
+        '<value name="FROM_ANGLE">' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">45</field>' +
+'        </shadow>' +
+'      </value>' +
+        '<value name="TO_ANGLE">' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">135</field>' +
+'        </shadow>' +
+'      </value>' +
+        '<value name="NUM_SEQUENCES">' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">3</field>' +
+'        </shadow>' +
+'      </value>' +
+'    </block>' +
+'    <block type="connect_servo_animation_container_block">' +
+        '<value name="FROM_ANGLE">' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">45</field>' +
+'        </shadow>' +
+'      </value>' +
+        '<value name="TO_ANGLE">' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">135</field>' +
+'        </shadow>' +
+'      </value>' +
+        '<value name="NUM_SEQUENCES">' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">3</field>' +
+'        </shadow>' +
+'      </value>' +
+'    </block>' +
 '    <block type="connect_wait_for_servo_move">' +
 '    </block>' +
-'    <block type="connect_on_mood_message">' +
-'    </block>' +
-'    <block type="connect_connected_device">' +
-'    </block>' +
+// '    <block type="connect_on_mood_message">' +
+// '    </block>' +
+// '    <block type="connect_connected_device">' +
+// '    </block>' +
 '  </category>' +
 // END CONNECT STUFF
 '  <sep></sep>' +

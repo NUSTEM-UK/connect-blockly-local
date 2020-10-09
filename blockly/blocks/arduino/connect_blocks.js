@@ -95,6 +95,82 @@ Blockly.Blocks["connect_test_block"] = {
     }
   };
 
+  Blockly.Blocks["connect_servo_animation_block"] = {
+    /**
+     * Block implementing basic/facile animation template
+     * @this Blockly.Block
+     */
+    init: function() {
+      this.setHelpUrl("https://FIXME:");
+      this.setColour(Blockly.Blocks.servo.HUE);
+      this.appendDummyInput()
+        .appendField(
+          new Blockly.FieldDropdown([
+            ["flap", "flap"],
+            ["wave", "wave"],
+            ["bounce", "bounce"]
+          ]))
+        .appendField('SERVO on Pin')
+        .appendField(
+          new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
+          "SERVO_PIN"
+        );
+      this.appendValueInput('FROM_ANGLE')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField('from angle: ');
+      this.appendValueInput('TO_ANGLE')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField('to angle: ');
+      this.appendValueInput('NUM_SEQUENCES')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField('times: ');
+      this.setInputsInline(true);
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setTooltip("FIXME: tooltop");
+    }
+  }
+
+  Blockly.Blocks["connect_servo_animation_container_block"] = {
+    /**
+     * Block implementing servo animation template with container
+     * @this Blockly.Block
+     */
+    init: function() {
+      this.setHelpUrl("https://FIXME:");
+      this.setColour(Blockly.Blocks.servo.HUE);
+      this.appendDummyInput()
+        .appendField(
+          new Blockly.FieldDropdown([
+            ["flap", "flap"],
+            ["wave", "wave"],
+            ["bounce", "bounce"]
+          ]))
+        .appendField('SERVO on Pin')
+        .appendField(
+          new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
+          "SERVO_PIN"
+        );
+      this.appendValueInput('FROM_ANGLE')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField('from angle: ');
+      this.appendValueInput('TO_ANGLE')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField('to angle: ');
+      this.appendValueInput('NUM_SEQUENCES')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField('times: ');
+      this.appendStatementInput("NAME")
+          .setCheck(null)
+          .appendField("and");
+      this.setInputsInline(true);
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setTooltip("FIXME: tooltop");
+    }
+
+  }
+
   Blockly.Blocks["connect_wait_for_servo_move"] = {
     /** 
      * Block implementing check to wait for servo moves to complete
