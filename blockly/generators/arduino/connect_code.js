@@ -168,8 +168,10 @@ Blockly.Arduino['connect_mood_happy'] = function(block) {
   returnType = Blockly.Arduino.getArduinoType_(returnType);
 
   // Construct code
-  var returnType + ' ' + funcName + '(' + args.join(', ') + ') {\n'
-      + branch + returnValue + '}';
+  var code = returnType + ' '
+             + funcName + '(' + args.join(', ')
+             + ') {\n'
+             + branch + returnValue + '}';
   code = Blockly.Arduino.scrub_(block, code);
   Blockly.Arduino.userFunctions_[funcName] = code;
   return null;
