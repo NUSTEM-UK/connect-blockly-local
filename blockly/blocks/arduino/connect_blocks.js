@@ -4,9 +4,10 @@
  *
  */
 
-/** 
+/**
  * @fileoverview Blocks for the conNecT library
  * conNecT library docs: FIXME:
+ * @author jonathan.sanderson@northumbria.ac.uk (Jonathan Sanderson)
  */
 'use strict';
 
@@ -172,7 +173,7 @@ Blockly.Blocks["connect_test_block"] = {
   }
 
   Blockly.Blocks["connect_wait_for_servo_move"] = {
-    /** 
+    /**
      * Block implementing check to wait for servo moves to complete
      * @this Blockly.Block
      */
@@ -198,10 +199,25 @@ Blockly.Blocks["connect_test_block"] = {
     }
   };
 
+  Blockly.Blocks['connect_enqueue'] = {
+    /**
+     * Block for queueing up commands to the dispatcher.
+     * @this Blockly.Block
+     * 2021-05-14 Meh, need to design this on paper before we try
+     * to code it up. Should be possible with reference to math_number_property
+     * in blocks/math.js.
+     */
+    init: function() {
+      this.setColour(Blockly.Blocks.connect_conNecT.HUE);
+
+    }
+  }
+
   Blockly.Blocks["connect_on_mood_message"] = {
     /**
      * Block implementing core message receive logic and match specific mood
      * @this Blockly.Block
+     * 2021-05-14 Not loaded in ardu_blockly_toolbox, for now
      */
     init: function() {
       this.setHelpUrl("https://FIXME:");
@@ -219,11 +235,11 @@ Blockly.Blocks["connect_test_block"] = {
         .setCheck(null);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-    }    
+    }
 };
 
 Blockly.Blocks["connect_connected_device"] = {
-    /** 
+    /**
      * Block implementing setup() and loop() wrappers, as Connected device
      * root object.
      * @this Blockly.Block

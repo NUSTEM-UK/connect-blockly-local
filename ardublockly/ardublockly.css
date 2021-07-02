@@ -56,7 +56,7 @@ body {
 }
 
 #catConnect\.label:before {
-  content: "\f520"; ?* TODO: Fix this reference (should be bird https://fontawesome.com/icons/crow?style=solid)
+  content: "\f520"; /* TODO: Fix this reference (should be bird https://fontawesome.com/icons/crow?style=solid) */
   font-family: FontAwesome;
   left: 0px;
   padding-right: 10px;
