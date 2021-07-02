@@ -106,7 +106,7 @@ Blockly.Arduino.init = function(workspace) {
   Blockly.Arduino.setups_ = Object.create(null);
   // Create a dictionary of pins to check if their use conflicts
   Blockly.Arduino.pins_ = Object.create(null);
-  
+
   // kniwwelino
   Blockly.Arduino.kniwwelino_subs_ = Object.create(null);
   Blockly.Arduino.kniwwelino_vartypes_ = Object.create(null);
@@ -125,7 +125,7 @@ Blockly.Arduino.init = function(workspace) {
 
   // Set variable declarations with their Arduino type in the defines dictionary
   for (var varName in varsWithTypes) {
-	  
+
     Blockly.Arduino.addVariable(varName,
     Blockly.Arduino.getArduinoType_(varsWithTypes[varName]) +' ' +
     Blockly.Arduino.variableDB_.getName(varName, Blockly.Variables.NAME_TYPE) + ';');
@@ -179,19 +179,25 @@ Blockly.Arduino.finish = function(code) {
     userSetupCode = '\n' + Blockly.Arduino.setups_['userSetupCode'];
     delete Blockly.Arduino.setups_['userSetupCode'];
   }
-  
+
   //kniwwelino Kniwwelino.begin first
   if (Blockly.Arduino.setups_['kniwwelinoBegin'] !== undefined) {
 	setups.push(Blockly.Arduino.setups_['kniwwelinoBegin']);
 	delete Blockly.Arduino.setups_['kniwwelinoBegin'];
   }
-  
+
+  // Connect additions
+  if (Blockly.Arduino.setups_['connectBegin'] !== undefined) {
+    setups.push(Blockly.Arduino.setups_['connectBegin']);
+    delete Blockly.Arduino.setups_['connectBegin'];
+  }
+
   //kniwwelino MQTT set Group second
   if (Blockly.Arduino.setups_['kniwwelino_MQTTsetGroup'] !== undefined) {
 	 setups.push(Blockly.Arduino.setups_['kniwwelino_MQTTsetGroup']);
 	 delete Blockly.Arduino.setups_['kniwwelino_MQTTsetGroup'];
   }
-  
+
   for (var name in Blockly.Arduino.setups_) {
     setups.push(Blockly.Arduino.setups_[name]);
   }
@@ -208,28 +214,33 @@ Blockly.Arduino.finish = function(code) {
   delete Blockly.Arduino.setups_;
   delete Blockly.Arduino.pins_;
   Blockly.Arduino.variableDB_.reset();
-  
+
   // kniwwelino mqtt subscription stuff
   delete Blockly.Arduino.kniwwelino_subs_;
   delete Blockly.Arduino.kniwwelino_vartypes_;
-  
+
   var allDefs = includes.join('\n') + variables.join('\n') +
       definitions.join('\n') + functions.join('\n\n');
   var setup = 'void setup() {' + setups.join('\n  ') + '\n}\n\n';
 
   //kniwwelino If Loop element shown, generate only elements in Loop Element.
   if (Blockly.Arduino.kniwwelino_loop_['userLoopCode'] !== undefined) {
-	code = Blockly.Arduino.kniwwelino_loop_['userLoopCode'];  
+	code = Blockly.Arduino.kniwwelino_loop_['userLoopCode'];
 	delete Blockly.Arduino.kniwwelino_loop_;
-  } 
+  }
 
   //kniwwelino
   if (allDefs.includes("Kniwwelino.h")) {
 	  code = code + '\nKniwwelino.loop(); // do background stuff...';
   }
-  
-  var loop =  'void loop() {\n  ' + code.replace(/\n/g, '\n  ') + '\n}';  
-  
+
+  //Connect
+  if (allDefs.includes("Connect.h")) {
+    code = code + '\nconnectLoop(); // do Connect things...';
+  }
+
+  var loop =  'void loop() {\n  ' + code.replace(/\n/g, '\n  ') + '\n}';
+
   return allDefs + setup + loop + received + "\n\n" ;
 };
 

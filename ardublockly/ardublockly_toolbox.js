@@ -65,6 +65,8 @@ Ardublockly.TOOLBOX_XML =
 // TODO: THIS IS WHERE CONNECT STUFF GOES
 '  <category id = "catConnect" name="conNecT">' +
 // '    <block type="connect_test_block"></block>' +
+'    <block type="connect_mood_happy"></block>' +
+'    <block type="connect_mood_sad"></block>' +
 '    <block type="connect_smooth_servo_block">' +
 '      <value name="SERVO_ANGLE">' +
 '        <shadow type="math_number">' +
