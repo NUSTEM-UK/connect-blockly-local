@@ -94,6 +94,8 @@ Blockly.Arduino['connect_wait_for_servo_move'] = function(block) {
   return code;
 }
 
+
+
 /**
  * Connect root block
  * @param {!Blockly.Block} block Block to generate the code from.
@@ -169,7 +171,7 @@ Blockly.Arduino['connect_mood_happy'] = function(block) {
 
   // Construct code
   var code = returnType + ' '
-             + funcName + '(' + args.join(', ')
+             + 'doHappy' + '(' + args.join(', ')
              + ') {\n'
              + branch + returnValue + '}';
   code = Blockly.Arduino.scrub_(block, code);
@@ -177,4 +179,210 @@ Blockly.Arduino['connect_mood_happy'] = function(block) {
   return null;
 }
 
-Blockly.Arduino['connect_mood_sad'] = Blockly.Arduino['connect_mood_happy'];
+/**
+ * Connect doSad() block
+ * @param (!Blockly.Block) block Block to generate the code from.
+ * @return (null) There is no code added to loop.
+ */
+// Duplicated from procedures_defreturn
+Blockly.Arduino['connect_mood_sad'] = function(block) {
+  var funcName = Blockly.Arduino.variableDB_.getName(
+      block.getFieldValue('NAME'), Blockly.Procedures.NAME_TYPE);
+  var branch = Blockly.Arduino.statementToCode(block, 'STACK');
+  if (Blockly.Arduino.STATEMENT_PREFIX) {
+    branch = Blockly.Arduino.prefixLines(
+        Blockly.Arduino.STATEMENT_PREFIX.replace(/%1/g,
+        '\'' + block.id + '\''), Blockly.Arduino.INDENT) + branch;
+  }
+  if (Blockly.Arduino.INFINITE_LOOP_TRAP) {
+    branch = Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g,
+        '\'' + block.id + '\'') + branch;
+  }
+  var returnValue = Blockly.Arduino.valueToCode(block, 'RETURN',
+      Blockly.Arduino.ORDER_NONE) || '';
+  if (returnValue) {
+    returnValue = '  return ' + returnValue + ';\n';
+  }
+
+  // Get arguments with type
+  var args = [];
+  for (var x = 0; x < block.arguments_.length; x++) {
+    args[x] =
+        Blockly.Arduino.getArduinoType_(block.getArgType(block.arguments_[x])) +
+        ' ' +
+        Blockly.Arduino.variableDB_.getName(block.arguments_[x],
+            Blockly.Variables.NAME_TYPE);
+  }
+
+  // Get return type
+  var returnType = Blockly.Types.NULL;
+  if (block.getReturnType) {
+    returnType = block.getReturnType();
+  }
+  returnType = Blockly.Arduino.getArduinoType_(returnType);
+
+  // Construct code
+  var code = returnType + ' '
+             + 'doSad' + '(' + args.join(', ')
+             + ') {\n'
+             + branch + returnValue + '}';
+  code = Blockly.Arduino.scrub_(block, code);
+  Blockly.Arduino.userFunctions_[funcName] = code;
+  return null;
+}
+
+/**
+ * Connect doHeart() block
+ * @param (!Blockly.Block) block Block to generate the code from.
+ * @return (null) There is no code added to loop.
+ */
+// Duplicated from procedures_defreturn
+Blockly.Arduino['connect_mood_heart'] = function(block) {
+  var funcName = Blockly.Arduino.variableDB_.getName(
+      block.getFieldValue('NAME'), Blockly.Procedures.NAME_TYPE);
+  var branch = Blockly.Arduino.statementToCode(block, 'STACK');
+  if (Blockly.Arduino.STATEMENT_PREFIX) {
+    branch = Blockly.Arduino.prefixLines(
+        Blockly.Arduino.STATEMENT_PREFIX.replace(/%1/g,
+        '\'' + block.id + '\''), Blockly.Arduino.INDENT) + branch;
+  }
+  if (Blockly.Arduino.INFINITE_LOOP_TRAP) {
+    branch = Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g,
+        '\'' + block.id + '\'') + branch;
+  }
+  var returnValue = Blockly.Arduino.valueToCode(block, 'RETURN',
+      Blockly.Arduino.ORDER_NONE) || '';
+  if (returnValue) {
+    returnValue = '  return ' + returnValue + ';\n';
+  }
+
+  // Get arguments with type
+  var args = [];
+  for (var x = 0; x < block.arguments_.length; x++) {
+    args[x] =
+        Blockly.Arduino.getArduinoType_(block.getArgType(block.arguments_[x])) +
+        ' ' +
+        Blockly.Arduino.variableDB_.getName(block.arguments_[x],
+            Blockly.Variables.NAME_TYPE);
+  }
+
+  // Get return type
+  var returnType = Blockly.Types.NULL;
+  if (block.getReturnType) {
+    returnType = block.getReturnType();
+  }
+  returnType = Blockly.Arduino.getArduinoType_(returnType);
+
+  // Construct code
+  var code = returnType + ' '
+             + 'doHeart' + '(' + args.join(', ')
+             + ') {\n'
+             + branch + returnValue + '}';
+  code = Blockly.Arduino.scrub_(block, code);
+  Blockly.Arduino.userFunctions_[funcName] = code;
+  return null;
+}
+
+/**
+ * Connect doSkull() block
+ * @param (!Blockly.Block) block Block to generate the code from.
+ * @return (null) There is no code added to loop.
+ */
+// Duplicated from procedures_defreturn
+Blockly.Arduino['connect_mood_skull'] = function(block) {
+  var funcName = Blockly.Arduino.variableDB_.getName(
+      block.getFieldValue('NAME'), Blockly.Procedures.NAME_TYPE);
+  var branch = Blockly.Arduino.statementToCode(block, 'STACK');
+  if (Blockly.Arduino.STATEMENT_PREFIX) {
+    branch = Blockly.Arduino.prefixLines(
+        Blockly.Arduino.STATEMENT_PREFIX.replace(/%1/g,
+        '\'' + block.id + '\''), Blockly.Arduino.INDENT) + branch;
+  }
+  if (Blockly.Arduino.INFINITE_LOOP_TRAP) {
+    branch = Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g,
+        '\'' + block.id + '\'') + branch;
+  }
+  var returnValue = Blockly.Arduino.valueToCode(block, 'RETURN',
+      Blockly.Arduino.ORDER_NONE) || '';
+  if (returnValue) {
+    returnValue = '  return ' + returnValue + ';\n';
+  }
+
+  // Get arguments with type
+  var args = [];
+  for (var x = 0; x < block.arguments_.length; x++) {
+    args[x] =
+        Blockly.Arduino.getArduinoType_(block.getArgType(block.arguments_[x])) +
+        ' ' +
+        Blockly.Arduino.variableDB_.getName(block.arguments_[x],
+            Blockly.Variables.NAME_TYPE);
+  }
+
+  // Get return type
+  var returnType = Blockly.Types.NULL;
+  if (block.getReturnType) {
+    returnType = block.getReturnType();
+  }
+  returnType = Blockly.Arduino.getArduinoType_(returnType);
+
+  // Construct code
+  var code = returnType + ' '
+             + 'doSkull' + '(' + args.join(', ')
+             + ') {\n'
+             + branch + returnValue + '}';
+  code = Blockly.Arduino.scrub_(block, code);
+  Blockly.Arduino.userFunctions_[funcName] = code;
+  return null;
+}
+
+/**
+ * Connect doDuck() block
+ * @param (!Blockly.Block) block Block to generate the code from.
+ * @return (null) There is no code added to loop.
+ */
+// Duplicated from procedures_defreturn
+Blockly.Arduino['connect_mood_duck'] = function(block) {
+  var funcName = Blockly.Arduino.variableDB_.getName(
+      block.getFieldValue('NAME'), Blockly.Procedures.NAME_TYPE);
+  var branch = Blockly.Arduino.statementToCode(block, 'STACK');
+  if (Blockly.Arduino.STATEMENT_PREFIX) {
+    branch = Blockly.Arduino.prefixLines(
+        Blockly.Arduino.STATEMENT_PREFIX.replace(/%1/g,
+        '\'' + block.id + '\''), Blockly.Arduino.INDENT) + branch;
+  }
+  if (Blockly.Arduino.INFINITE_LOOP_TRAP) {
+    branch = Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g,
+        '\'' + block.id + '\'') + branch;
+  }
+  var returnValue = Blockly.Arduino.valueToCode(block, 'RETURN',
+      Blockly.Arduino.ORDER_NONE) || '';
+  if (returnValue) {
+    returnValue = '  return ' + returnValue + ';\n';
+  }
+
+  // Get arguments with type
+  var args = [];
+  for (var x = 0; x < block.arguments_.length; x++) {
+    args[x] =
+        Blockly.Arduino.getArduinoType_(block.getArgType(block.arguments_[x])) +
+        ' ' +
+        Blockly.Arduino.variableDB_.getName(block.arguments_[x],
+            Blockly.Variables.NAME_TYPE);
+  }
+
+  // Get return type
+  var returnType = Blockly.Types.NULL;
+  if (block.getReturnType) {
+    returnType = block.getReturnType();
+  }
+  returnType = Blockly.Arduino.getArduinoType_(returnType);
+
+  // Construct code
+  var code = returnType + ' '
+             + 'doDuck' + '(' + args.join(', ')
+             + ') {\n'
+             + branch + returnValue + '}';
+  code = Blockly.Arduino.scrub_(block, code);
+  Blockly.Arduino.userFunctions_[funcName] = code;
+  return null;
+}
