@@ -118,10 +118,6 @@ Ardublockly.TOOLBOX_XML =
 '    </block>' +
 '    <block type="connect_wait_for_servo_move">' +
 '    </block>' +
-// '    <block type="connect_on_mood_message">' +
-// '    </block>' +
-// '    <block type="connect_connected_device">' +
-// '    </block>' +
 '  </category>' +
 // END CONNECT STUFF
 '  <sep></sep>' +
