@@ -399,7 +399,8 @@ Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT = Blockly.Msg.PROCEDURES_DEFNORETURN_CO
 // Ardublockly strings
 Blockly.Msg.ARD_ANALOGREAD = "read analog pin";
 Blockly.Msg.ARD_ANALOGREAD_TIP = "Return value between 0 and 1024";
-Blockly.Msg.ARD_ANALOGWRITE = "set analog pin";
+Blockly.Msg.ARD_ANALOGWRITE = "set pin";
+Blockly.Msg.ARD_ANALOGWRITE_TO = "to analog value";
 Blockly.Msg.ARD_ANALOGWRITE_TIP = "Write analog value between 0 and 255 to a specific PWM Port";
 Blockly.Msg.ARD_BUILTIN_LED = "set built-in LED";
 Blockly.Msg.ARD_BUILTIN_LED_TIP = "Light on or off for the built-in LED of the Kniwwelino";
@@ -407,7 +408,8 @@ Blockly.Msg.ARD_COMPONENT_WARN1 = "A %1 configuration block with the same %2 nam
 Blockly.Msg.ARD_DEFINE = "Define";
 Blockly.Msg.ARD_DIGITALREAD = "read digital pin";
 Blockly.Msg.ARD_DIGITALREAD_TIP = "Read digital value on a pin: HIGH or LOW";
-Blockly.Msg.ARD_DIGITALWRITE = "set digitial pin";
+Blockly.Msg.ARD_DIGITALWRITE = "set pin";
+Blockly.Msg.ARD_DIGITALWRITE_TO = "to digital value";
 Blockly.Msg.ARD_DIGITALWRITE_TIP = "Write digital value HIGH or LOW to a specific Port";
 Blockly.Msg.ARD_FUN_RUN_LOOP = "Loop forever:";
 Blockly.Msg.ARD_FUN_RUN_SETUP = "Do at start:";
@@ -516,7 +518,7 @@ Blockly.Msg.RENAME_INSTANCE_TITLE = "Rename all '%1' instances to:";
 
 
 //Kniwwelino DOKU URL
-Blockly.Msg.KNIWWELINO_HELPURL = "http://doku.kniwwelino.lu/en/reference/";
+Blockly.Msg.KNIWWELINO_HELPURL = "https://doku.kniwwelino.lu/en/programmingblocks/";
 
 Blockly.Msg.KNIWWELINO_WARNING = 'Warning:';
 //Kniwwelino
@@ -528,12 +530,18 @@ Blockly.Msg.KNIWWELINO_GETIP = 'WIFI IP Address'
 Blockly.Msg.KNIWWELINO_GETIP_TIP = 'Returns the Devices WIFI IP Address'
 Blockly.Msg.KNIWWELINO_GETMAC = 'WIFI MAC Address'
 Blockly.Msg.KNIWWELINO_GETMAC_TIP = 'Returns the Devices WIFI MAC Address'
+Blockly.Msg.KNIWWELINO_GETSSID = 'WIFI SSID'
+Blockly.Msg.KNIWWELINO_GETSSID_TIP = 'Returns the Devices WIFI SSID'
 Blockly.Msg.KNIWWELINO_PIN_EFFECT = 'set external LED on pin'
 Blockly.Msg.KNIWWELINO_PIN_EFFECT_TIP = 'Set the external LED on selected IO pin to ON/Blink/Flash/OFF'
 Blockly.Msg.KNIWWELINO_PIN_EFFECT_BLINK = "blink"
 Blockly.Msg.KNIWWELINO_PIN_EFFECT_FLASH = "flash"
+Blockly.Msg.KNIWWELINO_PIN_EFFECT_GLOW = "glow"
+Blockly.Msg.KNIWWELINO_PIN_EFFECT_SPARK = "spark"
 Blockly.Msg.KNIWWELINO_TIME_SEC = "seconds";
 // RGB Led
+Blockly.Msg.KNIWWELINO_HUE_SELECTCOLOR = 'hue'
+Blockly.Msg.KNIWWELINO_HUE_SELECTCOLOR_TIP = 'Set the hue of a Color. [0-255]'
 Blockly.Msg.KNIWWELINO_RGB_SELECTCOLOR = ''
 Blockly.Msg.KNIWWELINO_RGB_SELECTCOLOR_TIP = 'Select a Color and return it as HEX String'
 Blockly.Msg.KNIWWELINO_RGB_SETCOLOR = 'set RGB LED color to'
@@ -542,7 +550,7 @@ Blockly.Msg.KNIWWELINO_RGB_SETCOLOREFFECT = 'set RGB LED color to'
 Blockly.Msg.KNIWWELINO_RGB_SETCOLOREFFECT_TIP = 'Set RGB LED to color and effect'
 Blockly.Msg.KNIWWELINO_RGB_SETEFFECT = 'set RGB LED effect to'
 Blockly.Msg.KNIWWELINO_RGB_SETEFFECT_TIP = 'Set RGB LED to effect'
-Blockly.Msg.KNIWWELINO_RGB_SETCOLORFROMSTRING = 'set RGB LED color to'
+Blockly.Msg.KNIWWELINO_RGB_SETCOLORFROMSTRING = 'set RGB LED to'
 Blockly.Msg.KNIWWELINO_RGB_SETCOLORFROMSTRING_TIP = 'Set RGB LED color from HEX String'
 Blockly.Msg.KNIWWELINO_RGB_SETBRIGHTNESS = 'set RGB LED brightness to';
 Blockly.Msg.KNIWWELINO_RGB_SETBRIGHTNESS_TIP = 'Set the brightness of the RGB LED (1-255)';
@@ -553,6 +561,7 @@ Blockly.Msg.KNIWWELINO_RGB_SETRGB_WARNING = "The value must be in the range 0-25
 Blockly.Msg.KNIWWELINO_RGB_RED = "red";
 Blockly.Msg.KNIWWELINO_RGB_GREEN = "green";
 Blockly.Msg.KNIWWELINO_RGB_BLUE = "blue";
+Blockly.Msg.KNIWWELINO_RGB_DURATION = "duration";
 Blockly.Msg.KNIWWELINO_PIN_ON = "on";
 Blockly.Msg.KNIWWELINO_PIN_OFF = "off";
 Blockly.Msg.KNIWWELINO_PIN_BUTTON = "external button on pin";
@@ -567,6 +576,11 @@ Blockly.Msg.KNIWWELINO_MATRIX_DRAWPIXEL = 'draw a pixel on the matrix';
 Blockly.Msg.KNIWWELINO_MATRIX_DRAWPIXEL_TIP = 'Enable or disable a pixel on the matrix. X is the postion in a row [0-4]. Y is the position of the row [0-4]. The LED state 0 is off, value bigger 1 is on.';
 Blockly.Msg.KNIWWELINO_MATRIX_DRAWPIXEL_X = 'X';
 Blockly.Msg.KNIWWELINO_MATRIX_DRAWPIXEL_Y = 'Y';
+Blockly.Msg.KNIWWELINO_MATRIX_SHOWPIXELS = 'show the number of pixels on the matrix';
+Blockly.Msg.KNIWWELINO_MATRIX_SHOWPIXELS_TIP = 'Show the number of pixels on the matrix';
+Blockly.Msg.KNIWWELINO_MATRIX_SHOWPIXELS_WARNING = 'The value must be in the range 0-25.';
+Blockly.Msg.KNIWWELINO_MATRIX_READPIXEL = 'read a pixel from the matrix';
+Blockly.Msg.KNIWWELINO_MATRIX_READPIXEL_TIP = 'Read a pixel from the matrix. X is the postion in a row [0-4]. Y is the position of the row [0-4].';
 Blockly.Msg.KNIWWELINO_MATRIX_DRAWPIXEL_STATE = 'LED state';
 Blockly.Msg.KNIWWELINO_MATRIX_DRAWPIXEL_WARNING = 'The value must be in the range 0-4.';
 Blockly.Msg.KNIWWELINO_MATRIX_WRITE = 'write a text on the matrix';
@@ -575,10 +589,14 @@ Blockly.Msg.KNIWWELINO_MATRIX_WRITE_NORMAL = 'repeating';
 Blockly.Msg.KNIWWELINO_MATRIX_WRITE_WAIT = 'once and wait';
 Blockly.Msg.KNIWWELINO_MATRIX_WRITE_ONCE = 'once';
 Blockly.Msg.KNIWWELINO_MATRIX_BLINKRATE = 'set matrix blinkrate to';
+Blockly.Msg.KNIWWELINO_MATRIX_BLINKRATE_SHORT = 'blinkrate';
 Blockly.Msg.KNIWWELINO_MATRIX_BLINKRATE_TIP = 'Set blink rate of LED matrix (range 0-3)';
 Blockly.Msg.KNIWWELINO_MATRIX_SETBRIGHTNESS = 'set matrix brightness to';
 Blockly.Msg.KNIWWELINO_MATRIX_SETBRIGHTNESS_TIP = 'Set the brightness of the LED matrix (1-15)';
 Blockly.Msg.KNIWWELINO_MATRIX_SETBRIGHTNESS_ALERT = 'Value out of range (0-15)';
+Blockly.Msg.KNIWWELINO_MATRIX_SETSCROLLSPEED = 'set scroll speed of LED matrix';
+Blockly.Msg.KNIWWELINO_MATRIX_SETSCROLLSPEED_TIP = 'Set the scroll speed of the LED matrix (1-10)';
+Blockly.Msg.KNIWWELINO_MATRIX_SETSCROLLSPEED_ALERT = 'Value out of range (0-10)';
 Blockly.Msg.KNIWWELINO_MATRIX_CLEAR = 'clear matrix';
 Blockly.Msg.KNIWWELINO_MATRIX_CLEAR_TIP = 'Clear the content of the LED matrix';
 Blockly.Msg.KNIWWELINO_DRAWICON_HEART = "Heart";
@@ -588,6 +606,8 @@ Blockly.Msg.KNIWWELINO_DRAWICON_ARROW_UP = "Arrow up";
 Blockly.Msg.KNIWWELINO_DRAWICON_ARROW_DOWN = "Arrow down";
 Blockly.Msg.KNIWWELINO_DRAWICON_ARROW_LEFT = "Arrow left";
 Blockly.Msg.KNIWWELINO_DRAWICON_ARROW_RIGHT = "Arrow right";
+Blockly.Msg.KNIWWELINO_MATRIX_ROTATION = "rotate the matrix by";
+Blockly.Msg.KNIWWELINO_MATRIX_ROTATION_TIP = "Rotates the display on the LED maxtrix by the given degrees";
 // BUTTONS
 Blockly.Msg.KNIWWELINO_BUTTON = "button";
 Blockly.Msg.KNIWWELINO_BUTTON_DOWN = "is pressed";
@@ -597,7 +617,7 @@ Blockly.Msg.KNIWWELINO_BUTTON_CLICKED_TIP = "Is true if the button was clicked (
 Blockly.Msg.KNIWWELINO_BUTTON_A_AND_B = "A and B";
 Blockly.Msg.KNIWWELINO_BUTTON_A_OR_B = "A or B";
 // MQTT - MESSAGING
-Blockly.Msg.KNIWWELINO_MQTT_GROUP = "create messaging group";
+Blockly.Msg.KNIWWELINO_MQTT_GROUP = "join messaging group";
 Blockly.Msg.KNIWWELINO_MQTT_GROUP_TIP = "Set the group for your messaging";
 Blockly.Msg.KNIWWELINO_MQTT_CONNECT_RGB = "connect RGB LED to topic RGB/COLOR";
 Blockly.Msg.KNIWWELINO_MQTT_CONNECT_RGB_TIP = "Connect RGB LED to messaging";
@@ -605,9 +625,15 @@ Blockly.Msg.KNIWWELINO_MQTT_CONNECT_MATRIX = "connect matrix to topic MATRIX/TEX
 Blockly.Msg.KNIWWELINO_MQTT_CONNECT_MATRIX_TIP = "Connect matrix to messaging";
 Blockly.Msg.KNIWWELINO_MQTT_SENTMESSAGE = "send";
 Blockly.Msg.KNIWWELINO_MQTT_SENTMESSAGE_TIP = "Send the given message to the specified message topic";
-Blockly.Msg.KNIWWELINO_MQTT_TOTOPIC = "to topic";
+Blockly.Msg.KNIWWELINO_MQTT_TOTOPIC = "to group topic";
+Blockly.Msg.KNIWWELINO_MQTT_TOPUBLICTOPIC = "to public topic";
 Blockly.Msg.KNIWWELINO_MQTT_ATTACH = "attach variable";
 Blockly.Msg.KNIWWELINO_MQTT_ATTACH_TIP = "Attach the selected variable to the specified message topic";
+Blockly.Msg.KNIWWELINO_MQTT_USERBROKER = "Use MQTT broker at host:"
+Blockly.Msg.KNIWWELINO_MQTT_USERBROKERPORT = "port:"
+Blockly.Msg.KNIWWELINO_MQTT_USERBROKERUSER = "username:"
+Blockly.Msg.KNIWWELINO_MQTT_USERBROKERPASSWORD = "password:"
+Blockly.Msg.KNIWWELINO_MQTT_USERBROKER_TIP = "Specify your own MQTT server to be used for all Messages. ATTENTION! Please create separate credentials for the Kniwwelino, as the username and password will be transfered to the Kniwwelino server while programming the board.!"
 //logic
 Blockly.Msg.KNIWWELINO_IS = "is";
 //times
@@ -619,6 +645,13 @@ Blockly.Msg.KNIWWELINO_LOG 		= "Log"
 Blockly.Msg.KNIWWELINO_LOG_LINE = "Log line"
 Blockly.Msg.KNIWWELINO_LOG_TIP 	= "Logs the given String to the serial Console and MQTT log topic if enabled."
 // SENSORS
+Blockly.Msg.KNIWWELINO_SENSOR_READ = " read "
+Blockly.Msg.KNIWWELINO_SENSOR_TIP = "Uses the Sensor to measure the selected value";
+Blockly.Msg.KNIWWELINO_SENSOR_DISTANCE = "distance"
+Blockly.Msg.KNIWWELINO_SENSOR_CM = " [cm]"
+Blockly.Msg.KNIWWELINO_SENSOR_TRIGGER = "trigger pin:"
+Blockly.Msg.KNIWWELINO_SENSOR_ECHO = "echo pin:"
+Blockly.Msg.KNIWWELINO_SENSOR_LIGHTLEVEL = "light level"
 Blockly.Msg.KNIWWELINO_SENSOR_TEMP = "temperature"
 Blockly.Msg.KNIWWELINO_SENSOR_HUM = "humidity"
 Blockly.Msg.KNIWWELINO_SENSOR_PRESSURE = "pressure"
@@ -631,20 +664,77 @@ Blockly.Msg.KNIWWELINO_SENSOR_WHITE = "white level"
 Blockly.Msg.KNIWWELINO_SENSOR_RED = "red level"
 Blockly.Msg.KNIWWELINO_SENSOR_GREEN = "green level"
 Blockly.Msg.KNIWWELINO_SENSOR_BLUE = "blue level"
-Blockly.Msg.KNIWWELINO_BME280getValue = "BME-280 read"
-Blockly.Msg.KNIWWELINO_BME280getValueTip = "Uses the BME-280 Sensor to measure the selected value";
-Blockly.Msg.KNIWWELINO_BME680getValue = "BME-680 read"
-Blockly.Msg.KNIWWELINO_BME680getValueTip = "Uses the BME-680 Sensor to measure the selected value";
-Blockly.Msg.KNIWWELINO_SHT30getValue = "SHT30 read"
-Blockly.Msg.KNIWWELINO_SHT30getValueTip = "Uses the SHT30 Sensor to measure the selected value";
-Blockly.Msg.KNIWWELINO_BH1750getLightLevel = "BH1750 read light level"
-Blockly.Msg.KNIWWELINO_BH1750getLightLevelTip = "Uses the BH1750 Sensor to measure the light level in lux";
-Blockly.Msg.KNIWWELINO_ADPS9960getValue = "ADPS-9960 read";
-Blockly.Msg.KNIWWELINO_ADPS9960getValueTip = "Uses the ADPS-9960 Sensor to measure the selected value";
+Blockly.Msg.KNIWWELINO_SENSOR_AT_ADDRESS = "at address"
+
+// WEATHER
+Blockly.Msg.KNIWWELINO_LOCATION_FOR = "For"
+Blockly.Msg.KNIWWELINO_LOCATION_GET = "get"
+Blockly.Msg.KNIWWELINO_LOCATION_IN = "in"
+
+Blockly.Msg.KNIWWELINO_WEATHER_WEATHERTOPICCHOOSER_TIP = "Choose a weather topic you like to subscripe to."
+Blockly.Msg.KNIWWELINO_WEATHER_WEATHERCONSTCHOOSER_TIP = "Choose a weather condition to compare to."
+
+Blockly.Msg.KNIWWELINO_LOCATION_LUXEMBOURG = "Luxembourg"
+Blockly.Msg.KNIWWELINO_LOCATION_BELVAL = "Belval"
+Blockly.Msg.KNIWWELINO_LOCATION_ECHTERNACH = "Echternach"
+Blockly.Msg.KNIWWELINO_LOCATION_ETTELBRUCK = "Ettelbrück"
+Blockly.Msg.KNIWWELINO_LOCATION_BRAUNSCHWEIG = "Brunswick"
+
+Blockly.Msg.KNIWWELINO_WEATHER_IS  = "weather:"
+
+Blockly.Msg.KNIWWELINO_WEATHER_WEATHER = "weather [text]"
+Blockly.Msg.KNIWWELINO_WEATHER_TEMP = "temperature [°C]"
+Blockly.Msg.KNIWWELINO_WEATHER_HUMIDITY = "humidity [%rel]"
+Blockly.Msg.KNIWWELINO_WEATHER_PRESSURE = "pressure [mBar]"
+Blockly.Msg.KNIWWELINO_WEATHER_WINDSPEED = "wind speed [m/s]"
+Blockly.Msg.KNIWWELINO_WEATHER_WINDDIR = "wind direction [°]"
+Blockly.Msg.KNIWWELINO_WEATHER_CLOUDS = "clouds"
+
+Blockly.Msg.KNIWWELINO_WEATHER_COND_THUNDERSTORM = "Thunderstorm"
+Blockly.Msg.KNIWWELINO_WEATHER_COND_DRIZZLE = "Drizzle"
+Blockly.Msg.KNIWWELINO_WEATHER_COND_RAIN = "Rain"
+Blockly.Msg.KNIWWELINO_WEATHER_COND_SNOW = "Snow"
+Blockly.Msg.KNIWWELINO_WEATHER_COND_ATMOSPHERE = "Atmosphere"
+Blockly.Msg.KNIWWELINO_WEATHER_COND_MIST = "Mist"
+Blockly.Msg.KNIWWELINO_WEATHER_COND_FOG = "Fog"
+Blockly.Msg.KNIWWELINO_WEATHER_COND_CLEAR = "Clear"
+Blockly.Msg.KNIWWELINO_WEATHER_COND_CLOUDS = "Clouds"
+
+// AUDIO
+Blockly.Msg.KNIWWELINO_AUDIO_PLAY_NOTE = "Play Note"
+Blockly.Msg.KNIWWELINO_AUDIO_PLAY_TONE = "Play Tone"
+Blockly.Msg.KNIWWELINO_AUDIO_NOTE_DURATION = "of duration 1/"
+Blockly.Msg.KNIWWELINO_AUDIO_PIN = "on Pin"
+Blockly.Msg.KNIWWELINO_AUDIO_TONEOFF = "Turn tone off on pin"
+Blockly.Msg.KNIWWELINO_AUDIO_PLAY_NOTE_WARN_HIGHNOTES = "Only the note C8, CS8, D8 or DS8 is allowed"
+Blockly.Msg.KNIWWELINO_AUDIO_PLAY_NOTE_WARN_LOWNOTES = "Only the note B0 is allowed"
+Blockly.Msg.KNIWWELINO_NOTE_C = "C"
+Blockly.Msg.KNIWWELINO_NOTE_CS = "C#"
+Blockly.Msg.KNIWWELINO_NOTE_D = "D"
+Blockly.Msg.KNIWWELINO_NOTE_DS = "D#"
+Blockly.Msg.KNIWWELINO_NOTE_E = "E"
+Blockly.Msg.KNIWWELINO_NOTE_F = "F"
+Blockly.Msg.KNIWWELINO_NOTE_FS = "F#"
+Blockly.Msg.KNIWWELINO_NOTE_G = "G"
+Blockly.Msg.KNIWWELINO_NOTE_GS = "G#"
+Blockly.Msg.KNIWWELINO_NOTE_A = "A"
+Blockly.Msg.KNIWWELINO_NOTE_AS = "A#"
+Blockly.Msg.KNIWWELINO_NOTE_B = "B"
+
+// DATE TIME
+Blockly.Msg.KNIWWELINO_GET_TIME = "get the current Date/Time in format:"
+Blockly.Msg.KNIWWELINO_GET_TIMEINT = "get the current Date/Time as Number:"
+Blockly.Msg.KNIWWELINO_TIME_DATETIME = "HH:mm:ss dd.MM.YYYY"
+Blockly.Msg.KNIWWELINO_TIME_DATE = "dd.MM.YYYY"
+Blockly.Msg.KNIWWELINO_TIME_TIME = "HH:mm:ss"
+Blockly.Msg.KNIWWELINO_TIME_HOUR = "HOUR"
+Blockly.Msg.KNIWWELINO_TIME_MINUTE = "MINUTE"
+Blockly.Msg.KNIWWELINO_TIME_SECOND = "SECOND"
+Blockly.Msg.KNIWWELINO_TIME_YEAR = "YEAR"
+Blockly.Msg.KNIWWELINO_TIME_MONTH = "MONTH"
+Blockly.Msg.KNIWWELINO_TIME_DAY = "DAY"
 
 // overwrite default labels
-//Blockly.Msg.ARD_HIGH = "on";
-//Blockly.Msg.ARD_LOW = "off";
 Blockly.Msg.ARD_FUN_RUN_LOOP = "repeat forever:";
 Blockly.Msg.ARD_FUN_RUN_SETUP = "on start:";
 Blockly.Msg.CONTROLS_IF_MSG_THEN = "then";
@@ -652,3 +742,37 @@ Blockly.Msg.VARIABLES_DEFAULT_NAME = "value";
 Blockly.Msg.MATH_CHANGE_TITLE_ITEM = Blockly.Msg.VARIABLES_DEFAULT_NAME;
 Blockly.Msg.TEXT_APPEND_VARIABLE = Blockly.Msg.VARIABLES_DEFAULT_NAME;
 Blockly.Msg.TEXT_CREATE_JOIN_ITEM_TITLE_ITEM = Blockly.Msg.VARIABLES_DEFAULT_NAME;
+
+Blockly.Msg.ARD_MAP_SMIN = "value from ["
+Blockly.Msg.ARD_MAP_SMAX = "-"
+Blockly.Msg.ARD_MAP_DMIN = "] to ["
+Blockly.Msg.ARD_MAP_DMAX = "-"
+
+Blockly.Msg.KNIWWELINO_RGB_NEOPIXEL_SIZE = "Neopixel LED Strip with size";
+Blockly.Msg.KNIWWELINO_RGB_NEOPIXEL_PIN = "on pin";
+Blockly.Msg.KNIWWELINO_RGB_NEOPIXEL_INIT_TIP = "";
+Blockly.Msg.KNIWWELINO_RGB_NEOPIXEL_SETEFFECT = "set strip to effect:";
+Blockly.Msg.KNIWWELINO_RGB_NEOPIXEL_SETEFFECT_TIP = "";
+Blockly.Msg.KNIWWELINO_RGB_NEOPIXEL_SETSTRIPCOLOR = "set strip to color:";
+Blockly.Msg.KNIWWELINO_RGB_NEOPIXEL_SETSTRIPCOLOR_TIP = "";
+Blockly.Msg.KNIWWELINO_RGB_NEOPIXEL_SETPIXELCOLOR = "set pixel";
+Blockly.Msg.KNIWWELINO_RGB_NEOPIXEL_SETPIXELCOLOR2 = "to color:";
+Blockly.Msg.KNIWWELINO_RGB_NEOPIXEL_SETPIXELCOLOR_TIP = "";
+Blockly.Msg.KNIWWELINO_RGB_NEOPIXEL_SETSPEED = "set effect speed to";
+Blockly.Msg.KNIWWELINO_RGB_NEOPIXEL_SETBRIGHTNESS = "set brightness to";
+Blockly.Msg.KNIWWELINO_RGB_NEOPIXEL_STOP = "stop strip effect";
+Blockly.Msg.KNIWWELINO_RGB_NEOPIXEL_STOP_TIP = "stop strip effect";
+
+Blockly.Msg.KNIWWELINO_DISPLAY_INIT_HD44780 = "HD44780 Display with";
+Blockly.Msg.KNIWWELINO_DISPLAY_INIT_HD44780_TIP = "Setup a HD44780 Display by I2C ";
+Blockly.Msg.KNIWWELINO_DISPLAY_INIT_HD44780_AND = " and"
+Blockly.Msg.KNIWWELINO_DISPLAY_COLS = "columns";
+Blockly.Msg.KNIWWELINO_DISPLAY_ROWS = "rows";
+Blockly.Msg.KNIWWELINO_DISPLAY_COL = "column";
+Blockly.Msg.KNIWWELINO_DISPLAY_ROW = "row";
+Blockly.Msg.KNIWWELINO_DISPLAY_SETCURSER_HD44780 = "Set curser to";
+Blockly.Msg.KNIWWELINO_DISPLAY_INIT_HD44780_SETCURSER_TIP = "Set curser to the column and row you like to start printing on the display";
+Blockly.Msg.KNIWWELINO_DISPLAY_PRINT_HD44780 = "print on display";
+Blockly.Msg.KNIWWELINO_DISPLAY_PRINT_HD44780_TIP = "Print a line of text on your display";
+Blockly.Msg.KNIWWELINO_DISPLAY_CLEAR_HD44780 = "clear display";
+Blockly.Msg.KNIWWELINO_DISPLAY_CLEAR_HD44780_TIP = "Clears your display from the cursor position";

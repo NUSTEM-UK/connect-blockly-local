@@ -319,6 +319,7 @@ Blockly.Arduino['math_random_int'] = function(block) {
   var functionName = Blockly.Arduino.variableDB_.getDistinctName(
       'math_random_int', Blockly.Generator.NAME_TYPE);
   Blockly.Arduino.math_random_int.random_function = functionName;
+  Blockly.Arduino.addSetup('randomSeed', 'randomSeed(ESP.getCycleCount());', true);
   var func = [
       'int ' + Blockly.Arduino.DEF_FUNC_NAME + '(int min, int max) {',
       '  if (min > max) {',
@@ -341,5 +342,6 @@ Blockly.Arduino['math_random_int'] = function(block) {
  * @return {string} Completed code.
  */
 Blockly.Arduino['math_random_float'] = function(block) {
+  Blockly.Arduino.addSetup('randomSeed', 'randomSeed(ESP.getCycleCount());', true);
   return ['(rand() / RAND_MAX)', Blockly.Arduino.ORDER_UNARY_POSTFIX];
 };

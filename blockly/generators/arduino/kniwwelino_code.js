@@ -6,7 +6,7 @@
 
 /**
  * @fileoverview Code generator for the Kniwwelino Library.
- * Kniwwelino library docs: https://kniwwelino.github.io/en/reference/
+ * Kniwwelino library docs: https://doku.kniwwelino.lu/en/reference/
  */
 'use strict';
 
@@ -16,7 +16,7 @@ goog.require('Blockly.Arduino');
 
 function kniwwelinoBaseCode() {
 	Blockly.Arduino.addInclude('kniwwelino', '#include <Kniwwelino.h>');
-	Blockly.Arduino.addSetup('kniwwelinoBegin', '//Initialize the Kniwwelino Board\n  Kniwwelino.begin(true, true, false); // Wifi=true, Fastboot=true, MQTT Logging=false\n', true);
+	Blockly.Arduino.addSetup('kniwwelinoBegin', '//Initialize the Kniwwelino Board\n  Kniwwelino.begin("'+Ardublockly.getSketchName(20)+'", true, true, false); // Wifi=true, Fastboot=true, MQTT Logging=false\n', true);
 
 	// Adding something to the loop() is not possible right now.
 	// please add the following code to the Blockly.Arduino.finish function in generators/arduino.js
@@ -51,6 +51,11 @@ Blockly.Arduino['kniwwelino_getMAC'] = function(block) {
 	return ['Kniwwelino.getMAC()', Blockly.Arduino.ORDER_ATOMIC];
 };
 
+Blockly.Arduino['kniwwelino_getSSID'] = function(block) {
+	kniwwelinoBaseCode();
+	return ['WiFi.SSID()', Blockly.Arduino.ORDER_ATOMIC];
+};
+
 Blockly.Arduino['kniwwelino_log'] = function(block) {
 	kniwwelinoBaseCode();
 	var text = Blockly.Arduino.valueToCode(block, 'TEXT', Blockly.Arduino.ORDER_UNARY_POSTFIX);
@@ -68,16 +73,56 @@ Blockly.Arduino['kniwwelino_sleep'] = function(block) {
 	kniwwelinoBaseCode();
 	var delayTime = Blockly.Arduino.valueToCode(
 	      block, 'DELAY_TIME_MILI', Blockly.Arduino.ORDER_ATOMIC) || '0';
-	delayTime = Math.round(delayTime);
-	return 'Kniwwelino.sleep(' + delayTime + ');\n' ;
+	//delayTime = Math.round(delayTime);
+	return 'Kniwwelino.sleep((unsigned long) ' + delayTime + ');\n' ;
 };
 
 Blockly.Arduino['kniwwelino_sleepsec'] = function(block) {
 	kniwwelinoBaseCode();
 	var delayTime = Blockly.Arduino.valueToCode(
 	      block, 'DELAY_TIME_SEC', Blockly.Arduino.ORDER_ATOMIC) || '0';
-	delayTime = Math.round(delayTime * 1000);
-	return 'Kniwwelino.sleep(' + delayTime + ');\n' ;
+	//delayTime = Math.round(delayTime * 1000);
+	return 'Kniwwelino.sleep((unsigned long) (' + delayTime+ '*1000) );\n' ;
+};
+
+Blockly.Arduino['kniwwelino_getTime'] = function(block) {
+	kniwwelinoBaseCode();
+	var value = block.getFieldValue('FORMAT');
+	var codeStr = "";
+	if (value == 'DATETIME')  {
+		codeStr = 'Kniwwelino.getTime()';
+	} else if (value == 'DATE')  {
+		codeStr = 'String("") + (day()<10?"0":"") + day() + "." + (month()<10?"0":"") + month() + "." + year()';
+	} else if (value == 'TIME')  {
+		codeStr = 'String("") + (hour()<10?"0":"") + hour() + ":" + (minute()<10?"0":"") + minute() + ":" + (second()<10?"0":"") + second()';
+	} else if (value == 'HOUR')  {
+		codeStr = 'String(hour())';
+	} else if (value == 'MINUTE')  {
+		codeStr = 'String(minute())';
+	} else if (value == 'SECOND')  {
+		codeStr = 'String(second())';
+	}
+	return [codeStr, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['kniwwelino_getTimeInt'] = function(block) {
+	kniwwelinoBaseCode();
+	var value = block.getFieldValue('FORMAT');
+	var codeStr = "";
+	if (value == 'YEAR')  {
+		codeStr = 'year()';
+	} else if (value == 'MONTH')  {
+		codeStr = 'month()';
+	} else if (value == 'DAY')  {
+		codeStr = 'day()';
+	} else if (value == 'HOUR')  {
+		codeStr = 'hour()';
+	} else if (value == 'MINUTE')  {
+		codeStr = 'minute()';
+	} else if (value == 'SECOND')  {
+		codeStr = 'second()';
+	}
+	return [codeStr, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['kniwwelino_PINsetEffect'] = function(block) {
@@ -128,6 +173,22 @@ Blockly.Arduino['kniwwelino_RGBselectColor'] = function(block) {
 	return ['"'+block.getFieldValue('COLOR').replace("#","").toUpperCase()+'"', Blockly.Arduino.ORDER_ATOMIC];
 };
 
+Blockly.Arduino['kniwwelino_HUEselectColor'] = function(block) {
+	kniwwelinoBaseCode();
+  var hue = Blockly.Arduino.valueToCode(block, 'HUE', Blockly.Arduino.ORDER_UNARY_POSTFIX);
+
+	return ['Kniwwelino.RGBhue2Hex('+hue+')', Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['kniwwelino_RGBselectEffect'] = function(block) {
+	kniwwelinoBaseCode();
+	var color = Blockly.Arduino.valueToCode(block, 'COLOR', Blockly.Arduino.ORDER_UNARY_POSTFIX).replace('"',"").replace('"',"");
+	var effect = block.getFieldValue('EFFECT');
+	var duration = Blockly.Arduino.valueToCode(block, 'DURATION', Blockly.Arduino.ORDER_UNARY_POSTFIX);
+	if (duration <=0) duration = -1;
+	return ['"'+color+':'+effect+':'+duration+'"', Blockly.Arduino.ORDER_ATOMIC];
+};
+
 Blockly.Arduino['kniwwelino_RGBsetRGB'] = function(block) {
 	kniwwelinoBaseCode();
 	var r = Blockly.Arduino.valueToCode(block, 'RED', Blockly.Arduino.ORDER_ATOMIC);
@@ -152,7 +213,7 @@ Blockly.Arduino['kniwwelino_RGBsetEffect'] = function(block) {
 Blockly.Arduino['kniwwelino_RGBsetColorFromString'] = function(block) {
 	kniwwelinoBaseCode();
 	var color = Blockly.Arduino.valueToCode(block, 'COLOR', Blockly.Arduino.ORDER_UNARY_POSTFIX);
-	return  'Kniwwelino.RGBsetColor(String('+color+'));\n';
+	return  'Kniwwelino.RGBsetColorEffect(String('+color+'));\n';
 };
 
 Blockly.Arduino['kniwwelino_RGBsetBrightness'] = function(block) {
@@ -209,7 +270,17 @@ Blockly.Arduino['kniwwelino_MATRIXIconChooser'] = function(block) {
 Blockly.Arduino['kniwwelino_MATRIXdrawIcon'] = function(block) {
 	kniwwelinoBaseCode();
 	var icon =  Blockly.Arduino.valueToCode(block, 'ICON', Blockly.Arduino.ORDER_UNARY_POSTFIX);
+	if (icon == '') icon = 'String("")';
 	return 'Kniwwelino.MATRIXdrawIcon(' + icon + ');\n';
+};
+
+Blockly.Arduino['kniwwelino_MATRIXselectIconEffect'] = function(block) {
+	kniwwelinoBaseCode();
+	var icon = Blockly.Arduino.valueToCode(block, 'ICON', Blockly.Arduino.ORDER_UNARY_POSTFIX).replace('String(',"").replace(')',"").replace('"',"").replace('"',"");
+	var effect = block.getFieldValue('EFFECT');
+	var duration = Blockly.Arduino.valueToCode(block, 'DURATION', Blockly.Arduino.ORDER_UNARY_POSTFIX);
+	if (duration <=0) duration = -1;
+	return ['"'+icon+':'+effect+':'+duration+'"', Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['kniwwelino_MATRIXwrite'] = function(block) {
@@ -234,16 +305,42 @@ Blockly.Arduino['kniwwelino_MATRIXdrawPixel'] = function(block) {
 	return 'Kniwwelino.MATRIXsetPixel(' + x + ', ' + y + ', ' + state + ');\n';
 };
 
+Blockly.Arduino['kniwwelino_MATRIXshowPixels'] = function(block) {
+	kniwwelinoBaseCode();
+	var n = Blockly.Arduino.valueToCode(block, 'n', Blockly.Arduino.ORDER_UNARY_POSTFIX);
+	return 'Kniwwelino.MATRIXsetPixels(' + n + ');\n';
+};
+
+Blockly.Arduino['kniwwelino_MATRIXreadPixel'] = function(block) {
+	kniwwelinoBaseCode();
+	var x = Blockly.Arduino.valueToCode(block, 'X_READ', Blockly.Arduino.ORDER_UNARY_POSTFIX) || '0';
+	var y = Blockly.Arduino.valueToCode(block, 'Y_READ', Blockly.Arduino.ORDER_UNARY_POSTFIX) || '0';
+
+	return ['Kniwwelino.MATRIXgetPixel(' + x + ', ' + y + ')', Blockly.Arduino.ORDER_ATOMIC];
+};
+
 Blockly.Arduino['kniwwelino_MATRIXsetBrightness'] = function(block) {
 	kniwwelinoBaseCode();
 	var brightness = block.getFieldValue('BRIGHTNESS');
 	return  'Kniwwelino.MATRIXsetBrightness(' + brightness + ');\n';
 };
 
+Blockly.Arduino['kniwwelino_MATRIXsetScrollSpeed'] = function(block) {
+	kniwwelinoBaseCode();
+	var speed = block.getFieldValue('SPEED');
+	return  'Kniwwelino.MATRIXsetScrollSpeed(' + speed + ');\n';
+};
+
 Blockly.Arduino['kniwwelino_MATRIXsetBlinkRate'] = function(block) {
 	kniwwelinoBaseCode();
 	var blinkrate = block.getFieldValue('RATE');
 	return 'Kniwwelino.MATRIXsetBlinkRate(' + blinkrate + ');\n';
+};
+
+Blockly.Arduino['kniwwelino_MATRIXsetRotation'] = function(block) {
+	kniwwelinoBaseCode();
+	var rot = block.getFieldValue('ROTATION');
+	return 'Kniwwelino.MATRIXsetRotation(' + rot + ');\n';
 };
 
 Blockly.Arduino['kniwwelino_MATRIXclear'] = function(block) {
@@ -281,10 +378,21 @@ Blockly.Arduino['kniwwelino_BUTTONclicked'] = function(block) {
 
 Blockly.Arduino['kniwwelino_MQTTsetGroup'] = function(block) {
 	kniwwelinoBaseCode();
-//	var group = Blockly.Arduino.valueToCode(block, 'GROUP',Blockly.Arduino.ORDER_UNARY_POSTFIX);
 	var group = block.getFieldValue('GROUP');
-	group = group.trim().replace(" ","_");
+  group = group.replace(/\".*?\"/g, function(match, contents, offset, input_string) {
+    return match.replace(/ +/g, '_');
+  });
 	Blockly.Arduino.addSetup('kniwwelino_MQTTsetGroup','Kniwwelino.MQTTsetGroup(String("' + group + '"));', true);
+	return '';
+};
+
+Blockly.Arduino['kniwwelino_MQTTsetUserBroker'] = function(block) {
+	kniwwelinoBaseCode();
+	var broker = block.getFieldValue('BROKER');
+  var port = block.getFieldValue('PORT');
+  var user = block.getFieldValue('USER');
+  var password = block.getFieldValue('PASSWORD');
+	Blockly.Arduino.addSetup('kniwwelino_MQTTUserSetup','Kniwwelino.MQTTUserSetup("'+broker+'", '+port+', "'+user+'", "'+password+'");', true);
 	return '';
 };
 
@@ -303,7 +411,9 @@ Blockly.Arduino['kniwwelino_MQTTconnectMATRIX'] = function(block) {
 Blockly.Arduino['kniwwelino_MQTTpublishSimple'] = function(block) {
 	kniwwelinoBaseCode();
 	var topic = block.getFieldValue('TOPIC');
-	topic = topic.trim().replace(" ","_");
+  topic = topic.replace(/\".*?\"/g, function(match, contents, offset, input_string) {
+    return '"'+match.slice(1, -1).trim().replace(/ +/g, '_')+'"';
+  });
 	var message = Blockly.Arduino.valueToCode(block, 'MESSAGE',Blockly.Arduino.ORDER_UNARY_POSTFIX);
 	return  'Kniwwelino.MQTTpublish("'+topic+'", String('+message+'));\n';
 };
@@ -312,7 +422,9 @@ Blockly.Arduino['kniwwelino_MQTTsubscribe'] = function(block) {
 	kniwwelinoBaseCode();
 	kniwwelinoMQTTCode();
 	var topic = Blockly.Arduino.valueToCode(block, 'TOPIC',Blockly.Arduino.ORDER_UNARY_POSTFIX);
-	topic = topic.trim().replace(" ","_");
+  topic = topic.replace(/\".*?\"/g, function(match, contents, offset, input_string) {
+    return '"'+match.slice(1, -1).trim().replace(/ +/g, '_')+'"';
+  });
 	var varName = Blockly.Arduino.variableDB_.getName(block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
 
 	Blockly.Arduino.addKniwwelinoSub(varName, topic);
@@ -320,10 +432,26 @@ Blockly.Arduino['kniwwelino_MQTTsubscribe'] = function(block) {
 	return '';
 };
 
+Blockly.Arduino['kniwwelino_MQTTsubscribePublic'] = function(block) {
+	kniwwelinoBaseCode();
+	kniwwelinoMQTTCode();
+	var topic = Blockly.Arduino.valueToCode(block, 'TOPIC',Blockly.Arduino.ORDER_UNARY_POSTFIX);
+  topic = topic.replace(/\".*?\"/g, function(match, contents, offset, input_string) {
+    return '"'+match.slice(1, -1).trim().replace(/ +/g, '_')+'"';
+  });
+	var varName = Blockly.Arduino.variableDB_.getName(block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
+
+	Blockly.Arduino.addKniwwelinoSub(varName, topic);
+	Blockly.Arduino.addSetup('kniwwelino_MQTTsubscribepublic'+topic,'Kniwwelino.MQTTsubscribepublic(' + topic + ');', true);
+	return '';
+};
+
 Blockly.Arduino['kniwwelino_MQTTpublish'] = function(block) {
 	kniwwelinoBaseCode();
 	var topic = Blockly.Arduino.valueToCode(block, 'TOPIC',Blockly.Arduino.ORDER_UNARY_POSTFIX);
-	topic = topic.trim().replace(" ","_");
+  topic = topic.replace(/\".*?\"/g, function(match, contents, offset, input_string) {
+    return '"'+match.slice(1, -1).trim().replace(/ +/g, '_')+'"';
+  });
 	var message = Blockly.Arduino.valueToCode(block, 'MESSAGE',Blockly.Arduino.ORDER_UNARY_POSTFIX);
 	return  'Kniwwelino.MQTTpublish('+topic+', String('+message+'));\n';
 };
@@ -334,19 +462,23 @@ Blockly.Arduino['kniwwelino_BME280getValue'] = function(block) {
 	kniwwelinoBaseCode();
 	Blockly.Arduino.addInclude('Adafruit_Sensor', '#include "Adafruit_Sensor.h"');
 	Blockly.Arduino.addInclude('Adafruit_BME280', '#include "Adafruit_BME280.h"');
-	Blockly.Arduino.addDeclaration('Adafruit_BME280', 'Adafruit_BME280 bme280;');
-	Blockly.Arduino.addSetup('BME280init', 'if(bme280.begin(0x76)) Kniwwelino.logln("BME-280 Sensor Ready"); \n  else Kniwwelino.logln("failed to initialize BME-280 Sensor"); ', true);
+
+	var address = block.getFieldValue('ADDRESS');
+
+	Blockly.Arduino.addDeclaration('Adafruit_BME280_'+address+'', 'Adafruit_BME280 bme280_'+address+';');
+	Blockly.Arduino.addSetup('BME280init_'+address+'', 'if(bme280_'+address+'.begin('+address+')) Kniwwelino.logln("BME-280 Sensor Ready"); \n  else Kniwwelino.logln("failed to initialize BME-280 Sensor"); ', true);
+
 
 	var value = block.getFieldValue('VALUE');
 	if (value == 'TEMPERATURE')  {
-		return ['bme280.readTemperature()', Blockly.Arduino.ORDER_ATOMIC];
+		return ['bme280_'+address+'.readTemperature()', Blockly.Arduino.ORDER_ATOMIC];
 	} else if (value == 'HUMIDITY')  {
-		return ['bme280.readHumidity()', Blockly.Arduino.ORDER_ATOMIC];
+		return ['bme280_'+address+'.readHumidity()', Blockly.Arduino.ORDER_ATOMIC];
 	} else if (value == 'PRESSURE')  {
-		return ['(bme280.readPressure()/100.0F)', Blockly.Arduino.ORDER_ATOMIC];
+		return ['(bme280_'+address+'.readPressure()/100.0F)', Blockly.Arduino.ORDER_ATOMIC];
 	} else if (value == 'HEIGHT')  {
 		Blockly.Arduino.addDeclaration('Adafruit_BME280SeaLevel', '#define BME280_SEALEVELPRESSURE_HPA (1013.25)');
-		return ['bme280.readAltitude(BME280_SEALEVELPRESSURE_HPA)', Blockly.Arduino.ORDER_ATOMIC];
+		return ['bme280_'+address+'.readAltitude(BME280_SEALEVELPRESSURE_HPA)', Blockly.Arduino.ORDER_ATOMIC];
 	}
 	return ""
 };
@@ -355,21 +487,24 @@ Blockly.Arduino['kniwwelino_BME680getValue'] = function(block) {
 	kniwwelinoBaseCode();
 	Blockly.Arduino.addInclude('Adafruit_Sensor', '#include "Adafruit_Sensor.h"');
 	Blockly.Arduino.addInclude('Adafruit_BME680', '#include "Adafruit_BME680.h"');
-	Blockly.Arduino.addDeclaration('Adafruit_BME680', 'Adafruit_BME680 bme680;');
-	Blockly.Arduino.addSetup('BME680init', 'if(bme680.begin(0x77)) Kniwwelino.logln("BME-680 Sensor Ready"); \n  else Kniwwelino.logln("failed to initialize BME-680 Sensor"); ', true);
+
+	var address = block.getFieldValue('ADDRESS');
+
+	Blockly.Arduino.addDeclaration('Adafruit_BME680_'+address+'', 'Adafruit_BME680 bme680_'+address+';');
+	Blockly.Arduino.addSetup('BME680init_'+address+'', 'if(bme680_'+address+'.begin('+address+')) Kniwwelino.logln("BME-680 Sensor Ready"); \n  else Kniwwelino.logln("failed to initialize BME-680 Sensor"); ', true);
 
 	var value = block.getFieldValue('VALUE');
 	if (value == 'TEMPERATURE')  {
-		return ['bme680.readTemperature()', Blockly.Arduino.ORDER_ATOMIC];
+		return ['bme680_'+address+'.readTemperature()', Blockly.Arduino.ORDER_ATOMIC];
 	} else if (value == 'HUMIDITY')  {
-		return ['bme680.readHumidity()', Blockly.Arduino.ORDER_ATOMIC];
+		return ['bme680_'+address+'.readHumidity()', Blockly.Arduino.ORDER_ATOMIC];
 	} else if (value == 'GAS')  {
-		return ['bme680.readGas()', Blockly.Arduino.ORDER_ATOMIC];
+		return ['bme680_'+address+'.readGas()', Blockly.Arduino.ORDER_ATOMIC];
 	} else if (value == 'PRESSURE')  {
-		return ['(bme680.readPressure()/100.0F)', Blockly.Arduino.ORDER_ATOMIC];
+		return ['(bme680_'+address+'.readPressure()/100.0F)', Blockly.Arduino.ORDER_ATOMIC];
 	} else if (value == 'HEIGHT')  {
 		Blockly.Arduino.addDeclaration('Adafruit_BME680SeaLevel', '#define BME680_SEALEVELPRESSURE_HPA (1013.25)');
-		return ['bme680.readAltitude(BME680_SEALEVELPRESSURE_HPA)', Blockly.Arduino.ORDER_ATOMIC];
+		return ['bme680_'+address+'.readAltitude(BME680_SEALEVELPRESSURE_HPA)', Blockly.Arduino.ORDER_ATOMIC];
 	}
 	return ""
 };
@@ -377,24 +512,58 @@ Blockly.Arduino['kniwwelino_BME680getValue'] = function(block) {
 Blockly.Arduino['kniwwelino_SHT30getValue'] = function(block) {
 	kniwwelinoBaseCode();
 	Blockly.Arduino.addInclude('SHT3X', '#include <WEMOS_SHT3X.h>');
-	Blockly.Arduino.addDeclaration('SHT3X', 'SHT3X sht30(0x45);');
-	Blockly.Arduino.addSetup('SHT3Xinit', 'if(sht30.get()==0) Kniwwelino.logln("SHT30 Sensor Ready"); \n  else Kniwwelino.logln("failed to initialize SHT30 Sensor"); ', true);
+
+	var address = block.getFieldValue('ADDRESS');
+
+	Blockly.Arduino.addDeclaration('SHT3X_'+address+'', 'SHT3X sht30_'+address+'('+address+');');
+	Blockly.Arduino.addSetup('SHT3Xinit_'+address+'', 'if(sht30_'+address+'.get()==0) Kniwwelino.logln("SHT30 Sensor Ready"); \n  else Kniwwelino.logln("failed to initialize SHT30 Sensor"); ', true);
 
 	var value = block.getFieldValue('VALUE');
 	if (value == 'TEMPERATURE')  {
-		return ['sht30.readTemperature()', Blockly.Arduino.ORDER_ATOMIC];
+		return ['sht30_'+address+'.readTemperature()', Blockly.Arduino.ORDER_ATOMIC];
 	} else if (value == 'HUMIDITY')  {
-		return ['sht30.readHumidity()', Blockly.Arduino.ORDER_ATOMIC];
+		return ['sht30_'+address+'.readHumidity()', Blockly.Arduino.ORDER_ATOMIC];
 	}
 	return ""
+};
+
+Blockly.Arduino['kniwwelino_HTU21DgetValue'] = function(block) {
+	kniwwelinoBaseCode();
+	Blockly.Arduino.addInclude('HTU21D', '#include <Adafruit_HTU21DF.h>');
+
+	Blockly.Arduino.addDeclaration('HTU21D', 'Adafruit_HTU21DF htu = Adafruit_HTU21DF();');
+	Blockly.Arduino.addSetup('HTU21D', 'if (htu.begin()) Kniwwelino.logln("HTU21D Sensor Ready"); \n  else Kniwwelino.logln("failed to initialize HTU21D Sensor"); ', true);
+
+	var value = block.getFieldValue('VALUE');
+	if (value == 'TEMPERATURE')  {
+		return ['htu.readTemperature()', Blockly.Arduino.ORDER_ATOMIC];
+	} else if (value == 'HUMIDITY')  {
+		return ['htu.readHumidity()', Blockly.Arduino.ORDER_ATOMIC];
+	}
+	return ""
+};
+
+Blockly.Arduino['kniwwelino_DS18B20getValue'] = function(block) {
+	kniwwelinoBaseCode();
+	var pin = block.getFieldValue('PIN');
+	Blockly.Arduino.addInclude('OneWire', '#include <OneWire.h> //requires https://github.com/PaulStoffregen/OneWire');
+	Blockly.Arduino.addInclude('DS18B20', '#include <DS18B20.h> //requires https://github.com/RobTillaart/Arduino/tree/master/libraries/DS18B20');
+	Blockly.Arduino.addDeclaration('OneWire_'+pin, 'OneWire oneWire_'+pin+'('+pin+');');
+	Blockly.Arduino.addDeclaration('DS18B20_'+pin, 'DS18B20 ds18B20_'+pin+'(&oneWire_'+pin+');');
+  Blockly.Arduino.addKniwwelinoWrapperFunctions('ds18B20_'+pin+'_wrapper', 'float ds18B20_'+pin+'_wrapper() {\n  ds18B20_'+pin+'.requestTemperatures();\n  return ds18B20_'+pin+'.getTempC();\n}');
+  Blockly.Arduino.addSetup('ds18B20_'+pin+'_begin','ds18B20_'+pin+'.begin();');
+  return ['ds18B20_'+pin+'_wrapper()', Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['kniwwelino_BH1750getLightLevel'] = function(block) {
 	kniwwelinoBaseCode();
 	Blockly.Arduino.addInclude('BH1750', '#include <BH1750.h>');
-	Blockly.Arduino.addDeclaration('BH1750', 'BH1750 bh1750;');
-	Blockly.Arduino.addSetup('BH1750init', 'if(bh1750.begin()) Kniwwelino.logln("BH1750 Sensor Ready"); \n  else Kniwwelino.logln("failed to initialize BH1750 Sensor"); ', true);
-	return ['bh1750.readLightLevel()', Blockly.Arduino.ORDER_ATOMIC];
+
+	var address = block.getFieldValue('ADDRESS');
+
+	Blockly.Arduino.addDeclaration('BH1750_'+address+'', 'BH1750 bh1750_'+address+'('+address+');');
+	Blockly.Arduino.addSetup('BH1750init_'+address+'', 'if(bh1750_'+address+'.begin()) Kniwwelino.logln("BH1750 Sensor Ready"); \n  else Kniwwelino.logln("failed to initialize BH1750 Sensor"); ', true);
+	return ['bh1750_'+address+'.readLightLevel(true)', Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['kniwwelino_ADPS9960getValue'] = function(block) {
@@ -426,3 +595,215 @@ Blockly.Arduino['kniwwelino_ADPS9960getValue'] = function(block) {
 	}
 	return ""
 };
+
+Blockly.Arduino['kniwwelino_HCSR04getValue'] = function(block) {
+	kniwwelinoBaseCode();
+	Blockly.Arduino.addInclude('HCSR04', '#include <NewPing.h> //https://bitbucket.org/teckel12/arduino-new-ping/');
+	Blockly.Arduino.addDeclaration('HCSR04', 'NewPing hcsr04(D0, D5, 200);');
+	return ['hcsr04.ping_cm()', Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['kniwwelino_HCSR04getValue1Pin'] = function(block) {
+  var pin = block.getFieldValue('PIN');
+	kniwwelinoBaseCode();
+	Blockly.Arduino.addInclude('HCSR04', '#include <NewPing.h> //https://bitbucket.org/teckel12/arduino-new-ping/');
+	Blockly.Arduino.addDeclaration('HCSR04_'+pin+pin, 'NewPing hcsr04_'+pin+pin+'('+pin+', '+pin+', 200);');
+	return ['hcsr04_'+pin+pin+'.ping_cm()', Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['kniwwelino_HCSR04getValue2Pin'] = function(block) {
+  var pinTrig = block.getFieldValue('PIN_TRIG');
+  var pinEcho = block.getFieldValue('PIN_ECHO');
+	kniwwelinoBaseCode();
+	Blockly.Arduino.addInclude('HCSR04', '#include <NewPing.h> //https://bitbucket.org/teckel12/arduino-new-ping/');
+	Blockly.Arduino.addDeclaration('HCSR04_'+pinTrig+pinEcho, 'NewPing hcsr04_'+pinTrig+pinEcho+'('+pinTrig+', '+pinEcho+', 200);');
+	return ['hcsr04_'+pinTrig+pinEcho+'.ping_cm()', Blockly.Arduino.ORDER_ATOMIC];
+};
+
+//==== WEATHER ============================================
+
+Blockly.Arduino['kniwwelino_WeatherTopicChooser'] = function(block) {
+	var location = block.getFieldValue('LOCATION');
+  var weather_par = block.getFieldValue('WEATHER_PAR');
+
+  var code = "\"weather/"+location+"/"+weather_par + "\"";
+	return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['kniwwelino_WeatherConstChooser'] = function(block) {
+  var weather_const = '\"'+block.getFieldValue('WEATHER_CONST')+'\"';
+	return [weather_const, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+//==== AUDIO ==============================================
+
+Blockly.Arduino['kniwwelino_playNote'] = function(block) {
+	  var pin = block.getFieldValue('TONEPIN');
+	  var freq = Blockly.Arduino.valueToCode(block, 'NOTE', Blockly.Arduino.ORDER_ATOMIC);
+    //var octave = Blockly.Arduino.valueToCode(block, 'OCTAVE', Blockly.Arduino.ORDER_ATOMIC);
+	  var dur  = Blockly.Arduino.valueToCode(block, 'NOTE_DURATION', Blockly.Arduino.ORDER_ATOMIC);
+	  Blockly.Arduino.reservePin(
+	      block, pin, Blockly.Arduino.PinTypes.OUTPUT, 'Tone Pin');
+
+	  var pinSetupCode = 'pinMode(' + pin + ', OUTPUT);\n';
+	  Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
+
+	  var code = 'Kniwwelino.playNote(' + pin + ', ' + freq + ', ' + dur + ');\n';
+	  return code;
+	};
+
+Blockly.Arduino['kniwwelino_playTone'] = function(block) {
+	  var pin = block.getFieldValue('TONEPIN');
+	  var freq = Blockly.Arduino.valueToCode(block, 'NOTE', Blockly.Arduino.ORDER_ATOMIC);
+    //var octave = Blockly.Arduino.valueToCode(block, 'OCTAVE', Blockly.Arduino.ORDER_ATOMIC);
+	  Blockly.Arduino.reservePin(
+	      block, pin, Blockly.Arduino.PinTypes.OUTPUT, 'Tone Pin');
+
+	  var pinSetupCode = 'pinMode(' + pin + ', OUTPUT);\n';
+	  Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
+
+	  var code = 'Kniwwelino.playTone(' + pin + ', ' + freq + ');\n';
+	  return code;
+	};
+
+
+Blockly.Arduino['kniwwelino_toneOff'] = function(block) {
+	  var pin = block.getFieldValue("TONEPIN");
+	  Blockly.Arduino.reservePin(
+	      block, pin, Blockly.Arduino.PinTypes.OUTPUT, 'Tone Pin');
+
+	  var pinSetupCode = 'pinMode(' + pin + ', OUTPUT);\n';
+	  Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
+
+	  var code = 'Kniwwelino.toneOff(' + pin + ');\n';
+	  return code;
+	};
+
+
+Blockly.Arduino['kniwwelino_toneChooser'] = function(block) {
+		kniwwelinoBaseCode();
+    var isPause = block.getField('NOTE').getText().toLowerCase()==="pause"?true:false;
+		var freq = block.getFieldValue('NOTE');
+    var octave = block.getFieldValue('OCTAVE');
+
+    if (octave === '0') {
+      if (freq !== 'NOTE_B') {
+        octave = 1;
+      }
+    } else if (octave === '8') {
+      if (freq === 'NOTE_C' | freq === 'NOTE_CS' | freq === 'NOTE_D' | freq === 'NOTE_DS') {
+      } else {
+        octave = 7;
+      }
+    }
+
+		return [freq+(isPause?"":octave), Blockly.Arduino.ORDER_ATOMIC];
+	};
+
+
+//==== Neopixel WS2812 ==============================================
+
+	Blockly.Arduino['kniwwelino_neopixelInit'] = function(block) {
+		kniwwelinoBaseCode();
+		var size = block.getFieldValue('SIZE');
+		var pin = block.getFieldValue('PIN');
+		Blockly.Arduino.addInclude('WS2812FX', '#include <WS2812FX.h>');
+		Blockly.Arduino.addDeclaration('kniwwelino_WS2812FXinit','WS2812FX ws2812fx = WS2812FX('+size+', '+pin+', NEO_GRB + NEO_KHZ800);');
+		Blockly.Arduino.addSetup('kniwwelino_WS2812FXsetup', '//initialize neopixel strip\n  ws2812fx.init();\n  ws2812fx.start();', true);
+    Blockly.Arduino.addKniwwelinoBGTask('kniwwelino_WS2812FX', "ws2812fx.service(); // handle Neopixel Effect");
+		return '';
+	};
+
+	Blockly.Arduino['kniwwelino_neopixelSetEffect'] = function(block) {
+		kniwwelinoBaseCode();
+		var effect = Blockly.Arduino.valueToCode(block, 'EFFECT', Blockly.Arduino.ORDER_UNARY_POSTFIX);
+		if (effect == null || effect === undefined || effect == "") effect = 0;
+
+		var code = 'if(ws2812fx.getMode()!='+effect+'){ws2812fx.setMode(' + effect + ');} if(!ws2812fx.isRunning()){ws2812fx.start();}\n';
+		return code;
+	};
+
+	Blockly.Arduino['kniwwelino_neopixelEffectChooser'] = function(block) {
+			kniwwelinoBaseCode();
+			var effect = block.getFieldValue('EFFECT');
+			return [effect, Blockly.Arduino.ORDER_ATOMIC];
+	};
+
+
+	Blockly.Arduino['kniwwelino_neopixelsetStripColorFromString'] = function(block) {
+		kniwwelinoBaseCode();
+		var color = Blockly.Arduino.valueToCode(block, 'COLOR', Blockly.Arduino.ORDER_UNARY_POSTFIX);
+		if (color == null || color === undefined || color == "") color = 0;
+
+		var code = 'ws2812fx.setColor(Kniwwelino.RGBhex2int(' + color + '));\n';
+		return code;
+	};
+
+	Blockly.Arduino['kniwwelino_neopixelsetPixelColorFromString'] = function(block) {
+		kniwwelinoBaseCode();
+
+		var pixel = Blockly.Arduino.valueToCode(block, 'PIXEL', Blockly.Arduino.ORDER_UNARY_POSTFIX);
+		if (pixel == null || pixel === undefined || pixel == "") pixel = 0;
+
+		var color = Blockly.Arduino.valueToCode(block, 'COLOR', Blockly.Arduino.ORDER_UNARY_POSTFIX);
+		if (color == null || color === undefined || color == "") color = 0;
+
+		var code = 'if(ws2812fx.isRunning()){ws2812fx.stop();} ws2812fx.setPixelColor('+pixel+', Kniwwelino.RGBhex2int(' + color + ')); ws2812fx.show();\n';
+		return code;
+	};
+
+	Blockly.Arduino['kniwwelino_neopixelsetSpeed'] = function(block) {
+		kniwwelinoBaseCode();
+		var speed = Blockly.Arduino.valueToCode(block, 'SPEED', Blockly.Arduino.ORDER_UNARY_POSTFIX);
+		return  'ws2812fx.setSpeed(' + speed + ');\n';
+	};
+
+	Blockly.Arduino['kniwwelino_neopixelsetBrightness'] = function(block) {
+		kniwwelinoBaseCode();
+		var brightness = Blockly.Arduino.valueToCode(block, 'BRIGHTNESS', Blockly.Arduino.ORDER_UNARY_POSTFIX);
+		return  'ws2812fx.setBrightness(' + brightness + ');\n';
+	};
+
+	Blockly.Arduino['kniwwelino_neopixelStop'] = function(block) {
+		kniwwelinoBaseCode();
+		return  'ws2812fx.stop();\n';
+	};
+
+  Blockly.Arduino['kniwwelino_HD44780_setup'] = function(block) {
+		kniwwelinoBaseCode();
+    var lcdCols = block.getFieldValue('LCD_COLS');
+    var lcdRows = block.getFieldValue('LCD_ROWS');
+    var address = block.getFieldValue('ADDRESS');
+
+    Blockly.Arduino.addInclude('HD44780', '#include <hd44780.h> // main hd44780 header\n#include <hd44780ioClass/hd44780_I2Cexp.h>\n\n#define I2CEXPDIAG_CFG_DECODE_ESP8266PINS');
+		Blockly.Arduino.addDeclaration('HD44780init','hd44780_I2Cexp lcd('+address+');\n// LCD geometry\nconst int LCD_COLS = '+lcdCols+';\nconst int LCD_ROWS = '+lcdRows+';');
+		Blockly.Arduino.addSetup('HD44780setup', 'int status;\n  status = lcd.begin(LCD_COLS, LCD_ROWS);\n  if(status) { // non zero status means it was unsuccesful\n    status = -status;\n    Serial.println(status);\n    hd44780::fatalError(status);\n  }', true);
+
+    return '';
+  };
+
+  Blockly.Arduino['kniwwelino_HD44780_setCurser'] = function(block) {
+		kniwwelinoBaseCode();
+    var lcdCol = Blockly.Arduino.valueToCode(block, 'LCD_COL', Blockly.Arduino.ORDER_UNARY_POSTFIX);
+    var lcdRow = Blockly.Arduino.valueToCode(block, 'LCD_ROW', Blockly.Arduino.ORDER_UNARY_POSTFIX);
+
+    return 'lcd.setCursor('+lcdCol+', '+lcdRow+');\n';
+  };
+
+  Blockly.Arduino['kniwwelino_HD44780_print'] = function(block) {
+		kniwwelinoBaseCode();
+    var text = Blockly.Arduino.valueToCode(block, 'TEXT', Blockly.Arduino.ORDER_UNARY_POSTFIX);
+
+    return 'lcd.print('+text+');\n';
+  };
+
+  Blockly.Arduino['kniwwelino_HD44780_clear'] = function(block) {
+		kniwwelinoBaseCode();
+
+    return 'lcd.clear();\n';
+  };
+
+
+
+  lcd.noBacklight();
+  lcd.backlight();

@@ -12,56 +12,6 @@ var Ardublockly = Ardublockly || {};
 Ardublockly.TOOLBOX_XML =
 '<xml>' +
 '  <sep></sep>' +
-//'  <category id="catLogic" name="Logic">' +
-//'    <block type="controls_if"></block>' +
-//'    <block type="logic_compare"></block>' +
-//'    <block type="logic_operation"></block>' +
-//'    <block type="logic_negate"></block>' +
-//'    <block type="logic_boolean"></block>' +
-//'    <block type="logic_null"></block>' +
-//'    <block type="logic_ternary"></block>' +
-//'  </category>' +
-//'  <sep></sep>' +
-
-
-'  <category id="catMatrix" name="Matrix">' +
-'    <block type="kniwwelino_MATRIXwrite">' +
-'      <value name="TEXT">' +
-'        <shadow type="text">' +
-'          <field name="TEXT">Hello Kniwwelino</field>' +
-'        </shadow>' +
-'      </value>' +
-'    </block>' +
-// '    <block type="kniwwelino_MATRIXdrawIconChooser"></block>' +
-'    <block type="kniwwelino_MATRIXclear"></block>' +
-'    <block type="kniwwelino_MATRIXdrawIcon">' +
-'    <value name="ICON">' +
-'        <block type="kniwwelino_MATRIXdrawIconCreator"></block>' +
-'      </value>' +
-'    </block>' +
-'    <block type="kniwwelino_MATRIXIconChooser"></block>' +
-'    <block type="kniwwelino_MATRIXdrawIconCreator"></block>' +
-'    <block type="kniwwelino_MATRIXdrawPixel">' +
-'    <value name="X">' +
-'        <block type="math_number">' +
-'          <field name="X">1</field>' +
-'        </block>' +
-'      </value>' +
-'    <value name="Y">' +
-'        <block type="math_number">' +
-'          <field name="Y">1</field>' +
-'        </block>' +
-'      </value>' +
-'    <value name="STATE">' +
-'        <block type="math_number">' +
-'          <field name="STATE">1</field>' +
-'        </block>' +
-'      </value>' +
-'    </block>' +
-'    <block type="kniwwelino_MATRIXsetBrightness"></block>' +
-'    <block type="kniwwelino_MATRIXsetBlinkRate"></block>' +
-'  </category>' +
-'  <sep></sep>' +
 // TODO: THIS IS WHERE CONNECT STUFF GOES
 '  <category id = "catConnect" name="Connect">' +
 // '    <block type="connect_test_block"></block>' +
@@ -121,6 +71,88 @@ Ardublockly.TOOLBOX_XML =
 '  </category>' +
 // END CONNECT STUFF
 '  <sep></sep>' +
+'  <category id="catMatrix" name="Matrix">' +
+'    <block type="kniwwelino_MATRIXwrite">' +
+'      <value name="TEXT">' +
+'        <shadow type="text">' +
+'          <field name="TEXT">Hello Kniwwelino</field>' +
+'        </shadow>' +
+'      </value>' +
+'    </block>' +
+'    <block type="kniwwelino_MATRIXclear"></block>' +
+'    <block type="kniwwelino_MATRIXdrawIcon">' +
+'    <value name="ICON">' +
+'        <block type="kniwwelino_MATRIXdrawIconCreator"></block>' +
+'      </value>' +
+'    </block>' +
+'    <block type="kniwwelino_MATRIXdrawIcon" adv="true">' +
+'    	<value name="ICON">' +
+'    	<block type="kniwwelino_MATRIXselectIconEffect">' +
+'    		<value name="ICON">' +
+'    	    <block type="kniwwelino_MATRIXdrawIconCreator"></block>' +
+'    	  </value>' +
+'	 	  <value name="DURATION">' +
+'			 <shadow type="math_number">' +
+'			    <field name="NUM">3</field>' +
+'			 </shadow>' +
+'	 		</value>' +
+'   	 </block>' +
+'      </value>' +
+'    </block>' +
+'    <block type="kniwwelino_MATRIXselectIconEffect" adv="true">' +
+'    	<value name="ICON">' +
+'        <block type="kniwwelino_MATRIXdrawIconCreator"></block>' +
+'      </value>' +
+'	   <value name="DURATION">' +
+'		 <shadow type="math_number">' +
+'		    <field name="NUM">3</field>' +
+'		 </shadow>' +
+'	 	</value>' +
+'    </block>' +
+'    <block type="kniwwelino_MATRIXIconChooser"></block>' +
+'    <block type="kniwwelino_MATRIXdrawIconCreator"></block>' +
+'    <block type="kniwwelino_MATRIXdrawPixel">' +
+'    <value name="X">' +
+'        <block type="math_number">' +
+'          <field name="X">1</field>' +
+'        </block>' +
+'      </value>' +
+'    <value name="Y">' +
+'        <block type="math_number">' +
+'          <field name="Y">1</field>' +
+'        </block>' +
+'      </value>' +
+'    <value name="STATE">' +
+'        <block type="math_number">' +
+'          <field name="STATE">1</field>' +
+'        </block>' +
+'      </value>' +
+'    </block>' +
+'    <block type="kniwwelino_MATRIXshowPixels">' +
+'    <value name="n">' +
+'        <block type="math_number">' +
+'          <field name="n">25</field>' +
+'        </block>' +
+'      </value>' +
+'    </block>' +
+'    <block type="kniwwelino_MATRIXreadPixel">' +
+'    <value name="X_READ">' +
+'        <block type="math_number">' +
+'          <field name="NUM">0</field>' +
+'        </block>' +
+'      </value>' +
+'    <value name="Y_READ">' +
+'        <block type="math_number">' +
+'          <field name="NUM">0</field>' +
+'        </block>' +
+'      </value>' +
+'    </block>' +
+'    <block type="kniwwelino_MATRIXsetBrightness"></block>' +
+'    <block type="kniwwelino_MATRIXsetScrollSpeed"></block>' +
+'    <block type="kniwwelino_MATRIXsetBlinkRate"></block>' +
+'    <block type="kniwwelino_MATRIXsetRotation" adv="true"></block>' +
+'  </category>' +
+'  <sep></sep>' +
 '  <category id="catButtons" name="Buttons">' +
 '    <block type="controls_if">' +
 '      <value name="IF0">' +
@@ -152,7 +184,6 @@ Ardublockly.TOOLBOX_XML =
 '  </category>' +
 '  <sep></sep>' +
 '  <category id="catRGB" name="LED">' +
-//'    <block type="kniwwelino_RGBsetColor"></block>' +
 '    <block type="kniwwelino_RGBsetColorEffect">' +
 '      <value name="COLOR">' +
 '        <shadow type="kniwwelino_RGBselectColor"></shadow>' +
@@ -160,6 +191,39 @@ Ardublockly.TOOLBOX_XML =
 '  </block>' +
 '    <block type="kniwwelino_RGBclear"></block>' +
 '    <block type="kniwwelino_RGBselectColor"></block>' +
+'    <block type="kniwwelino_HUEselectColor">' +
+'		      <value name="HUE">' +
+'		        <shadow type="math_number">' +
+'		          <field name="NUM">0</field>' +
+'		        </shadow>' +
+'		      </value>' +
+'    </block>' +
+'    <block type="kniwwelino_RGBsetColorFromString" adv="true">' +
+'       <value name="COLOR">' +
+'    		<block type="kniwwelino_RGBselectEffect">'+
+'		      <value name="COLOR">' +
+'		        <shadow type="kniwwelino_RGBselectColor">' +
+'		        </shadow>' +
+'		      </value>' +
+'		      <value name="DURATION">' +
+'		        <shadow type="math_number">' +
+'		          <field name="NUM">3</field>' +
+'		        </shadow>' +
+'		      </value>' +
+'		    </block>' +
+'		</value>' +
+'	 </block>' +
+//'	<block type="kniwwelino_RGBselectEffect" adv="true">'+
+//'		      <value name="COLOR">' +
+//'		        <shadow type="kniwwelino_RGBselectColor">' +
+//'		        </shadow>' +
+//'		      </value>' +
+//'		      <value name="DURATION">' +
+//'		        <shadow type="math_number">' +
+//'		          <field name="NUM">3</field>' +
+//'		        </shadow>' +
+//'		      </value>' +
+//'	 </block>' +
 '    <block type="kniwwelino_RGBsetColorFromString">' +
 '      <value name="COLOR">' +
 '        <shadow type="text">' +
@@ -197,6 +261,47 @@ Ardublockly.TOOLBOX_XML =
 '      </value>' +
 '    </block>' +
 '    <block type="kniwwelino_PINsetEffect"></block>' +
+
+'	<block type="kniwwelino_neopixelInit" adv="true"></block>' +
+'	<block type="kniwwelino_neopixelSetEffect" adv="true">' +
+'      <value name="EFFECT">' +
+'        <block type="kniwwelino_neopixelEffectChooser">' +
+'          <field name="EFFECT">1 /*BLINK*/</field>' +
+'        </block>' +
+'      </value>' +
+'   </block>' +
+'	<block type="kniwwelino_neopixelsetStripColorFromString" adv="true">' +
+'		      <value name="COLOR">' +
+'		        <shadow type="kniwwelino_RGBselectColor">' +
+'		        </shadow>' +
+'		      </value>' +
+'   </block>' +
+'	<block type="kniwwelino_neopixelsetPixelColorFromString" adv="true">' +
+'      <value name="PIXEL">' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">0</field>' +
+'        </shadow>' +
+'      </value>' +
+'		      <value name="COLOR">' +
+'		        <shadow type="kniwwelino_RGBselectColor">' +
+'		        </shadow>' +
+'		      </value>' +
+'   </block>' +
+'	<block type="kniwwelino_neopixelsetSpeed" adv="true">' +
+'		      <value name="SPEED">' +
+'     			   <shadow type="math_number">' +
+'      				    <field name="NUM">200</field>' +
+'      			  </shadow>' +
+'		      </value>' +
+'   </block>' +
+'	<block type="kniwwelino_neopixelsetBrightness" adv="true">' +
+'		      <value name="BRIGHTNESS">' +
+'     			   <shadow type="math_number">' +
+'      				    <field name="NUM">200</field>' +
+'      			  </shadow>' +
+'		      </value>' +
+'   </block>' +
+'	<block type="kniwwelino_neopixelStop" adv="true"></block>' +
 '  </category>' +
 '  <sep></sep>' +
 '  <category id="catMQTT" name="Messages">' +
@@ -252,8 +357,15 @@ Ardublockly.TOOLBOX_XML =
 '        </shadow>' +
 '      </value>' +
 '    </block>' +
+'    <block type="kniwwelino_MQTTsubscribePublic">' +
+'      <value name="TOPIC">' +
+'        <shadow type="text">' +
+'          <field name="TEXT">MATRIX/TEXT</field>' +
+'        </shadow>' +
+'      </value>' +
+'    </block>' +
+'    <block type="kniwwelino_MQTTsetUserBroker" adv="true"></block>' +
 '  </category>' +
-
 '  <sep></sep>' +
 '  <category id="catLogic" name="Logic">' +
 '    <block type="controls_if"></block>' +
@@ -262,7 +374,7 @@ Ardublockly.TOOLBOX_XML =
 '    <block type="logic_negate"></block>' +
 '    <block type="logic_boolean"></block>' +
 '    <block type="logic_null"></block>' +
-'    <block type="logic_ternary"></block>' +
+'    <block type="logic_ternary" adv="true"></block>' +
 '  </category>' +
 '  <sep></sep>' +
 '  <category id="catVariables" name="Variables">' +
@@ -320,7 +432,7 @@ Ardublockly.TOOLBOX_XML =
 '        </block>' +
 '      </value>' +
 '    </block>' +
-'    <block type="math_random_float"></block>' +
+'    <block type="math_random_float" adv="true"></block>' +
 '    <block type="math_change">' +
 '      <value name="DELTA">' +
 '        <block type="math_number">' +
@@ -341,9 +453,31 @@ Ardublockly.TOOLBOX_XML =
 '      </value>' +
 '    </block>' +
 '    <block type="base_map"></block>' +
-'    <block type="math_single"></block>' +
-'    <block type="math_trig"></block>' +
-'    <block type="math_constant"></block>' +
+'    <block type="enhanced_map" adv="true">' +
+'      <value name="SMIN">' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">0</field>' +
+'        </shadow>' +
+'      </value>' +
+'      <value name="SMAX">' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">1024</field>' +
+'        </shadow>' +
+'      </value>' +
+'      <value name="DMIN">' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">0</field>' +
+'        </shadow>' +
+'      </value>' +
+'      <value name="DMAX">' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">100</field>' +
+'        </shadow>' +
+'      </value>' +
+'    </block>' +
+'    <block type="math_single" adv="true"></block>' +
+'    <block type="math_trig" adv="true"></block>' +
+'    <block type="math_constant" adv="true"></block>' +
 '    <block type="math_number_property"></block>' +
 '    <block type="math_round"></block>' +
 '    <block type="math_modulo"></block>' +
@@ -371,7 +505,7 @@ Ardublockly.TOOLBOX_XML =
 '        </shadow>' +
 '      </value>' +
 '    </block>' +
-'    <block type="kniwwelino_sleep">' +
+'    <block type="kniwwelino_sleep" adv="true">' +
 '      <value name="DELAY_TIME_MILI">' +
 '        <shadow type="math_number">' +
 '          <field name="NUM">1000</field>' +
@@ -385,20 +519,21 @@ Ardublockly.TOOLBOX_XML =
 //'        </block>' +
 //'      </value>' +
 //'    </block>' +
-//'    <block type="time_delaymicros">' +
-//'      <value name="DELAY_TIME_MICRO">' +
-//'        <block type="math_number">' +
-//'          <field name="NUM">100</field>' +
-//'        </block>' +
-//'      </value>' +
-//'    </block>' +
+'    <block type="time_delaymicros" adv="true">' +
+'      <value name="DELAY_TIME_MICRO">' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">10</field>' +
+'        </shadow>' +
+'      </value>' +
+'    </block>' +
+'    <block type="kniwwelino_getTime" adv="true"></block>' +
+'    <block type="kniwwelino_getTimeInt" adv="true"></block>' +
 '    <block type="time_seconds"></block>' +
-'    <block type="time_millis"></block>' +
-//'    <block type="time_micros"></block>' +
+'    <block type="time_millis" adv="true"></block>' +
 //'    <block type="infinite_loop"></block>' +
 '  </category>' +
-'  <sep></sep>' +
-'  <category id="catInputOutput" name="Input/Output">' +
+'  <sep adv="true"></sep>' +
+'  <category id="catInputOutput" name="Input/Output" adv="true">' +
 '    <block type="controls_if">' +
 '      <value name="IF0">' +
 '        <block type="logic_compare">' +
@@ -424,7 +559,11 @@ Ardublockly.TOOLBOX_XML =
 //'        <block type="io_highlow"></block>' +
 //'      </value>' +
 //'    </block>' +
-'    <block type="io_analogwrite"></block>' +
+'    <block type="io_analogwrite">' +
+'      <value name="NUM">' +
+'        <block type="math_number">255</block>' +
+'      </value>' +
+'    </block>' +
 '    <block type="io_analogread"></block>' +
 '    <block type="io_highlow"></block>' +
 '    <block type="io_pulsein">' +
@@ -448,20 +587,45 @@ Ardublockly.TOOLBOX_XML =
 '    </block>' +
 '  </category>' +
 //'  <sep></sep>' +
-//'  <sep></sep>' +
-//'  <category id="catAudio" name="Audio">' +
-//'    <block type="io_tone">' +
-//'      <field name="TONEPIN">0</field>' +
-//'      <value name="FREQUENCY">' +
-//'        <shadow type="math_number">' +
-//'          <field name="NUM">220</field>' +
-//'        </shadow>' +
-//'      </value>' +
-//'    </block>' +
-//'    <block type="io_notone"></block>' +
-//'  </category>' +
-'  <sep></sep>' +
-'  <category id="catMotors" name="Motors">' +
+'  <sep adv="true"></sep>' +
+
+'  <category id="catAudio" name="Audio" adv="true">' +
+'    <block type="kniwwelino_playNote">' +
+'      <value name="NOTE">' +
+'        <shadow type="kniwwelino_toneChooser">' +
+'       	<field name="NOTE">NOTE_C</field>' +
+'         <field name="OCTAVE">4</field>' +
+'        </shadow>' +
+'      </value>' +
+'      <value name="NOTE_DURATION">' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">4</field>' +
+'        </shadow>' +
+'      </value>' +
+'    </block>' +
+'    <block type="kniwwelino_playTone">' +
+'      <value name="NOTE">' +
+'        <shadow type="kniwwelino_toneChooser">' +
+'       	<field name="NOTE">NOTE_C</field>' +
+'         <field name="OCTAVE">4</field>' +
+'        </shadow>' +
+'      </value>' +
+'    </block>' +
+'    <block type="kniwwelino_playTone">' +
+'      <value name="NOTE">' +
+'        <shadow type="math_number">' +
+'       	<field name="NUM">440</field>' +
+'        </shadow>' +
+'      </value>' +
+'    </block>' +
+'    <block type="kniwwelino_toneOff"></block>' +
+'    <block type="kniwwelino_toneChooser">' +
+'       <field name="NOTE">NOTE_C</field>' +
+'       <field name="OCTAVE">4</field>' +
+'    </block>' +
+'  </category>' +
+'  <sep adv="true"></sep>' +
+'  <category id="catMotors" name="Motors" adv="true">' +
 '    <block type="servo_write">' +
 '      <value name="SERVO_ANGLE">' +
 '        <shadow type="math_number">' +
@@ -506,36 +670,70 @@ Ardublockly.TOOLBOX_XML =
 //'    <block type="spi_transfer"></block>' +
 //'    <block type="spi_transfer_return"></block>' +
 //'  </category>' +
-'  <sep></sep>' +
-'  <category id="catSensors" name="Sensors">' +
+'  <sep adv="true"></sep>' +
+'  <category id="catSensors" name="Sensors" adv="true">' +
 '    <block type="kniwwelino_BME280getValue"></block>' +
 '    <block type="kniwwelino_BME680getValue"></block>' +
 '    <block type="kniwwelino_SHT30getValue"></block>' +
+'    <block type="kniwwelino_HTU21DgetValue"></block>' +
+'    <block type="kniwwelino_DS18B20getValue"></block>' +
 '    <block type="kniwwelino_BH1750getLightLevel"></block>' +
 '    <block type="kniwwelino_ADPS9960getValue"></block>' +
+//'    <block type="kniwwelino_HCSR04getValue"></block>' +
+'    <block type="kniwwelino_HCSR04getValue1Pin"></block>' +
+'    <block type="kniwwelino_HCSR04getValue2Pin"></block>' +
+'		 <block type="kniwwelino_MQTTsubscribePublic">' +
+'      <value name="TOPIC">' +
+'        <block type="kniwwelino_WeatherTopicChooser">' +
+'        </block>' +
+'      </value>' +
+'    </block>' +
+'    <block type="kniwwelino_WeatherConstChooser"></block>' +
 '  </category>' +
-'  <sep></sep>' +
-'  <category id="catFunctions" name="Functions" custom="PROCEDURE"></category>' +
+'  <sep adv="true"></sep>' +
+'  <category id="catFunctions" name="Functions" custom="PROCEDURE" adv="true"></category>' +
 '  <sep></sep>' +
 '  <category id="catKniwwelino" name="Kniwwelino">' +
 '    <block type="arduino_functions_setup"></block>' +
 '    <block type="arduino_functions_loop"></block>' +
-'    <block type="kniwwelino_log">' +
+'    <block type="kniwwelino_log" adv="true">' +
 '      <value name="TEXT">' +
 '        <shadow type="text">""</shadow>' +
 '      </value>' +
 '    </block>' +
-'    <block type="kniwwelino_logln">' +
+'    <block type="kniwwelino_logln" adv="true">' +
 '      <value name="TEXT">' +
 '        <shadow type="text">""</shadow>' +
 '      </value>' +
 '    </block>' +
-'    <block type="kniwwelino_getID"></block>' +
-'    <block type="kniwwelino_getName"></block>' +
-'    <block type="kniwwelino_getIP"></block>' +
-'    <block type="kniwwelino_getMAC"></block>' +
+'    <block type="kniwwelino_getID" adv="true"></block>' +
+'    <block type="kniwwelino_getName" adv="true"></block>' +
+'    <block type="kniwwelino_getIP" adv="true"></block>' +
+'    <block type="kniwwelino_getMAC" adv="true"></block>' +
+'    <block type="kniwwelino_getSSID" adv="true"></block>' +
 '  </category>' +
-'  <sep></sep>' +
-'  <category id="catOther" name="Other">' +
+'  <sep adv="true"></sep>' +
+//'  <category id="catOther" name="Other" adv="true">' +
+//'  </category>' +
+'  <category id="catDisplay" name="Display" adv="true">' +
+'    <block type="kniwwelino_HD44780_setup"></block>' +
+'    <block type="kniwwelino_HD44780_setCurser">' +
+'      <value name="LCD_COL">' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">0</field>' +
+'        </shadow>' +
+'      </value>' +
+'      <value name="LCD_ROW">' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">0</field>' +
+'        </shadow>' +
+'      </value>' +
+'    </block>' +
+'    <block type="kniwwelino_HD44780_print">' +
+'      <value name="TEXT">' +
+'        <shadow type="text">""</shadow>' +
+'      </value>' +
+'    </block>' +
+'    <block type="kniwwelino_HD44780_clear"></block>' +
 '  </category>' +
 '</xml>';

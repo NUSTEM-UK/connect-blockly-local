@@ -231,6 +231,18 @@ body {
   padding-right: 5px;
 }
 
+#catAudio {
+  color: white;
+  background-color: #a577bb;
+}
+
+#catAudio\.label:before {
+  content: "\f028";  /* this is your text. You can also use UTF-8 character codes as I do here */
+  font-family: FontAwesome;
+  left:0px;
+  padding-right: 5px;
+}
+
 #catOther {
   color: white;
   background-color: #b2b2b2;
@@ -242,6 +254,19 @@ body {
   left:0px;
   padding-right: 5px;
 }
+
+#catDisplay {
+  color: white;
+  background-color: #00cccc;/*#00802b; */
+}
+
+#catDisplay\.label:before {
+  content: "\f26c";  /* this is your text. You can also use UTF-8 character codes as I do here */
+  font-family: FontAwesome;
+  left:0px;
+  padding-right: 5px;
+}
+
 
 .kniwwelino-bg {
   background-image: url("./img/mascot.png");
@@ -663,10 +688,11 @@ ul.side-nav li.side-menu-end {
   position: absolute;
   margin: 0 !important;
   padding: 0 !important;
-  left: 12px;
+  left: 18px;
   top: 8px;
-  text-align: center;
-  font-size: 1.5rem !important;
+  text-align: left;
+  font-size: 1.0rem !important;
+  text-transform: none;
   z-index: 5;
   border-color: #e0e0e0 !important;
   border-width: 1px !important;
@@ -686,10 +712,11 @@ ul.side-nav li.side-menu-end {
   position: absolute;
   margin: 0 !important;
   padding: 0px !important;
-  left: 12px;
+  left: 18px;
   top: 8px;
-  text-align: center;
-  font-size: 1.5rem !important;
+  text-align: left;
+  text-transform: none;
+  font-size: 1.0rem !important;
   z-index: 5;
 }
 

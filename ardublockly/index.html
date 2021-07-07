@@ -123,7 +123,7 @@
     <div class="row">
       <div id="blocks_workspace" class="col s12 m12 l8" style="position:relative; width: 100%;">
         <!-- Toolbox visibility button -->
-        <a id="button_toggle_toolbox" class="waves-effect waves-light btn-flat button_toggle_toolbox_off" style="display: none"><i id="button_toggle_toolbox_icon" class="mdi-action-visibility-off"></i></a>
+        <a id="button_toggle_toolbox" class="waves-effect waves-light btn-flat button_toggle_toolbox_off" style="display: none"><i class="fa fa-angle-double-right" id="button_toggle_toolbox_icon"></i><span class="translatable_advanced" id="toggle_toolbox_text"> enable expert</span></a>
         <!-- Arduino IDE action buttons -->
         <div id="ide_buttons_wrapper">
           <a id="button_ide_middle" class="waves-effect waves-light waves-circle z-depth-1-half arduino_yellow"><i id="button_ide_middle_icon" class="mdi-action-open-in-browser"></i></a>
@@ -174,7 +174,7 @@
           </div>
         </div>
       </div>
-      <div class="col s12 m12 l4" id="codesidebar" style="visibility: hidden;">
+      <div class="col s12 m12 l4" id="codesidebar" style="visibility: hidden; position: absolute; left: -1000px;">
         <ul class="collapsible z-depth-1" data-collapsible="accordion">
           <li>
             <div class="sourcecode collapsible-header active waves-effect waves-teal"> <!--active-->
