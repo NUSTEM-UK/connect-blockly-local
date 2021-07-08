@@ -238,7 +238,7 @@ Blockly.Blocks['connect_enqueue'] = {
     }
 };
 
-Blockly.Blocks["connect_connected_device"] = {
+Blockly.Blocks["connect_Connected_device"] = {
     /**
      * Block implementing setup() and loop() wrappers, as Connected device
      * root object.
@@ -288,6 +288,18 @@ Blockly.Blocks["connect_mood_happy"] = {
    * Essentially a duplicate of procedures_defnoreturn
    * @this Blockly.block
    */
+//   init: function() {
+//     this.setHelpUrl("https://FIXME: Document this");
+//     this.setTooltip("Happy mood function");
+//     this.setColour(Blockly.Blocks.connect_Connect.HUE);
+//     this.appendDummyInput()
+//       .appendField("doHappy()");
+//       this.appendStatementInput('FUNC_HAPPY');
+//     this.setInputsInline(false);
+//     this.setPreviousStatement(false);
+//     this.setNextStatement(false);
+//     this.contextMenu = false;
+//   }
 
   init: function() {
     var nameField = new Blockly.FieldTextInput(
@@ -638,6 +650,18 @@ Blockly.Blocks["connect_mood_sad"] = {
    * Essentially a duplicate of procedures_defnoreturn
    * @this Blockly.block
    */
+//   init: function() {
+//     this.setHelpUrl("https://FIXME: Document this");
+//     this.setTooltip("Happy mood function");
+//     this.setColour(Blockly.Blocks.connect_Connect.HUE);
+//     this.appendDummyInput()
+//       .appendField("doHappy()");
+//       this.appendStatementInput('FUNC_HAPPY');
+//     this.setInputsInline(false);
+//     this.setPreviousStatement(false);
+//     this.setNextStatement(false);
+//     this.contextMenu = false;
+//   }
 
   init: function() {
     var nameField = new Blockly.FieldTextInput(

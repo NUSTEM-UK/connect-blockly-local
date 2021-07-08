@@ -45,7 +45,8 @@ body {
 
 #catKniwwelino\.label:before {
   content: "\f2db";  /* this is your text. You can also use UTF-8 character codes as I do here */
-  font-family: FontAwesome;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900px
   left:0px;
   padding-right: 5px;
 }
@@ -61,7 +62,7 @@ body {
   font-weight: 900;
   content: "\f520";
   left: 0px;
-  padding-right: 10px;
+  padding-right: 5px;
 }
 
 #catRGB {
@@ -344,6 +345,12 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
     height: 80px;
     line-height: 80px;
     color: black;
+}
+
+/* Connect change: force render size for logo image in header */
+.nav-wrapper img {
+  width: 200px;
+  height: 80px;
 }
 
 @media only screen and (min-width : 993px) {
@@ -862,6 +869,9 @@ ul.side-nav li.side-menu-end {
 .sketch_name_wrapper {
   display: inline-block;
   padding-left: 5px;
+  /* Connect change: sort baseline shift, hackily */
+  transform: translate(0, 18px);
+
 }
 .sketch_name_icon {
   display: inline !important;
@@ -872,7 +882,8 @@ ul.side-nav li.side-menu-end {
 .sketch_name {
   width: auto !important;
   max-width: 400px;
-  line-height: 80px;
+  /* Connect change - fixes cropped sketch name by commenting out next line */
+  /* line-height: 80px; */
   height: 3rem !important;
   font-size: 1.5rem !important;
   border-bottom: 0px solid #EEE !important;
