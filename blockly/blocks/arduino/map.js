@@ -47,3 +47,42 @@ Blockly.Blocks['base_map'] = {
     return Blockly.Types.NUMBER;
   }
 };
+
+Blockly.Blocks['enhanced_map'] = {
+		  /**
+		   * Block for creating a the map function.
+		   * @this Blockly.Block
+		   */
+		  init: function() {
+		    this.setHelpUrl('http://arduino.cc/en/Reference/map');
+		    this.setColour(Blockly.Blocks.map.HUE);
+		    this.appendValueInput('NUM')
+		        .appendField(Blockly.Msg.ARD_MAP)
+		        .setCheck(Blockly.Types.NUMBER.checkList);
+		    
+		    this.appendValueInput('SMIN')
+	        .appendField(Blockly.Msg.ARD_MAP_SMIN)
+	        .setCheck(Blockly.Types.NUMBER.checkList);
+		    
+		    this.appendValueInput('SMAX')
+	        .appendField(Blockly.Msg.ARD_MAP_SMAX)
+	        .setCheck(Blockly.Types.NUMBER.checkList);
+		    
+		    this.appendValueInput('DMIN')
+	        .appendField(Blockly.Msg.ARD_MAP_DMIN)
+	        .setCheck(Blockly.Types.NUMBER.checkList);
+		    
+		    this.appendValueInput('DMAX')
+		        .appendField(Blockly.Msg.ARD_MAP_DMAX)
+		        .setCheck(Blockly.Types.NUMBER.checkList);
+		    this.appendDummyInput()
+		        .appendField(']');
+		    this.setInputsInline(true);
+		    this.setOutput(true);
+		    this.setTooltip(Blockly.Msg.ARD_MAP_TIP);
+		  },
+		  /** @return {string} The type of return value for the block, an integer. */
+		  getBlockType: function() {
+		    return Blockly.Types.NUMBER;
+		  }
+		};

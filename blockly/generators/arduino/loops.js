@@ -31,7 +31,7 @@ Blockly.Arduino['controls_repeat'] = function(block) {
   var code = 'for (int ' + loopVar + ' = 0; ' +
       loopVar + ' < ' + repeats + '; ' +
       loopVar + '++) {\n' +
-      branch + '}\n';
+      branch + '  Kniwwelino.loop(); // do background stuff...\n}\n';
   return code;
 };
 
@@ -59,7 +59,7 @@ Blockly.Arduino['controls_repeat_ext'] = function(block) {
   code += 'for (int ' + loopVar + ' = 0; ' +
       loopVar + ' < ' + endVar + '; ' +
       loopVar + '++) {\n' +
-      branch + '}\n';
+      branch + '  Kniwwelino.loop(); // do background stuff...\n}\n';
   return code;
 };
 
@@ -83,7 +83,7 @@ Blockly.Arduino['controls_whileUntil'] = function(block) {
     }
     argument0 = '!' + argument0;
   }
-  return 'while (' + argument0 + ') {\n' + branch + '}\n';
+  return 'while (' + argument0 + ') {\n' + branch + '  Kniwwelino.loop(); // do background stuff...\n}\n';
 };
 
 /**
@@ -117,7 +117,7 @@ Blockly.Arduino['controls_for'] = function(block) {
     } else {
       code += (up ? ' += ' : ' -= ') + step;
     }
-    code += ') {\n' + branch + '}\n';
+    code += ') {\n' + branch + '  Kniwwelino.loop(); // do background stuff...\n}\n';
   } else {
     code = '';
     // Cache non-trivial values to variables to prevent repeated look-ups.
@@ -151,7 +151,7 @@ Blockly.Arduino['controls_for'] = function(block) {
         variable0 + ' <= ' + endVar + ' : ' +
         variable0 + ' >= ' + endVar + ';\n' +
         '     ' + variable0 + ' += ' + incVar + ') {\n' +
-        branch + '}\n';
+        branch + '  Kniwwelino.loop(); // do background stuff...\n}\n';
   }
   return code;
 };
