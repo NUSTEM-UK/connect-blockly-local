@@ -769,41 +769,43 @@
 		 return  'ws2812fx.stop();\n';
 	 };
 
-   Blockly.Arduino['kniwwelino_HD44780_setup'] = function(block) {
-		 kniwwelinoBaseCode();
-	 var lcdCols = block.getFieldValue('LCD_COLS');
-	 var lcdRows = block.getFieldValue('LCD_ROWS');
-	 var address = block.getFieldValue('ADDRESS');
+// FIXME: Connect commented out 2021-07-08: line 808 throws runtime error.
 
-	 Blockly.Arduino.addInclude('HD44780', '#include <hd44780.h> // main hd44780 header\n#include <hd44780ioClass/hd44780_I2Cexp.h>\n\n#define I2CEXPDIAG_CFG_DECODE_ESP8266PINS');
-		 Blockly.Arduino.addDeclaration('HD44780init','hd44780_I2Cexp lcd('+address+');\n// LCD geometry\nconst int LCD_COLS = '+lcdCols+';\nconst int LCD_ROWS = '+lcdRows+';');
-		 Blockly.Arduino.addSetup('HD44780setup', 'int status;\n  status = lcd.begin(LCD_COLS, LCD_ROWS);\n  if(status) { // non zero status means it was unsuccesful\n    status = -status;\n    Serial.println(status);\n    hd44780::fatalError(status);\n  }', true);
+//    Blockly.Arduino['kniwwelino_HD44780_setup'] = function(block) {
+// 		 kniwwelinoBaseCode();
+// 	 var lcdCols = block.getFieldValue('LCD_COLS');
+// 	 var lcdRows = block.getFieldValue('LCD_ROWS');
+// 	 var address = block.getFieldValue('ADDRESS');
 
-	 return '';
-   };
+// 	 Blockly.Arduino.addInclude('HD44780', '#include <hd44780.h> // main hd44780 header\n#include <hd44780ioClass/hd44780_I2Cexp.h>\n\n#define I2CEXPDIAG_CFG_DECODE_ESP8266PINS');
+// 		 Blockly.Arduino.addDeclaration('HD44780init','hd44780_I2Cexp lcd('+address+');\n// LCD geometry\nconst int LCD_COLS = '+lcdCols+';\nconst int LCD_ROWS = '+lcdRows+';');
+// 		 Blockly.Arduino.addSetup('HD44780setup', 'int status;\n  status = lcd.begin(LCD_COLS, LCD_ROWS);\n  if(status) { // non zero status means it was unsuccesful\n    status = -status;\n    Serial.println(status);\n    hd44780::fatalError(status);\n  }', true);
 
-   Blockly.Arduino['kniwwelino_HD44780_setCurser'] = function(block) {
-		 kniwwelinoBaseCode();
-	 var lcdCol = Blockly.Arduino.valueToCode(block, 'LCD_COL', Blockly.Arduino.ORDER_UNARY_POSTFIX);
-	 var lcdRow = Blockly.Arduino.valueToCode(block, 'LCD_ROW', Blockly.Arduino.ORDER_UNARY_POSTFIX);
+// 	 return '';
+//    };
 
-	 return 'lcd.setCursor('+lcdCol+', '+lcdRow+');\n';
-   };
+//    Blockly.Arduino['kniwwelino_HD44780_setCurser'] = function(block) {
+// 		 kniwwelinoBaseCode();
+// 	 var lcdCol = Blockly.Arduino.valueToCode(block, 'LCD_COL', Blockly.Arduino.ORDER_UNARY_POSTFIX);
+// 	 var lcdRow = Blockly.Arduino.valueToCode(block, 'LCD_ROW', Blockly.Arduino.ORDER_UNARY_POSTFIX);
 
-   Blockly.Arduino['kniwwelino_HD44780_print'] = function(block) {
-		 kniwwelinoBaseCode();
-	 var text = Blockly.Arduino.valueToCode(block, 'TEXT', Blockly.Arduino.ORDER_UNARY_POSTFIX);
+// 	 return 'lcd.setCursor('+lcdCol+', '+lcdRow+');\n';
+//    };
 
-	 return 'lcd.print('+text+');\n';
-   };
+//    Blockly.Arduino['kniwwelino_HD44780_print'] = function(block) {
+// 		 kniwwelinoBaseCode();
+// 	 var text = Blockly.Arduino.valueToCode(block, 'TEXT', Blockly.Arduino.ORDER_UNARY_POSTFIX);
 
-   Blockly.Arduino['kniwwelino_HD44780_clear'] = function(block) {
-		 kniwwelinoBaseCode();
+// 	 return 'lcd.print('+text+');\n';
+//    };
 
-	 return 'lcd.clear();\n';
-   };
+//    Blockly.Arduino['kniwwelino_HD44780_clear'] = function(block) {
+// 		 kniwwelinoBaseCode();
+
+// 	 return 'lcd.clear();\n';
+//    };
 
 
 
-   lcd.noBacklight();
-   lcd.backlight();
+//    lcd.noBacklight();
+//    lcd.backlight();
