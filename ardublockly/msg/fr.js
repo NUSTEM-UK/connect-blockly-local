@@ -11,6 +11,8 @@ Ardublockly.LOCALISED_TEXT = {
   documentation: "Documentation",
   reportBug: "Signaler un problème",
   examples: "Exemples",
+  simple: " simple",
+  advanced: " étendu",
   /* Settings */
   compilerLocation: "Emplacement du compilateur",
   compilerLocationDefault: "",
@@ -37,7 +39,7 @@ Ardublockly.LOCALISED_TEXT = {
   arduinoOpErrorFlagTitle: "La construction ou le chargement a échoué",
   arduinoOpErrorFlagPrefTitle: "Sketch introuvable",
   arduinoOpErrorIdeDirTitle: "Argument de la ligne de commande invalide",
-  arduinoOpErrorIdeDirBody: "Préférence changé pour 'get-pref' le nom n'existe pas.",
+  arduinoOpErrorIdeDirBody: "Préférence changé pour 'get-pref', le nom n'existe pas.",
   arduinoOpErrorIdeOptionTitle: "Pas clair mais Arduino IDE rencontre des erreurs avec ça.",
   arduinoOpErrorIdeOptionBody: "Erreur de code inattendue de Arduino IDE",
   arduinoOpErrorIdePortTitle: "Le fichier Sketch n'a pu être créé",
@@ -52,26 +54,26 @@ Ardublockly.LOCALISED_TEXT = {
                               "Le Port Série est inaccessible.<br>" +
                               "Vérifiez que le Kniwwelino est correctement branché à l'ordinateur et sélectionnez le Port Série dans les paramètres.",
   arduinoOpErrorIdContext_56: "Carte Arduino inconnue<br>" +
-                              "La carte Kniwwelino n'as pas été configuré.<br>" +
-                              "Merci de sélectionner la carte Kniwwelino approprié dans les paramètres.",
+                              "La carte Kniwwelino n'a pas été configurée.<br>" +
+                              "Merci de sélectionner la carte Kniwwelino appropriée dans les paramètres.",
   arduinoOpErrorIdContext_52: "Erreur inatendue du serveur.",
   arduinoOpErrorIdContext_64: "Impossible d'analyser le JSON envoyé.",
   arduinoOpErrorUnknown: "Erreur inattendue",
   /* Modals */
-  noServerTitle: "L'appliation Kniwwelino-Blockly n'est pas en cour d'exécution",
-  noServerTitleBody: "<p>Pour que toutes les caractéristiques de Kniwwelino-Blockly soit activé, l'application bureau Kniwwelino-Blockly doit être en cours d'exécution sur votre ordinateur.</p>" +
-                     "<p>Si vous utilisez une version en ligne, vous ne pourrez pas configurer les paramètres ni charger les blocs de code dans un Kniwwelino.</p>" +
-                     "<p>Les instructions d'installation sont consultable sur la<a href=\"http://doku.kniwwelino.lu/en/installation\">Documentation Wiki Kniwwelino</a>.</p>" +
+  noServerTitle: "L'appliation Kniwwelino-Blockly n'est pas en cours d'exécution",
+  noServerTitleBody: "<p>Pour que toutes les caractéristiques de Kniwwelino-Blockly soient activées, l'application bureau Kniwwelino-Blockly doit être en cours d'exécution sur votre ordinateur.</p>" +
+                     "<p>Si vous utilisez une version en ligne, vous ne pourrez pas configurer les paramètres, ni charger les blocs de code dans un Kniwwelino.</p>" +
+                     "<p>Les instructions d'installation sont consultables sur la <a href=\"http://doku.kniwwelino.lu/en/installation\">Documentation Wiki Kniwwelino</a>.</p>" +
                      "<p>Si Kniwwelino-Blockly est déjà installé, assurez-vous que l'aplication est bien en cours d'exécution.</p>",
-  noServerNoLangBody: "Si l'application Kniwwelino-Blockly n'est pas en cours d'exécution la langue ne pourra pas être corrèctement changé.",
+  noServerNoLangBody: "Si l'application Kniwwelino-Blockly n'est pas en cours d'exécution la langue ne pourra pas être correctement changée.",
   addBlocksTitle: "Blocs supplémentaires",
   /* Alerts */
   loadNewBlocksTitle: "Charger de nouveaux blocs ?",
   loadNewBlocksBody: "Charger un nouveau fichier XML va remplacer les blocs actuels de l'espace de travail.<br>"+
-                     "Êtes-vous sur de vouloir continuer ?",
+                     "Êtes-vous sûr de vouloir continuer ?",
   discardBlocksTitle: "Supprimer les blocs ?",
   discardBlocksBody: "Il y a %1 blocs dans l'espace de travail."+
-                     "Êtes-vous sur de vouloir les supprimer ?",
+                     "Êtes-vous sûr de vouloir les supprimer ?",
   invalidXmlTitle: "XML invalide",
   invalidXmlBody: "Le fichier XML n'a pas pu être correctement décrypté en blocs. Vérifiez le code XML et réessayez.",
   /* Tooltips */
@@ -81,7 +83,7 @@ Ardublockly.LOCALISED_TEXT = {
   verifySketch: "Vérifier le Sketch",
   openingSketch: "Ouverture du code dans Arduino IDE...",
   openSketch: "Ouvrir le code dans IDE",
-  notImplemented: "La fonction n'est pas encore exécuté",
+  notImplemented: "La fonction n'est pas encore implémentée",
   /* Prompts */
   ok: "OK",
   okay: "Okay",

@@ -304,7 +304,12 @@ Blockly.FieldTextInput.numberValidator = function(text) {
   text = text.replace(/O/ig, '0');
   // Strip out thousands separators.
   text = text.replace(/,/g, '');
+
+	var hasDigit = text.includes('.');
   var n = parseFloat(text || 0);
+	if (hasDigit && Number.isInteger(n)) {
+		return isNaN(n) ? null : String(n)+'.0';
+	}
   return isNaN(n) ? null : String(n);
 };
 
