@@ -248,8 +248,15 @@ Blockly.Arduino.finish = function(code) {
   }
 
   //kniwwelino
+  // TODO: Think about whether this is needed -
+  // already called in connectLoop, so probably not
   if (allDefs.includes("Kniwwelino.h")) {
 	  code = code + '\nKniwwelino.loop(); // do background stuff...';
+  }
+
+  // Connect
+  if (allDefs.includes("Connect.h")) {
+    code = code + '\nconnectLoop(); // do Connect stuff...';
   }
 
   //if (allDefs.includes("WS2812FX.h")) {
