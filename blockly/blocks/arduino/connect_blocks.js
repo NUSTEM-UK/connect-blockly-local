@@ -238,7 +238,7 @@ Blockly.Blocks['connect_enqueue'] = {
     }
 };
 
-Blockly.Blocks["connect_Connected_device"] = {
+Blockly.Blocks["connect_connected_device"] = {
     /**
      * Block implementing setup() and loop() wrappers, as Connected device
      * root object.
