@@ -871,8 +871,8 @@ ul.side-nav li.side-menu-end {
   padding-left: 5px;
   /* Connect change: sort baseline shift, hackily */
   transform: translate(0, 18px);
-
 }
+
 .sketch_name_icon {
   display: inline !important;
   font-size: 1.2rem !important;
@@ -885,6 +885,8 @@ ul.side-nav li.side-menu-end {
   /* Connect change - fixes cropped sketch name by commenting out next line */
   /* line-height: 80px; */
   height: 3rem !important;
+  /* Connect change; text field width fix  */
+  width: 150px !important;
   font-size: 1.5rem !important;
   border-bottom: 0px solid #EEE !important;
   font-style: italic;
@@ -892,6 +894,7 @@ ul.side-nav li.side-menu-end {
 .sketch_name:focus {
     border-bottom: 1px solid #EEE !important;
 }
+
 
 @media only screen and (min-width: 0px) and (max-width: 600px) {
   .sketch_name {

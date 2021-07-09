@@ -249,7 +249,7 @@ Blockly.Blocks["connect_connected_device"] = {
       this.setTooltip("Connected Object");
       this.setColour(Blockly.Blocks.connect_Connect.HUE);
       this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("./img/kn02.png", 84, 24, "*"))
+        .appendField(new Blockly.FieldImage("./img/connect-function-header-02.png", 84, 24, "*"))
         .appendField("Connected Device");
       this.appendDummyInput()
         .appendField("Setup() (for testing)");
