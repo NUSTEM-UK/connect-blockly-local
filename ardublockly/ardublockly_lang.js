@@ -52,7 +52,7 @@ Ardublockly.initLanguage = function() {
       Ardublockly.updateLanguageText();
   }
   // TODO: Connect amended
-  document.getElementById('dokuURL').href='https://nustem.uk/connect';
+  document.getElementById('dokuURL').href='https://nustem.uk/connect'
   document.getElementById('bugreportURL').href='https://nustem.uk/connect/feedback';
 };
 
