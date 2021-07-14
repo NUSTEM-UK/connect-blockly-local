@@ -2068,13 +2068,20 @@ Blockly.Blocks["connect_activeHours_block"] = {
     this.setHelpUrl('http://FIXME:/');
     this.setColour(Blockly.Blocks.connect_Connect.HUE);
     this.appendDummyInput()
-      .appendField('Active from ');
-    this.setInputsInline(false);
-    this.appendValueInput('AM')
-      .setCheck(Blockly.Types.NUMBER.checkList);
+      .appendField('Active hours')
+      this.setInputsInline(true);
+      this.appendValueInput('active_start')
+      .setCheck(Blockly.Types.NUMBER.checkList)
+      .appendField('from: ');
+    this.appendValueInput('active_end')
+      .setCheck(Blockly.Types.NUMBER.checkList)
+      .appendField('AM, to: ');
+    this.appendDummyInput()
+      .appendField('PM')
+      .appendField('[NOT YET IMPLEMENTED]');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip("FIXME: complete something here");
+    this.setTooltip("FIXME: Not yet implemented");
   }
 };
 
