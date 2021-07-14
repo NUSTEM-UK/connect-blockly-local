@@ -2055,7 +2055,26 @@ Blockly.Blocks["connect_mood_duck"] = {
       }
     }
     return null;
+  }
+};
 
-}
+Blockly.Blocks["connect_activeHours_block"] = {
+  /**
+   * Block implementing active time settings, so the Connected device
+   * isn't constantly whirring and flashing.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl('http://FIXME:/');
+    this.setColour(Blockly.Blocks.connect_Connect.HUE);
+    this.appendDummyInput()
+      .appendField('Active from ');
+    this.setInputsInline(false);
+    this.appendValueInput('AM')
+      .setCheck(Blockly.Types.NUMBER.checkList);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip("FIXME: complete something here");
+  }
+};
 
-}
