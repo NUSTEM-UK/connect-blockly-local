@@ -213,7 +213,7 @@ Blockly.Blocks['connect_enqueue'] = {
   }
 }
 
-  Blockly.Blocks["connect_on_mood_message"] = {
+Blockly.Blocks["connect_on_mood_message"] = {
     /**
      * Block implementing core message receive logic and match specific mood
      * @this Blockly.Block

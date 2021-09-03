@@ -22,7 +22,7 @@ Ardublockly.TOOLBOX_XML =
 '    <block type="connect_mood_duck"></block>' +
 '  </category>' +
 '  <sep></sep>' +
-'  <category id="catConnectServo" name="Connect Servo">' +
+'  <category id="catConnectServos" name="Connect Servos">' +
 '    <block type="connect_smooth_servo_block">' +
 '      <value name="SERVO_ANGLE">' +
 '        <shadow type="math_number">' +
@@ -73,7 +73,7 @@ Ardublockly.TOOLBOX_XML =
 '    </block>' +
 '  </category>' +
 '  <sep></sep>' +
-'  <category id="catConnectSetup" name="Connect setup">' +
+'  <category id="catConnectSetup" name="Connect Setup">' +
 '     <block type="connect_activeHours_block"></block>' +
 '  </category>' +
 // END CONNECT STUFF
