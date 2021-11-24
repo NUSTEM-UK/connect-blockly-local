@@ -96,147 +96,266 @@ Blockly.Blocks["connect_smooth_servo_block"] = {
   }
 };
 
-Blockly.Blocks["connect_servo_animation_block"] = {
+Blockly.Blocks["connect_servo_queue_ease_block"] = {
   /**
-   * Block implementing basic/facile animation template
+   * Block queueing servo easing movement.
    * @this Blockly.Block
    */
   init: function() {
     this.setHelpUrl("https://FIXME:");
     this.setColour(Blockly.Blocks.servo.HUE);
     this.appendDummyInput()
+      .appendField('Queue servo')
       .appendField(
-        new Blockly.FieldDropdown([
-          ["flap", "flap"],
-          ["wave", "wave"],
-          ["bounce", "bounce"]
-        ]))
-      .appendField('SERVO on Pin')
-      .appendField(
-        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
-        "SERVO_PIN"
-      );
-    this.appendValueInput('FROM_ANGLE')
-      .setCheck(Blockly.Types.NUMBER.checkList)
-      .appendField('from angle: ');
-    this.appendValueInput('TO_ANGLE')
-      .setCheck(Blockly.Types.NUMBER.checkList)
-      .appendField('to angle: ');
-    this.appendValueInput('NUM_SEQUENCES')
-      .setCheck(Blockly.Types.NUMBER.checkList)
-      .appendField('times: ');
+      new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
+      "SERVO_PIN")
+      .appendField(' move to');
+    this.appendValueInput('SERVO_ANGLE')
+      .setCheck(Blockly.Types.NUMBER.checkList);
+    this.appendDummyInput()
+      .appendField('degrees at speed');
+    this.appendValueInput('SPEED')
+      .setCheck(Blockly.Types.NUMBER.checkList);
+      // .appendField('at speed');
+    this.appendDummyInput()
+      .appendField(', ');
+    this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown(
+      [
+        ["Evenly", "LINEAR"],
+        ["Getting faster", "EASE_IN_QUAD"],
+        ["Getting slower", "EASE_OUT_QUAD"],
+        ["Getting faster then slower", "EASE_IN_OUT_QUAD"]
+      ]), "EASING_TYPE");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip("FIXME: tooltop");
+    this.setTooltip("FIXME: Test tooltip");
   }
-}
+};
 
-Blockly.Blocks["connect_servo_animation_container_block"] = {
+Blockly.Blocks["connect_servo_queue_move_block"] = {
   /**
-   * Block implementing servo animation template with container
+   * Block queueing servo direct movement.
    * @this Blockly.Block
    */
   init: function() {
     this.setHelpUrl("https://FIXME:");
     this.setColour(Blockly.Blocks.servo.HUE);
     this.appendDummyInput()
+      .appendField('Queue servo')
       .appendField(
-        new Blockly.FieldDropdown([
-          ["flap", "flap"],
-          ["wave", "wave"],
-          ["bounce", "bounce"]
-        ]))
-      .appendField('SERVO on Pin')
-      .appendField(
-        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
-        "SERVO_PIN"
-      );
-    this.appendValueInput('FROM_ANGLE')
-      .setCheck(Blockly.Types.NUMBER.checkList)
-      .appendField('from angle: ');
-    this.appendValueInput('TO_ANGLE')
-      .setCheck(Blockly.Types.NUMBER.checkList)
-      .appendField('to angle: ');
-    this.appendValueInput('NUM_SEQUENCES')
-      .setCheck(Blockly.Types.NUMBER.checkList)
-      .appendField('times: ');
-    this.appendStatementInput("NAME")
-        .setCheck(null)
-        .appendField("and");
+      new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
+      "SERVO_PIN")
+      .appendField(' move to');
+    this.appendValueInput('SERVO_ANGLE')
+      .setCheck(Blockly.Types.NUMBER.checkList);
+    this.appendDummyInput()
+      .appendField('degrees, quickly');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip("FIXME: tooltop");
+    this.setTooltip("FIXME: Test tooltip");
   }
+};
 
-}
-
-Blockly.Blocks["connect_wait_for_servo_move"] = {
+Blockly.Blocks["connect_servo_queue_wait_block"] = {
   /**
-   * Block implementing check to wait for servo moves to complete
+   * Block queueing servo wait.
    * @this Blockly.Block
    */
   init: function() {
     this.setHelpUrl("https://FIXME:");
     this.setColour(Blockly.Blocks.servo.HUE);
     this.appendDummyInput()
-      .appendField('Wait for SERVO on Pin')
+      .appendField('Queue servo')
+      .appendField(
+      new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
+      "SERVO_PIN")
+      .appendField(' wait for');
+    this.appendValueInput('WAIT_TIME')
+      .setCheck(Blockly.Types.NUMBER.checkList);
+    this.appendDummyInput()
+      .appendField('milliseconds');
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip("FIXME: Test tooltip");
+  }
+};
+
+Blockly.Blocks["connect_servo_queue_wait_for_servo_block"] = {
+  /**
+   * Block queueing servoWaitForServo call.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl("https://FIXME:");
+    this.setColour(Blockly.Blocks.servo.HUE);
+    this.appendDummyInput()
+      .appendField('Queue servo')
+      .appendField(
+      new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
+      "SERVO1_PIN")
+      .appendField(' wait for servo');
+    this.appendDummyInput()
+      .appendField(
+      new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
+      "SERVO2_PIN");
+    this.appendDummyInput()
+      .appendField('to stop moving');
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip("FIXME: Test tooltip");
+  }
+};
+
+Blockly.Blocks["connect_servo_queue_animation_block"] = {
+/**
+ * Block implementing basic/facile animation template
+ * @this Blockly.Block
+ */
+  init: function() {
+    this.setHelpUrl("https://FIXME:");
+    this.setColour(Blockly.Blocks.servo.HUE);
+    this.appendDummyInput()
+      .appendField('Queue servo')
       .appendField(
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
         "SERVO_PIN"
       )
-      .appendField('to finish moving');
+      .appendField('to');
+    this.appendDummyInput()
+      .appendField(
+        new Blockly.FieldDropdown([
+          ["flap", "flap"],
+          ["wave", "wave"],
+          ["bounce", "bounce"]
+        ]))
+      .appendField(' ');
+    this.appendValueInput('NUM_SEQUENCES')
+      .setCheck(Blockly.Types.NUMBER.checkList);
+    this.appendDummyInput()
+      .appendField('times between');
+    this.appendValueInput('FROM_ANGLE')
+      .setCheck(Blockly.Types.NUMBER.checkList);
+    this.appendValueInput('TO_ANGLE')
+      .setCheck(Blockly.Types.NUMBER.checkList)
+      .appendField('degrees and');
+    this.appendDummyInput()
+        .appendField('degrees');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip("Pauses program until servo has finished movement");
-  },
-  updateFields: function() {
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(
-      this, "SERVO_PIN", "pwmPins"
-    );
+    this.setTooltip("FIXME: tooltop");
   }
 };
 
-Blockly.Blocks['connect_enqueue'] = {
-  /**
-   * Block for queueing up commands to the dispatcher.
-   * @this Blockly.Block
-   * 2021-05-14 Meh, need to design this on paper before we try
-   * to code it up. Should be possible with reference to math_number_property
-   * in blocks/math.js.
-   */
-  init: function() {
-    this.setColour(Blockly.Blocks.connect_Connect.HUE);
+// Blockly.Blocks["connect_servo_animation_container_block"] = {
+//   /**
+//    * Block implementing servo animation template with container
+//    * @this Blockly.Block
+//    */
+//   init: function() {
+//     this.setHelpUrl("https://FIXME:");
+//     this.setColour(Blockly.Blocks.servo.HUE);
+//     this.appendDummyInput()
+//       .appendField(
+//         new Blockly.FieldDropdown([
+//           ["flap", "flap"],
+//           ["wave", "wave"],
+//           ["bounce", "bounce"]
+//         ]))
+//       .appendField('SERVO on Pin')
+//       .appendField(
+//         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
+//         "SERVO_PIN"
+//       );
+//     this.appendValueInput('FROM_ANGLE')
+//       .setCheck(Blockly.Types.NUMBER.checkList)
+//       .appendField('from angle: ');
+//     this.appendValueInput('TO_ANGLE')
+//       .setCheck(Blockly.Types.NUMBER.checkList)
+//       .appendField('to angle: ');
+//     this.appendValueInput('NUM_SEQUENCES')
+//       .setCheck(Blockly.Types.NUMBER.checkList)
+//       .appendField('times: ');
+//     this.appendStatementInput("NAME")
+//         .setCheck(null)
+//         .appendField("and");
+//     this.setInputsInline(true);
+//     this.setPreviousStatement(true, null);
+//     this.setNextStatement(true, null);
+//     this.setTooltip("FIXME: tooltip");
+//   }
+// };
 
-  }
-}
+// Blockly.Blocks["connect_wait_for_servo_move"] = {
+//   /**
+//    * Block implementing check to wait for servo moves to complete
+//    * @this Blockly.Block
+//    */
+//   init: function() {
+//     this.setHelpUrl("https://FIXME:");
+//     this.setColour(Blockly.Blocks.servo.HUE);
+//     this.appendDummyInput()
+//       .appendField('Wait for SERVO on Pin')
+//       .appendField(
+//         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
+//         "SERVO_PIN"
+//       )
+//       .appendField('to finish moving');
+//     this.setInputsInline(true);
+//     this.setPreviousStatement(true, null);
+//     this.setNextStatement(true, null);
+//     this.setTooltip("Pauses program until servo has finished movement");
+//   },
+//   updateFields: function() {
+//     Blockly.Arduino.Boards.refreshBlockFieldDropdown(
+//       this, "SERVO_PIN", "pwmPins"
+//     );
+//   }
+// };
 
-Blockly.Blocks["connect_on_mood_message"] = {
-    /**
-     * Block implementing core message receive logic and match specific mood
-     * @this Blockly.Block
-     * 2021-05-14 Not loaded in ardu_blockly_toolbox, for now
-     */
-    init: function() {
-      this.setHelpUrl("https://FIXME:");
-      this.setColour(Blockly.Blocks.loops.HUE);
-      this.setTooltip("");
-      this.appendDummyInput()
-        .appendField("if received mood is")
-        .appendField(new Blockly.FieldDropdown([["happy", "HAPPY"], ["sad", "SAD"], ["heart", "HEART"], ["skull", "SKULL"], ["duck", "DUCK"]]), "mood");
-        this.appendStatementInput("DO")
-        .setCheck(null);
-      this.appendDummyInput()
-        .appendField("if received mood is")
-        .appendField(new Blockly.FieldDropdown([["happy", "HAPPY"], ["sad", "SAD"], ["heart", "HEART"], ["skull", "SKULL"], ["duck", "DUCK"]]), "mood");
-        this.appendStatementInput("DO")
-        .setCheck(null);
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-    }
-};
+// Blockly.Blocks['connect_enqueue'] = {
+//   /**
+//    * Block for queueing up commands to the dispatcher.
+//    * @this Blockly.Block
+//    * 2021-05-14 Meh, need to design this on paper before we try
+//    * to code it up. Should be possible with reference to math_number_property
+//    * in blocks/math.js.
+//    */
+//   init: function() {
+//     this.setColour(Blockly.Blocks.connect_Connect.HUE);
+
+//   }
+// }
+
+// Blockly.Blocks["connect_on_mood_message"] = {
+//     /**
+//      * Block implementing core message receive logic and match specific mood
+//      * @this Blockly.Block
+//      * 2021-05-14 Not loaded in ardu_blockly_toolbox, for now
+//      */
+//     init: function() {
+//       this.setHelpUrl("https://FIXME:");
+//       this.setColour(Blockly.Blocks.loops.HUE);
+//       this.setTooltip("");
+//       this.appendDummyInput()
+//         .appendField("if received mood is")
+//         .appendField(new Blockly.FieldDropdown([["happy", "HAPPY"], ["sad", "SAD"], ["heart", "HEART"], ["skull", "SKULL"], ["duck", "DUCK"]]), "mood");
+//         this.appendStatementInput("DO")
+//         .setCheck(null);
+//       this.appendDummyInput()
+//         .appendField("if received mood is")
+//         .appendField(new Blockly.FieldDropdown([["happy", "HAPPY"], ["sad", "SAD"], ["heart", "HEART"], ["skull", "SKULL"], ["duck", "DUCK"]]), "mood");
+//         this.appendStatementInput("DO")
+//         .setCheck(null);
+//       this.setPreviousStatement(true, null);
+//       this.setNextStatement(true, null);
+//     }
+// };
 
 Blockly.Blocks["connect_connected_device"] = {
     /**
@@ -249,31 +368,20 @@ Blockly.Blocks["connect_connected_device"] = {
       this.setTooltip("Connected Object");
       this.setColour(Blockly.Blocks.connect_Connect.HUE);
       this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("./img/connect-function-header-02.png", 84, 24, "*"))
-        .appendField("Connected Device");
+        .appendField(new Blockly.FieldImage("./img/connect-function-header-02.png", 84, 24, "*"));
+        // .appendField("Connected Device");
       this.appendDummyInput()
         .appendField("Setup() (for testing)");
         this.appendStatementInput('SETUP_FUNC');
       this.appendDummyInput()
         .appendField("Loop() (for testing)");
         this.appendStatementInput('LOOP_FUNC');
-      // Dummy inputs removed - we'll do these as separate functions
-      // this.appendDummyInput()
-      //   .appendField("if received mood is")
-      //   .appendField(new Blockly.FieldDropdown([["happy", "HAPPY"], ["sad", "SAD"], ["heart", "HEART"], ["skull", "SKULL"], ["duck", "DUCK"]]), "mood");
-      // this.appendStatementInput("DO")
-      //   .setCheck(null);
-      // this.appendDummyInput()
-      //   .appendField("if received mood is")
-      //   .appendField(new Blockly.FieldDropdown([["happy", "HAPPY"], ["sad", "SAD"], ["heart", "HEART"], ["skull", "SKULL"], ["duck", "DUCK"]]), "mood");
-      // this.appendStatementInput("DO")
-      //   .setCheck(null);
       this.setInputsInline(false);
       this.setPreviousStatement(false);
       this.setNextStatement(false);
       this.contextMenu = false;
     },
-      /**@return {!boolean} true of the block instance is in the workspace */
+      /**@return {!boolean} true if the block instance is in the workspace */
       getArduinoSetupInstance: function() {
         return true;
       },

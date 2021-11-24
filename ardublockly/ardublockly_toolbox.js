@@ -23,19 +23,47 @@ Ardublockly.TOOLBOX_XML =
 '  </category>' +
 '  <sep></sep>' +
 '  <category id="catConnectServos" name="Connect Servos">' +
-'    <block type="connect_smooth_servo_block">' +
-'      <value name="SERVO_ANGLE">' +
-'        <shadow type="math_number">' +
-'          <field name="NUM">90</field>' +
-'        </shadow>' +
-'      </value>' +
-'      <value name="SWEEP_RATE">' +
-'          <shadow type="math_number">' +
-'              <field name="NUM">30</field>' +
-'          </shadow>' +
-'      </value>' +
-'    </block>"' +
-'    <block type="connect_servo_animation_block">' +
+// '    <block type="connect_smooth_servo_block">' +
+// '      <value name="SERVO_ANGLE">' +
+// '        <shadow type="math_number">' +
+// '          <field name="NUM">90</field>' +
+// '        </shadow>' +
+// '      </value>' +
+// '      <value name="SWEEP_RATE">' +
+// '          <shadow type="math_number">' +
+// '              <field name="NUM">30</field>' +
+// '          </shadow>' +
+// '      </value>' +
+// '    </block>' +
+'    <block type="connect_servo_queue_move_block">' +
+'       <value name="SERVO_ANGLE">' +
+'         <shadow type="math_number">' +
+'           <field name="NUM">90</field>' +
+'         </shadow>' +
+'       </value>' +
+'    </block>' +
+'    <block type="connect_servo_queue_ease_block">' +
+'       <value name="SERVO_ANGLE">' +
+'         <shadow type="math_number">' +
+'           <field name="NUM">90</field>' +
+'         </shadow>' +
+'       </value>' +
+'       <value name="SPEED">' +
+'         <shadow type="math_number">' +
+'           <field name="NUM">60</field>' +
+'         </shadow>' +
+'       </value>' +
+'    </block>' +
+'    <block type="connect_servo_queue_wait_block">' +
+'       <value name="WAIT_TIME">' +
+'         <shadow type="math_number">' +
+'           <field name="NUM">500</field>' +
+'         </shadow>' +
+'       </value>' +
+'    </block>' +
+'    <block type="connect_servo_queue_wait_for_servo_block">' +
+'    </block>' +
+'    <block type="connect_servo_queue_animation_block">' +
         '<value name="FROM_ANGLE">' +
 '        <shadow type="math_number">' +
 '          <field name="NUM">45</field>' +
@@ -52,25 +80,25 @@ Ardublockly.TOOLBOX_XML =
 '        </shadow>' +
 '      </value>' +
 '    </block>' +
-'    <block type="connect_servo_animation_container_block">' +
-        '<value name="FROM_ANGLE">' +
-'        <shadow type="math_number">' +
-'          <field name="NUM">45</field>' +
-'        </shadow>' +
-'      </value>' +
-        '<value name="TO_ANGLE">' +
-'        <shadow type="math_number">' +
-'          <field name="NUM">135</field>' +
-'        </shadow>' +
-'      </value>' +
-        '<value name="NUM_SEQUENCES">' +
-'        <shadow type="math_number">' +
-'          <field name="NUM">3</field>' +
-'        </shadow>' +
-'      </value>' +
-'    </block>' +
-'    <block type="connect_wait_for_servo_move">' +
-'    </block>' +
+// '    <block type="connect_servo_animation_container_block">' +
+//         '<value name="FROM_ANGLE">' +
+// '        <shadow type="math_number">' +
+// '          <field name="NUM">45</field>' +
+// '        </shadow>' +
+// '      </value>' +
+//         '<value name="TO_ANGLE">' +
+// '        <shadow type="math_number">' +
+// '          <field name="NUM">135</field>' +
+// '        </shadow>' +
+// '      </value>' +
+//         '<value name="NUM_SEQUENCES">' +
+// '        <shadow type="math_number">' +
+// '          <field name="NUM">3</field>' +
+// '        </shadow>' +
+// '      </value>' +
+// '    </block>' +
+// '    <block type="connect_wait_for_servo_move">' +
+// '    </block>' +
 '  </category>' +
 '  <sep></sep>' +
 '  <category id="catConnectSetup" name="Connect Setup">' +
