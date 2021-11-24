@@ -71,10 +71,12 @@ Ardublockly.bindActionFunctions = function() {
     $('.button-collapse').sideNav('hide');
   });
   Ardublockly.bindClick_('menu_example_1', function() {
+    // TODO: amend this!
     Ardublockly.loadServerXmlFile('../examples/bf_wristband.xml');
     $('.button-collapse').sideNav('hide');
   });
   Ardublockly.bindClick_('menu_example_2', function() {
+    // TODO: amend this!
     Ardublockly.loadServerXmlFile('../examples/rock_paper_scissors.xml');
     $('.button-collapse').sideNav('hide');
   });

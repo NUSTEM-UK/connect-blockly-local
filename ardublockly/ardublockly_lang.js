@@ -51,8 +51,9 @@ Ardublockly.initLanguage = function() {
       Ardublockly.injectLanguageJsSources(Ardublockly.LANG);
       Ardublockly.updateLanguageText();
   }
-  document.getElementById('dokuURL').href='https://doku.kniwwelino.lu/' + Ardublockly.LANG
-  document.getElementById('bugreportURL').href='https://doku.kniwwelino.lu/' + Ardublockly.LANG + '/feedback';
+  // TODO: Connect amended
+  document.getElementById('dokuURL').href='https://nustem.uk/connect'
+  document.getElementById('bugreportURL').href='https://nustem.uk/connect/feedback';
 };
 
 /**

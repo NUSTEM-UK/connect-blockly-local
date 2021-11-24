@@ -57,13 +57,39 @@ body {
 }
 
 #catConnect\.label:before {
-  /* TODO: Fix this reference (should be bird https://fontawesome.com/icons/crow?style=solid) */
-  font-family: "Font Awesome 5 Free";
+  /* TODO: Fix this reference (should be bird https://fontawesome.com/icons/crow?style=solid) @done*/
+  font-family: "FontAwesome";
   font-weight: 900;
   content: "\f520";
   left: 0px;
   padding-right: 5px;
 }
+
+#catConnectServos {
+  color: white;
+  background-color: #207720;
+}
+
+#catConnectServos\.label:before {
+  content: "\f085";  /* this is your text. You can also use UTF-8 character codes as I do here */
+  font-family: "FontAwesome";
+  left: 0px;
+  padding-right: 5px;
+}
+
+#catConnectSetup {
+  color: white;
+  background-color: #353535;
+}
+
+#catConnectSetup\.label:before {
+  content: "\f1de";
+  font-family: "FontAwesome";
+  left: 0px;
+  padding-right: 5px;
+  font-weight: 100;
+}
+
 
 #catRGB {
   color: white;
