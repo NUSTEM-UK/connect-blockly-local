@@ -123,9 +123,9 @@ Blockly.Blocks["connect_servo_queue_ease_block"] = {
       .appendField(new Blockly.FieldDropdown(
       [
         ["Evenly", "LINEAR"],
-        ["Getting faster", "EASE_IN_QUAD"],
-        ["Getting slower", "EASE_OUT_QUAD"],
-        ["Getting faster then slower", "EASE_IN_OUT_QUAD"]
+        ["Getting faster", "EASE_CUBIC_IN"],
+        ["Getting slower", "EASE_CUBIC_OUT"],
+        ["Getting faster then slower", "EASE_CUBIC_IN_OUT"]
       ]), "EASING_TYPE");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -244,7 +244,9 @@ Blockly.Blocks["connect_servo_queue_animation_block"] = {
       .setCheck(Blockly.Types.NUMBER.checkList)
       .appendField('degrees and');
     this.appendDummyInput()
-        .appendField('degrees');
+      .appendField('degrees');
+    this.appendDummyInput()
+      .appendField(' (not yet implemented)');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
