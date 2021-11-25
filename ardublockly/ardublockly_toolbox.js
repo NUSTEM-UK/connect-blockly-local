@@ -19,6 +19,7 @@ Ardublockly.TOOLBOX_XML =
 '    <block type="connect_mood_sad"></block>' +
 '    <block type="connect_mood_heart"></block>' +
 '    <block type="connect_mood_skull"></block>' +
+'    <block type="connect_mood_silly"></block>' +
 '    <block type="connect_mood_duck"></block>' +
 '  </category>' +
 '  <sep></sep>' +
