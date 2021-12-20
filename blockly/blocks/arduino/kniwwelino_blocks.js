@@ -8,7 +8,7 @@
  * @fileoverview Blocks for for the Kniwwelino Library.
  * Kniwwelino library docs: https://doku.kniwwelino.lu/en/reference/
  */
- 'use strict';
+'use strict';
 
  goog.provide('Blockly.Blocks.kniwwelino_Kniwwelino');
  goog.provide('Blockly.Blocks.kniwwelino_RGB');

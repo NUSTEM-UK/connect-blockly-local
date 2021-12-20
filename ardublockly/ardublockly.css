@@ -51,6 +51,8 @@ body {
   padding-right: 5px;
 }
 
+/* conNecT changes */
+
 #catConnect {
   color: white;
   background-color: #de6739;
@@ -90,6 +92,7 @@ body {
   font-weight: 100;
 }
 
+/* End conNecT changes */
 
 #catRGB {
   color: white;
@@ -920,7 +923,6 @@ ul.side-nav li.side-menu-end {
 .sketch_name:focus {
     border-bottom: 1px solid #EEE !important;
 }
-
 
 @media only screen and (min-width: 0px) and (max-width: 600px) {
   .sketch_name {
