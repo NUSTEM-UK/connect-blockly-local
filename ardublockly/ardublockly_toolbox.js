@@ -104,6 +104,8 @@ Ardublockly.TOOLBOX_XML =
 '  <sep></sep>' +
 '  <category id="catConnectSetup" name="Connect Setup">' +
 '     <block type="connect_activeHours_block"></block>' +
+'     <block type="connect_servo_home_position_block"></block>' +
+'     <block type="connect_servo_keep_active_block"></block>' +
 '  </category>' +
 // END CONNECT STUFF
 '  <sep></sep>' +

@@ -273,14 +273,60 @@ Blockly.Blocks["connect_activeHours_block"] = {
       .setCheck(Blockly.Types.NUMBER.checkList)
       .appendField('AM, to: ');
     this.appendDummyInput()
-      .appendField('PM')
-      .appendField('[NOT YET IMPLEMENTED]');
+      .appendField('PM');
+      // .appendField('[NOT YET IMPLEMENTED]');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip("FIXME: Not yet implemented");
+    this.setTooltip("TODO: Complete tooltip");
   }
 };
 
+Blockly.Blocks["connect_servo_home_position_block"] = {
+  /**
+   * Block implementing servo home position.
+   * @this Blockly.block
+   */
+  init: function() {
+    this.setHelpUrl('http://FIXME:/');
+    this.setColour(Blockly.Blocks.servo.HUE);
+    this.appendDummyInput()
+      .appendField('Set home position for servo')
+      .appendField(
+      new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
+      "SERVO_PIN")
+      .appendField(' to');
+    this.appendValueInput('SERVO_ANGLE')
+      .setCheck(Blockly.Types.NUMBER.checkList);
+    this.appendDummyInput()
+      .appendField('degrees');
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip("FIXME: Test tooltip");
+  }
+};
+
+Blockly.Blocks["connect_servo_keep_active_block"] = {
+  /**
+   * Block implementing servo 'keep active' preference:
+   * sets ConnectServo object flag to prevent servo disconnects
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl('http://FIXME:/');
+    this.setColour(Blockly.Blocks.servo.HUE);
+    this.appendDummyInput()
+      .appendField('Keep servo')
+      .appendField(
+      new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
+      "SERVO_PIN")
+      .appendField('active');
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip("FIXME: Test tooltip");
+  }
+};
 
 // Blockly.Blocks["connect_servo_animation_container_block"] = {
 //   /**
@@ -401,11 +447,11 @@ Blockly.Blocks["connect_connected_device"] = {
         .appendField(new Blockly.FieldImage("./img/connect-function-header-02.png", 84, 24, "*"));
         // .appendField("Connected Device");
       this.appendDummyInput()
-        .appendField("Setup() (for testing)");
+        .appendField("Setup");
         this.appendStatementInput('SETUP_FUNC');
-      this.appendDummyInput()
-        .appendField("Loop() (for testing)");
-        this.appendStatementInput('LOOP_FUNC');
+      // this.appendDummyInput()
+      //   .appendField("Loop() (for testing)");
+      //   this.appendStatementInput('LOOP_FUNC');
       this.setInputsInline(false);
       this.setPreviousStatement(false);
       this.setNextStatement(false);
