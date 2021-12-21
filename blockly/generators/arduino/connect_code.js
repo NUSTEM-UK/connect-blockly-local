@@ -255,6 +255,28 @@ Blockly.Arduino['connect_servo_home_position_block'] = function(block) {
 }
 
 /**
+ * Connect set servo stay active
+ * Arduino code: setup { servoDx.keepActive() }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+ Blockly.Arduino['connect_servo_keep_active_block'] = function(block) {
+  var pinKey = block.getFieldValue('SERVO_PIN');
+  var connectServoName = 'servo' + pinKey;
+
+  Blockly.Arduino.reservePin(
+    block, pinKey, Blockly.Arduino.PinTypes.SERVO, 'Servo Write');
+
+  Blockly.Arduino.addDeclaration('ConnectServo_' + pinKey, 'ConnectServo ' + connectServoName + ';');
+
+  var setupCode = connectServoName + '.keepActive();\n';
+  Blockly.Arduino.addSetup('ConnectServo_' + pinKey, setupCode, true);
+
+  var code = "";
+  return code;
+}
+
+/**
  * Connect root block
  * @param {!Blockly.Block} block Block to generate the code from.
  * @return {string} Completed code.
