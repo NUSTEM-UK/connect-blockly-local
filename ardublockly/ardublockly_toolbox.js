@@ -104,7 +104,13 @@ Ardublockly.TOOLBOX_XML =
 '  <sep></sep>' +
 '  <category id="catConnectSetup" name="Connect Setup">' +
 '     <block type="connect_activeHours_block"></block>' +
-'     <block type="connect_servo_home_position_block"></block>' +
+'     <block type="connect_servo_home_position_block">' +
+'       <value name="HOME_ANGLE">' +
+'         <shadow type="math_number">' +
+'           <field name="NUM">90</field>' +
+'         </shadow>' +
+'       </value>' +
+'     </block>' +
 '     <block type="connect_servo_keep_active_block"></block>' +
 '  </category>' +
 // END CONNECT STUFF

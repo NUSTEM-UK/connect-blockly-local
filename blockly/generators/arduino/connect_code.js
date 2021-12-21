@@ -230,7 +230,29 @@ Blockly.Arduino['connect_wait_for_servo_move'] = function(block) {
   return code;
 }
 
+/**
+ * Connect set servo home position
+ * Arduino code: setup { servoDx.setHome(homeAngle) }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['connect_servo_home_position_block'] = function(block) {
+  var pinKey = block.getFieldValue('SERVO_PIN');
+  var homeAngle = Blockly.Arduino.valueToCode(
+    block, 'HOME_ANGLE', Blockly.Arduino.ORDER_ATOMIC) || '90';
+  var connectServoName = 'servo' + pinKey;
 
+  Blockly.Arduino.reservePin(
+    block, pinKey, Blockly.Arduino.PinTypes.SERVO, 'Servo Write');
+
+  Blockly.Arduino.addDeclaration('ConnectServo_' + pinKey, 'ConnectServo ' + connectServoName + ';');
+
+  var setupCode = connectServoName + '.setHome(' + homeAngle + ');\n';
+  Blockly.Arduino.addSetup('ConnectServo_' + pinKey, setupCode, true);
+
+  var code = "";
+  return code;
+}
 
 /**
  * Connect root block

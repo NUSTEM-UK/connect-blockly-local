@@ -295,7 +295,7 @@ Blockly.Blocks["connect_servo_home_position_block"] = {
       new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
       "SERVO_PIN")
       .appendField(' to');
-    this.appendValueInput('SERVO_ANGLE')
+    this.appendValueInput('HOME_ANGLE')
       .setCheck(Blockly.Types.NUMBER.checkList);
     this.appendDummyInput()
       .appendField('degrees');
