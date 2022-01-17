@@ -277,6 +277,19 @@ Blockly.Arduino['connect_servo_home_position_block'] = function(block) {
 }
 
 /**
+ * Connect set inverted
+ * Arduino code: setup { setInverted(true); }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @returns {string} Completed code.
+ */
+Blockly.Arduino['connect_set_inverted_block'] = function(block) {
+  var setupCode = 'setInverted(true);\n';
+  Blockly.Arduino.addSetup('setInverted', setupCode, true);
+  var code ="";
+  return code;
+}
+
+/**
  * Connect root block
  * @param {!Blockly.Block} block Block to generate the code from.
  * @return {string} Completed code.

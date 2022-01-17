@@ -328,6 +328,23 @@ Blockly.Blocks["connect_servo_keep_active_block"] = {
   }
 };
 
+Blockly.Blocks["connect_set_inverted_block"] = {
+  /**
+   * Block implementing 'isInverted' preference:
+   * sets ConnectLib flag to indicate Kniwwelino is inverted.
+   * @this Blockly.block
+   */
+  init: function() {
+    this.setHelpUrl('http://FIXME:/');
+    this.setColour(Blockly.Blocks.connect_Connect.HUE);
+    this.appendDummyInput()
+      .appendField('Upside-down');
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip("FIXME: Test tooltip");
+  }
+};
+
 // Blockly.Blocks["connect_servo_animation_container_block"] = {
 //   /**
 //    * Block implementing servo animation template with container

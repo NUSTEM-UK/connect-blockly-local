@@ -112,6 +112,7 @@ Ardublockly.TOOLBOX_XML =
 '       </value>' +
 '     </block>' +
 '     <block type="connect_servo_keep_active_block"></block>' +
+'     <block type="connect_set_inverted_block"></block>' +
 '  </category>' +
 // END CONNECT STUFF
 '  <sep></sep>' +
@@ -120,7 +121,7 @@ Ardublockly.TOOLBOX_XML =
 '      <value name="COLOR">' +
 '        <shadow type="kniwwelino_RGBselectColor"></shadow>' +
 '      </value>' +
-'  </block>' +
+'    </block>' +
 '    <block type="kniwwelino_RGBclear"></block>' +
 '    <block type="kniwwelino_RGBselectColor"></block>' +
 '    <block type="kniwwelino_HUEselectColor">' +
