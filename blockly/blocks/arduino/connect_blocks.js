@@ -122,7 +122,7 @@ Blockly.Blocks["connect_servo_queue_ease_block"] = {
     this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown(
       [
-        ["Evenly", "LINEAR"],
+        ["Evenly", "EASE_LINEAR"],
         ["Getting faster", "EASE_CUBIC_IN"],
         ["Getting slower", "EASE_CUBIC_OUT"],
         ["Getting faster then slower", "EASE_CUBIC_IN_OUT"]
@@ -853,7 +853,7 @@ Blockly.Blocks["connect_mood_sad"] = {
         Blockly.Procedures.rename);
     nameField.setSpellcheck(false);
     this.appendDummyInput()
-        .appendField('When ☹️:')
+        .appendField('When 😟:')
         .appendField(nameField, 'NAME')
         .appendField('', 'PARAMS');
     //this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));
