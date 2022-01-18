@@ -122,11 +122,36 @@ Blockly.Blocks["connect_servo_queue_ease_block"] = {
     this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown(
       [
-        ["Evenly", "LINEAR"],
+        ["Evenly", "EASE_LINEAR"],
         ["Getting faster", "EASE_CUBIC_IN"],
         ["Getting slower", "EASE_CUBIC_OUT"],
         ["Getting faster then slower", "EASE_CUBIC_IN_OUT"]
       ]), "EASING_TYPE");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip("FIXME: Test tooltip");
+  }
+};
+
+Blockly.Blocks["connect_servo_move_block"] = {
+  /**
+   * Block triggering immediate servo movement.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl("https://FIXME:");
+    this.setColour(Blockly.Blocks.servo.HUE);
+    this.appendDummyInput()
+      .appendField('Move servo')
+      .appendField(
+      new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
+      "SERVO_PIN")
+      .appendField(' to');
+    this.appendValueInput('SERVO_ANGLE')
+      .setCheck(Blockly.Types.NUMBER.checkList);
+    this.appendDummyInput()
+      .appendField('degrees, immediately');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -227,12 +252,12 @@ Blockly.Blocks["connect_servo_queue_animation_block"] = {
       )
       .appendField('to');
     this.appendDummyInput()
-      .appendField(
-        new Blockly.FieldDropdown([
+      .appendField(new Blockly.FieldDropdown(
+        [
           ["flap", "flap"],
           ["wave", "wave"],
           ["bounce", "bounce"]
-        ]))
+        ]), "ANIMATION_TYPE")
       .appendField(' ');
     this.appendValueInput('NUM_SEQUENCES')
       .setCheck(Blockly.Types.NUMBER.checkList);
@@ -264,7 +289,7 @@ Blockly.Blocks["connect_activeHours_block"] = {
     this.setHelpUrl('http://FIXME:/');
     this.setColour(Blockly.Blocks.connect_Connect.HUE);
     this.appendDummyInput()
-      .appendField('Active hours')
+      .appendField('Setup: Active hours')
       this.setInputsInline(true);
       this.appendValueInput('active_start')
       .setCheck(Blockly.Types.NUMBER.checkList)
@@ -274,13 +299,76 @@ Blockly.Blocks["connect_activeHours_block"] = {
       .appendField('AM, to: ');
     this.appendDummyInput()
       .appendField('PM')
-      .appendField('[NOT YET IMPLEMENTED]');
+      .appendField('[NOT YET WORKING]');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip("FIXME: Not yet implemented");
+    this.setTooltip("TODO: Complete tooltip");
   }
 };
 
+Blockly.Blocks["connect_servo_home_position_block"] = {
+  /**
+   * Block implementing servo home position.
+   * @this Blockly.block
+   */
+  init: function() {
+    this.setHelpUrl('http://FIXME:/');
+    this.setColour(Blockly.Blocks.servo.HUE);
+    this.appendDummyInput()
+      .appendField('Setup: Home position for servo')
+      .appendField(
+      new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
+      "SERVO_PIN")
+      .appendField(' to');
+    this.appendValueInput('HOME_ANGLE')
+      .setCheck(Blockly.Types.NUMBER.checkList);
+    this.appendDummyInput()
+      .appendField('degrees');
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip("FIXME: Test tooltip");
+  }
+};
+
+Blockly.Blocks["connect_servo_keep_active_block"] = {
+  /**
+   * Block implementing servo 'keep active' preference:
+   * sets ConnectServo object flag to prevent servo disconnects
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl('http://FIXME:/');
+    this.setColour(Blockly.Blocks.servo.HUE);
+    this.appendDummyInput()
+      .appendField('Setup: Keep servo')
+      .appendField(
+      new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
+      "SERVO_PIN")
+      .appendField('active');
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip("FIXME: Test tooltip");
+  }
+};
+
+Blockly.Blocks["connect_set_inverted_block"] = {
+  /**
+   * Block implementing 'isInverted' preference:
+   * sets ConnectLib flag to indicate Kniwwelino is inverted.
+   * @this Blockly.block
+   */
+  init: function() {
+    this.setHelpUrl('http://FIXME:/');
+    this.setColour(Blockly.Blocks.connect_Connect.HUE);
+    this.appendDummyInput()
+      .appendField('Setup: Upside-down');
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip("FIXME: Test tooltip");
+  }
+};
 
 // Blockly.Blocks["connect_servo_animation_container_block"] = {
 //   /**
@@ -401,11 +489,11 @@ Blockly.Blocks["connect_connected_device"] = {
         .appendField(new Blockly.FieldImage("./img/connect-function-header-02.png", 84, 24, "*"));
         // .appendField("Connected Device");
       this.appendDummyInput()
-        .appendField("Setup() (for testing)");
+        .appendField("Setup");
         this.appendStatementInput('SETUP_FUNC');
-      this.appendDummyInput()
-        .appendField("Loop() (for testing)");
-        this.appendStatementInput('LOOP_FUNC');
+      // this.appendDummyInput()
+      //   .appendField("Loop() (for testing)");
+      //   this.appendStatementInput('LOOP_FUNC');
       this.setInputsInline(false);
       this.setPreviousStatement(false);
       this.setNextStatement(false);
@@ -807,7 +895,7 @@ Blockly.Blocks["connect_mood_sad"] = {
         Blockly.Procedures.rename);
     nameField.setSpellcheck(false);
     this.appendDummyInput()
-        .appendField('When ☹️:')
+        .appendField('When 😟:')
         .appendField(nameField, 'NAME')
         .appendField('', 'PARAMS');
     //this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));

@@ -126,6 +126,33 @@ Blockly.Arduino['connect_servo_queue_ease_block'] = function(block) {
 }
 
 /**
+ * ConnectServo  immediate movement.
+ * Based on default servo block, more-or-less.
+ * Arduino code: ConnectServo servoDx;
+ *               setup { servoDx.setPin(servoDxPin) }
+ *               code  { servoDx.write(angle) }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+ Blockly.Arduino['connect_servo_move_block'] = function(block) {
+  var pinKey = block.getFieldValue('SERVO_PIN');
+  var servoAngle = Blockly.Arduino.valueToCode(
+    block, 'SERVO_ANGLE', Blockly.Arduino.ORDER_ATOMIC) || '90';
+  var easeServoName = 'servo' + pinKey;
+
+  Blockly.Arduino.reservePin(
+    block, pinKey, Blockly.Arduino.PinTypes.SERVO, 'Servo Write');
+
+  Blockly.Arduino.addDeclaration('ConnectServo_' + pinKey, 'ConnectServo ' + easeServoName + ';');
+
+  var setupCode = easeServoName + '.setPin(' + pinKey + ');';
+  Blockly.Arduino.addSetup('servoEasing_' + pinKey, setupCode, true);
+
+  var code = easeServoName + '.write(' + servoAngle + ');\n';
+  return code;
+}
+
+/**
  * ConnectServo queue direct movement.
  * Based on default servo block, more-or-less.
  * Arduino code: ConnectServo servoDx;
@@ -230,7 +257,103 @@ Blockly.Arduino['connect_wait_for_servo_move'] = function(block) {
   return code;
 }
 
+/**
+ * Connect queue predefined animation
+ * Arduino code: ConnectServo servoDx;
+ *               setup { servoDx.setPin(servoDxPin) }
+ *               code  { servoDx.queueWait(millis) }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completewd code.
+ */
+ Blockly.Arduino['connect_servo_queue_animation_block'] = function(block) {
+  var pinKey = block.getFieldValue('SERVO_PIN');
+  var easeServoName = 'servo' + pinKey;
+  var startPos = Blockly.Arduino.valueToCode(
+    block, 'FROM_ANGLE', Blockly.Arduino.ORDER_ATOMIC) || '45';
+  var endPos = Blockly.Arduino.valueToCode(
+    block, 'TO_ANGLE', Blockly.Arduino.ORDER_ATOMIC) || '135';
+  var repeat = Blockly.Arduino.valueToCode(
+    block, 'NUM_SEQUENCES', Blockly.Arduino.ORDER_ATOMIC) || '1';
+  var animationType = block.getFieldValue('ANIMATION_TYPE');
 
+  Blockly.Arduino.reservePin(
+    block, pinKey, Blockly.Arduino.PinTypes.SERVO, 'Servo Write');
+
+  Blockly.Arduino.addDeclaration('ConnectServo_' + pinKey, 'ConnectServo ' + easeServoName + ';');
+  // I... don't actually need this line if I pass D5 directly to setPin()
+  // Blockly.Arduino.addDeclaration('ConnectServoPin_' + pinKey, 'static const uint8_t ' + easeServoName + 'Pin = ' + pinKey + ';');
+
+  var setupCode = easeServoName + '.setPin(' + pinKey + ');';
+  Blockly.Arduino.addSetup('servoEasing_' + pinKey, setupCode, true);
+
+  var code = easeServoName + '.'
+             + animationType
+             + '('
+             + repeat + ', '
+             + startPos + ', '
+             + endPos + ');\n';
+  return code;
+}
+
+
+/**
+ * Connect set servo home position
+ * Arduino code: setup { servoDx.setHome(homeAngle) }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['connect_servo_home_position_block'] = function(block) {
+  var pinKey = block.getFieldValue('SERVO_PIN');
+  var homeAngle = Blockly.Arduino.valueToCode(
+    block, 'HOME_ANGLE', Blockly.Arduino.ORDER_ATOMIC) || '90';
+  var connectServoName = 'servo' + pinKey;
+
+  Blockly.Arduino.reservePin(
+    block, pinKey, Blockly.Arduino.PinTypes.SERVO, 'Servo Write');
+
+  Blockly.Arduino.addDeclaration('ConnectServo_' + pinKey, 'ConnectServo ' + connectServoName + ';');
+
+  var setupCode = connectServoName + '.setHome(' + homeAngle + ');\n';
+  Blockly.Arduino.addSetup('ConnectServo_' + pinKey + '_setHome', setupCode, true);
+
+  var code = "";
+  return code;
+}
+
+/**
+ * Connect set servo stay active
+ * Arduino code: setup { servoDx.keepActive() }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+ Blockly.Arduino['connect_servo_keep_active_block'] = function(block) {
+  var pinKey = block.getFieldValue('SERVO_PIN');
+  var connectServoName = 'servo' + pinKey;
+
+  Blockly.Arduino.reservePin(
+    block, pinKey, Blockly.Arduino.PinTypes.SERVO, 'Servo Write');
+
+  Blockly.Arduino.addDeclaration('ConnectServo_' + pinKey, 'ConnectServo ' + connectServoName + ';');
+
+  var setupCode = connectServoName + '.keepActive();\n';
+  Blockly.Arduino.addSetup('ConnectServo_' + pinKey + '_stayActive', setupCode, true);
+
+  var code = "";
+  return code;
+}
+
+/**
+ * Connect set inverted
+ * Arduino code: setup { setInverted(true); }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @returns {string} Completed code.
+ */
+Blockly.Arduino['connect_set_inverted_block'] = function(block) {
+  var setupCode = 'setInverted(true);\n';
+  Blockly.Arduino.addSetup('setInverted', setupCode, true);
+  var code ="";
+  return code;
+}
 
 /**
  * Connect root block
