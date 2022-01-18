@@ -81,6 +81,13 @@ Ardublockly.TOOLBOX_XML =
 '        </shadow>' +
 '      </value>' +
 '    </block>' +
+'    <block type="connect_servo_move_block">' +
+'       <value name="SERVO_ANGLE">' +
+'         <shadow type="math_number">' +
+'           <field name="NUM">90</field>' +
+'         </shadow>' +
+'       </value>' +
+'    </block>' +
 // '    <block type="connect_servo_animation_container_block">' +
 //         '<value name="FROM_ANGLE">' +
 // '        <shadow type="math_number">' +
@@ -102,7 +109,7 @@ Ardublockly.TOOLBOX_XML =
 // '    </block>' +
 '  </category>' +
 '  <sep></sep>' +
-'  <category id="catConnectSetup" name="Connect Setup">' +
+'  <category id="catConnectSetup" name="Connect Bits">' +
 '     <block type="connect_activeHours_block"></block>' +
 '     <block type="connect_servo_home_position_block">' +
 '       <value name="HOME_ANGLE">' +
@@ -113,6 +120,13 @@ Ardublockly.TOOLBOX_XML =
 '     </block>' +
 '     <block type="connect_servo_keep_active_block"></block>' +
 '     <block type="connect_set_inverted_block"></block>' +
+'    <block type="kniwwelino_sleep">' +
+'      <value name="DELAY_TIME_MILI">' +
+'        <shadow type="math_number">' +
+'          <field name="NUM">1000</field>' +
+'        </shadow>' +
+'      </value>' +
+'    </block>' +
 '  </category>' +
 // END CONNECT STUFF
 '  <sep></sep>' +
@@ -670,15 +684,17 @@ Ardublockly.TOOLBOX_XML =
 '    </block>' +
 '  </category>' +
 '  <sep adv="true"></sep>' +
-'  <category id="catMotors" name="Motors" adv="true">' +
-'    <block type="servo_write">' +
-'      <value name="SERVO_ANGLE">' +
-'        <shadow type="math_number">' +
-'          <field name="NUM">90</field>' +
-'        </shadow>' +
-'      </value>' +
-'    </block>' +
-'    <block type="servo_read"></block>' +
+// 2022-0 1-17 Conenct commented out to prevent collisions with
+//             ConnectServo objects
+// '  <category id="catMotors" name="Motors" adv="true">' +
+// '    <block type="servo_write">' +
+// '      <value name="SERVO_ANGLE">' +
+// '        <shadow type="math_number">' +
+// '          <field name="NUM">90</field>' +
+// '        </shadow>' +
+// '      </value>' +
+// '    </block>' +
+// '    <block type="servo_read"></block>' +
 //'    <block type="stepper_config">' +
 //'      <field name="STEPPER_NUMBER_OF_PINS">2</field>' +
 //'      <field name="STEPPER_PIN1">1</field>' +
@@ -701,7 +717,7 @@ Ardublockly.TOOLBOX_XML =
 //'        </block>' +
 //'      </value>' +
 //'    </block>' +
-'  </category>' +
+// '  </category>' +
 //'  <sep></sep>' +
 //'  <category id="catComms" name="Comms">' +
 //'    <block type="serial_setup"></block>' +
@@ -715,7 +731,7 @@ Ardublockly.TOOLBOX_XML =
 //'    <block type="spi_transfer"></block>' +
 //'    <block type="spi_transfer_return"></block>' +
 //'  </category>' +
-'  <sep adv="true"></sep>' +
+// '  <sep adv="true"></sep>' +
 '  <category id="catSensors" name="Sensors" adv="true">' +
 '    <block type="kniwwelino_BME280getValue"></block>' +
 '    <block type="kniwwelino_BME680getValue"></block>' +

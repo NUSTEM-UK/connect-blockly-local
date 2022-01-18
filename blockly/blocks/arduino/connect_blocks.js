@@ -134,6 +134,31 @@ Blockly.Blocks["connect_servo_queue_ease_block"] = {
   }
 };
 
+Blockly.Blocks["connect_servo_move_block"] = {
+  /**
+   * Block triggering immediate servo movement.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl("https://FIXME:");
+    this.setColour(Blockly.Blocks.servo.HUE);
+    this.appendDummyInput()
+      .appendField('Move servo')
+      .appendField(
+      new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
+      "SERVO_PIN")
+      .appendField(' to');
+    this.appendValueInput('SERVO_ANGLE')
+      .setCheck(Blockly.Types.NUMBER.checkList);
+    this.appendDummyInput()
+      .appendField('degrees, immediately');
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip("FIXME: Test tooltip");
+  }
+};
+
 Blockly.Blocks["connect_servo_queue_move_block"] = {
   /**
    * Block queueing servo direct movement.
@@ -227,12 +252,12 @@ Blockly.Blocks["connect_servo_queue_animation_block"] = {
       )
       .appendField('to');
     this.appendDummyInput()
-      .appendField(
-        new Blockly.FieldDropdown([
+      .appendField(new Blockly.FieldDropdown(
+        [
           ["flap", "flap"],
           ["wave", "wave"],
           ["bounce", "bounce"]
-        ]))
+        ]), "ANIMATION_TYPE")
       .appendField(' ');
     this.appendValueInput('NUM_SEQUENCES')
       .setCheck(Blockly.Types.NUMBER.checkList);
@@ -264,7 +289,7 @@ Blockly.Blocks["connect_activeHours_block"] = {
     this.setHelpUrl('http://FIXME:/');
     this.setColour(Blockly.Blocks.connect_Connect.HUE);
     this.appendDummyInput()
-      .appendField('Active hours')
+      .appendField('Setup: Active hours')
       this.setInputsInline(true);
       this.appendValueInput('active_start')
       .setCheck(Blockly.Types.NUMBER.checkList)
@@ -273,8 +298,8 @@ Blockly.Blocks["connect_activeHours_block"] = {
       .setCheck(Blockly.Types.NUMBER.checkList)
       .appendField('AM, to: ');
     this.appendDummyInput()
-      .appendField('PM');
-      // .appendField('[NOT YET IMPLEMENTED]');
+      .appendField('PM')
+      .appendField('[NOT YET WORKING]');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip("TODO: Complete tooltip");
@@ -290,7 +315,7 @@ Blockly.Blocks["connect_servo_home_position_block"] = {
     this.setHelpUrl('http://FIXME:/');
     this.setColour(Blockly.Blocks.servo.HUE);
     this.appendDummyInput()
-      .appendField('Set home position for servo')
+      .appendField('Setup: Home position for servo')
       .appendField(
       new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
       "SERVO_PIN")
@@ -316,7 +341,7 @@ Blockly.Blocks["connect_servo_keep_active_block"] = {
     this.setHelpUrl('http://FIXME:/');
     this.setColour(Blockly.Blocks.servo.HUE);
     this.appendDummyInput()
-      .appendField('Keep servo')
+      .appendField('Setup: Keep servo')
       .appendField(
       new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
       "SERVO_PIN")
@@ -338,7 +363,7 @@ Blockly.Blocks["connect_set_inverted_block"] = {
     this.setHelpUrl('http://FIXME:/');
     this.setColour(Blockly.Blocks.connect_Connect.HUE);
     this.appendDummyInput()
-      .appendField('Upside-down');
+      .appendField('Setup: Upside-down');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip("FIXME: Test tooltip");
