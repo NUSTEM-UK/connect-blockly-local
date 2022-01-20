@@ -270,8 +270,6 @@ Blockly.Blocks["connect_servo_queue_animation_block"] = {
       .appendField('degrees and');
     this.appendDummyInput()
       .appendField('degrees');
-    this.appendDummyInput()
-      .appendField(' (not yet implemented)');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -369,111 +367,6 @@ Blockly.Blocks["connect_set_inverted_block"] = {
     this.setTooltip("FIXME: Test tooltip");
   }
 };
-
-// Blockly.Blocks["connect_servo_animation_container_block"] = {
-//   /**
-//    * Block implementing servo animation template with container
-//    * @this Blockly.Block
-//    */
-//   init: function() {
-//     this.setHelpUrl("https://FIXME:");
-//     this.setColour(Blockly.Blocks.servo.HUE);
-//     this.appendDummyInput()
-//       .appendField(
-//         new Blockly.FieldDropdown([
-//           ["flap", "flap"],
-//           ["wave", "wave"],
-//           ["bounce", "bounce"]
-//         ]))
-//       .appendField('SERVO on Pin')
-//       .appendField(
-//         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
-//         "SERVO_PIN"
-//       );
-//     this.appendValueInput('FROM_ANGLE')
-//       .setCheck(Blockly.Types.NUMBER.checkList)
-//       .appendField('from angle: ');
-//     this.appendValueInput('TO_ANGLE')
-//       .setCheck(Blockly.Types.NUMBER.checkList)
-//       .appendField('to angle: ');
-//     this.appendValueInput('NUM_SEQUENCES')
-//       .setCheck(Blockly.Types.NUMBER.checkList)
-//       .appendField('times: ');
-//     this.appendStatementInput("NAME")
-//         .setCheck(null)
-//         .appendField("and");
-//     this.setInputsInline(true);
-//     this.setPreviousStatement(true, null);
-//     this.setNextStatement(true, null);
-//     this.setTooltip("FIXME: tooltip");
-//   }
-// };
-
-// Blockly.Blocks["connect_wait_for_servo_move"] = {
-//   /**
-//    * Block implementing check to wait for servo moves to complete
-//    * @this Blockly.Block
-//    */
-//   init: function() {
-//     this.setHelpUrl("https://FIXME:");
-//     this.setColour(Blockly.Blocks.servo.HUE);
-//     this.appendDummyInput()
-//       .appendField('Wait for SERVO on Pin')
-//       .appendField(
-//         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwmPins),
-//         "SERVO_PIN"
-//       )
-//       .appendField('to finish moving');
-//     this.setInputsInline(true);
-//     this.setPreviousStatement(true, null);
-//     this.setNextStatement(true, null);
-//     this.setTooltip("Pauses program until servo has finished movement");
-//   },
-//   updateFields: function() {
-//     Blockly.Arduino.Boards.refreshBlockFieldDropdown(
-//       this, "SERVO_PIN", "pwmPins"
-//     );
-//   }
-// };
-
-// Blockly.Blocks['connect_enqueue'] = {
-//   /**
-//    * Block for queueing up commands to the dispatcher.
-//    * @this Blockly.Block
-//    * 2021-05-14 Meh, need to design this on paper before we try
-//    * to code it up. Should be possible with reference to math_number_property
-//    * in blocks/math.js.
-//    */
-//   init: function() {
-//     this.setColour(Blockly.Blocks.connect_Connect.HUE);
-
-//   }
-// }
-
-// Blockly.Blocks["connect_on_mood_message"] = {
-//     /**
-//      * Block implementing core message receive logic and match specific mood
-//      * @this Blockly.Block
-//      * 2021-05-14 Not loaded in ardu_blockly_toolbox, for now
-//      */
-//     init: function() {
-//       this.setHelpUrl("https://FIXME:");
-//       this.setColour(Blockly.Blocks.loops.HUE);
-//       this.setTooltip("");
-//       this.appendDummyInput()
-//         .appendField("if received mood is")
-//         .appendField(new Blockly.FieldDropdown([["happy", "HAPPY"], ["sad", "SAD"], ["heart", "HEART"], ["skull", "SKULL"], ["duck", "DUCK"]]), "mood");
-//         this.appendStatementInput("DO")
-//         .setCheck(null);
-//       this.appendDummyInput()
-//         .appendField("if received mood is")
-//         .appendField(new Blockly.FieldDropdown([["happy", "HAPPY"], ["sad", "SAD"], ["heart", "HEART"], ["skull", "SKULL"], ["duck", "DUCK"]]), "mood");
-//         this.appendStatementInput("DO")
-//         .setCheck(null);
-//       this.setPreviousStatement(true, null);
-//       this.setNextStatement(true, null);
-//     }
-// };
 
 Blockly.Blocks["connect_connected_device"] = {
     /**
