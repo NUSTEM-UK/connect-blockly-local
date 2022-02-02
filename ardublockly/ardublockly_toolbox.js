@@ -130,7 +130,7 @@ Ardublockly.TOOLBOX_XML =
 '  </category>' +
 // END CONNECT STUFF
 '  <sep></sep>' +
-'  <category id="catRGB" name="LED">' +
+'  <category id="catRGB" name="LED" adv="true">' +
 '    <block type="kniwwelino_RGBsetColorEffect">' +
 '      <value name="COLOR">' +
 '        <shadow type="kniwwelino_RGBselectColor"></shadow>' +
