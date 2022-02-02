@@ -316,13 +316,15 @@ Blockly.Arduino.Boards.profiles.esp8266_wemos_d1 = {
 };
 
 /** ESP8266 for the Kniwwelino. */
+// Hacked for Connect to reserve D6 for serial use, not PWM.
 Blockly.Arduino.Boards.profiles.esp8266_kniwwelino = {
   name: 'Kniwwelino',
   description: 'Kniwwelino',
   compilerFlag: 'esp8266:esp8266:kniwwelino',
   analogPins: [['A0', 'A0']],
   digitalPins: [['D0', 'D0'], ['D5', 'D5'], ['D6', 'D6'], ['D7', 'D7']],
-  pwmPins:   [['D5', 'D5'], ['D6', 'D6'], ['D7', 'D7']],
+  // pwmPins:   [['D5', 'D5'], ['D6', 'D6'], ['D7', 'D7']],
+  pwmPins:   [['D5', 'D5'], ['D7', 'D7']],
   serial: [['serial', 'Serial']],
   serialPins: { Serial: [['RX', 'RX'], ['TX', 'TX']] },
   serialSpeed: [['115200', '115200'], ['9600', '9600']],
