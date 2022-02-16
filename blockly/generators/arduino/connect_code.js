@@ -313,7 +313,10 @@ Blockly.Arduino['connect_servo_home_position_block'] = function(block) {
 
   Blockly.Arduino.addDeclaration('ConnectServo_' + pinKey, 'ConnectServo ' + connectServoName + ';');
 
-  var setupCode = connectServoName + '.setHome(' + homeAngle + ');\n';
+  var setupCode = connectServoName + '.setPin(' + pinKey + ');\n';
+  Blockly.Arduino.addSetup('servoEasing_' + pinKey, setupCode, true);
+  // APPEND TO setupcode
+  setupCode = connectServoName + '.setHome(' + homeAngle + ');\n';
   Blockly.Arduino.addSetup('ConnectServo_' + pinKey + '_setHome', setupCode, true);
 
   var code = "";
