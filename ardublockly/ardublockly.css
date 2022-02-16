@@ -24,7 +24,7 @@ body {
   height: 100% !important;
   padding: 0;
   margin: 0;
-  touch-action: none;
+  touch-action: none; /* Connect action to block iPad zoom */
 }
 
 body {
@@ -306,6 +306,7 @@ body {
   background-repeat: no-repeat;
   background-position: 20px center;
   padding-left: 200px;
+  touch-action: none; /* Connect addition to block iPad zoom */
 }
 
 
